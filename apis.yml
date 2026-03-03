@@ -1,4 +1,6 @@
 name: Citrix NetScaler
+segments:
+  - Gateways
 description: Citrix NetScaler is an application delivery controller (ADC) that provides load balancing, traffic management, application security, and application acceleration capabilities for web applications and services.
 image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
 url: https://www.citrix.com/products/citrix-adc/
