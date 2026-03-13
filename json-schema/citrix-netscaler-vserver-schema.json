@@ -1,0 +1,404 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/citrix-netscaler/refs/heads/main/json-schema/citrix-netscaler-vserver-schema.json",
+  "title": "Citrix NetScaler Virtual Server",
+  "description": "A virtual server (vserver) object from the Citrix NetScaler NITRO API, representing either a load balancing or content switching virtual server that accepts incoming client traffic and distributes or routes it to backend services.",
+  "type": "object",
+  "required": ["name", "servicetype"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the virtual server. Must begin with a letter, number, or underscore character and must contain only alphanumeric, hyphen, period, hash, space, at, equals, colon, and underscore characters.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "servicetype": {
+      "type": "string",
+      "description": "Protocol of the service running on the virtual server.",
+      "enum": [
+        "HTTP",
+        "FTP",
+        "TCP",
+        "UDP",
+        "SSL",
+        "SSL_BRIDGE",
+        "SSL_TCP",
+        "DTLS",
+        "NNTP",
+        "DNS",
+        "DHCPRA",
+        "ANY",
+        "SIP_UDP",
+        "SIP_TCP",
+        "SIP_SSL",
+        "DNS_TCP",
+        "RTSP",
+        "PUSH",
+        "SSL_PUSH",
+        "RADIUS",
+        "RDP",
+        "MYSQL",
+        "MSSQL",
+        "DIAMETER",
+        "SSL_DIAMETER",
+        "TFTP",
+        "ORACLE",
+        "SMPP",
+        "SYSLOGTCP",
+        "SYSLOGUDP",
+        "FIX",
+        "SSL_FIX",
+        "PROXY",
+        "USER_TCP",
+        "USER_SSL_TCP",
+        "QUIC",
+        "IPFIX",
+        "LOGSTREAM",
+        "MONGO",
+        "MONGO_TLS",
+        "MQTT",
+        "MQTT_TLS",
+        "QUIC_BRIDGE",
+        "HTTP_QUIC"
+      ]
+    },
+    "ipv46": {
+      "type": "string",
+      "description": "IPv4 or IPv6 address to assign to the virtual server. This is typically a Virtual IP (VIP) address on the NetScaler used as the entry point for client traffic."
+    },
+    "port": {
+      "type": "integer",
+      "description": "Port number on which the virtual server listens for client connections.",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "td": {
+      "type": "integer",
+      "description": "Traffic domain identifier to isolate traffic for this virtual server from other traffic domains on the appliance.",
+      "minimum": 0,
+      "maximum": 4094
+    },
+    "ipset": {
+      "type": "string",
+      "description": "Name of the IP set to bind to the virtual server, providing multiple IP addresses for the virtual server."
+    },
+    "range": {
+      "type": "integer",
+      "description": "Number of consecutive IP addresses that the appliance must generate beginning from the VIP address.",
+      "minimum": 2,
+      "maximum": 254
+    },
+    "ippattern": {
+      "type": "string",
+      "description": "IP address pattern for identifying packets to be accepted by the virtual server. Used together with ipmask."
+    },
+    "ipmask": {
+      "type": "string",
+      "description": "IP address mask applied with the IP pattern to form an IP address range for packet matching."
+    },
+    "lbmethod": {
+      "type": "string",
+      "description": "Load balancing method used to select the backend service for each client request. Applicable only to load balancing virtual servers.",
+      "enum": [
+        "ROUNDROBIN",
+        "LEASTCONNECTION",
+        "LEASTRESPONSETIME",
+        "URLHASH",
+        "DOMAINHASH",
+        "DESTINATIONIPHASH",
+        "SOURCEIPHASH",
+        "SRCIPDESTIPHASH",
+        "LEASTBANDWIDTH",
+        "LEASTPACKETS",
+        "TOKEN",
+        "SRCIPSRCPORTHASH",
+        "LRTM",
+        "CALLIDHASH",
+        "CUSTOMLOAD",
+        "LEASTREQUEST",
+        "AUDITLOGHASH",
+        "STATICPROXIMITY"
+      ],
+      "default": "LEASTCONNECTION"
+    },
+    "backuplbmethod": {
+      "type": "string",
+      "description": "Backup load balancing method used when the primary method fails to select a service.",
+      "enum": [
+        "ROUNDROBIN",
+        "LEASTCONNECTION",
+        "LEASTRESPONSETIME",
+        "SOURCEIPHASH",
+        "CUSTOMLOAD"
+      ],
+      "default": "ROUNDROBIN"
+    },
+    "persistencetype": {
+      "type": "string",
+      "description": "Type of persistence for the virtual server. Ensures requests from the same client are directed to the same backend service.",
+      "enum": [
+        "SOURCEIP",
+        "COOKIEINSERT",
+        "SSLSESSION",
+        "RULE",
+        "URLPASSIVE",
+        "CUSTOMSERVERID",
+        "DESTIP",
+        "SRCIPDESTIP",
+        "CALLID",
+        "RTSPSID",
+        "DIAMETER",
+        "FIXSESSION",
+        "USERSESSION",
+        "NONE"
+      ]
+    },
+    "persistencebackup": {
+      "type": "string",
+      "description": "Backup persistence type for the virtual server.",
+      "enum": ["SOURCEIP", "NONE"]
+    },
+    "timeout": {
+      "type": "integer",
+      "description": "Persistence timeout in minutes. Duration for which persistence sessions are maintained after the last matching request.",
+      "minimum": 0,
+      "maximum": 1440,
+      "default": 2
+    },
+    "clttimeout": {
+      "type": "integer",
+      "description": "Client idle timeout in seconds. Time the NetScaler waits before closing an idle client connection.",
+      "minimum": 0,
+      "maximum": 31536000
+    },
+    "cookiename": {
+      "type": "string",
+      "description": "Name of the HTTP cookie generated by the NetScaler for cookie-insert persistence."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Informational description or comments about the virtual server."
+    },
+    "state": {
+      "type": "string",
+      "description": "Administrative state of the virtual server.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "ENABLED"
+    },
+    "curstate": {
+      "type": "string",
+      "description": "Current operational state of the virtual server. This is a read-only property reflecting the runtime status.",
+      "enum": [
+        "UP",
+        "DOWN",
+        "UNKNOWN",
+        "BUSY",
+        "OUT OF SERVICE",
+        "GOING OUT OF SERVICE",
+        "DOWN WHEN GOING OUT OF SERVICE",
+        "NS_EMPTY_STR"
+      ],
+      "readOnly": true
+    },
+    "effectivestate": {
+      "type": "string",
+      "description": "Effective state of the virtual server considering all contributing factors.",
+      "enum": [
+        "UP",
+        "DOWN",
+        "UNKNOWN",
+        "BUSY",
+        "OUT OF SERVICE",
+        "GOING OUT OF SERVICE",
+        "DOWN WHEN GOING OUT OF SERVICE",
+        "NS_EMPTY_STR"
+      ],
+      "readOnly": true
+    },
+    "status": {
+      "type": "integer",
+      "description": "Current status code of the virtual server. A value of 1 indicates the virtual server is UP.",
+      "readOnly": true
+    },
+    "statechangetimesec": {
+      "type": "string",
+      "description": "Timestamp of the last state change for the virtual server.",
+      "readOnly": true
+    },
+    "tickssincelaststatechange": {
+      "type": "integer",
+      "description": "Number of system ticks elapsed since the last state change.",
+      "readOnly": true
+    },
+    "totalservices": {
+      "type": "integer",
+      "description": "Total number of services bound to this virtual server.",
+      "readOnly": true
+    },
+    "activeservices": {
+      "type": "integer",
+      "description": "Number of currently active (UP) services bound to this virtual server.",
+      "readOnly": true
+    },
+    "health": {
+      "type": "integer",
+      "description": "Health of the virtual server expressed as a percentage of UP services relative to total bound services.",
+      "readOnly": true,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "somethod": {
+      "type": "string",
+      "description": "Spillover method that defines the condition under which traffic overflows to the backup virtual server.",
+      "enum": [
+        "CONNECTION",
+        "DYNAMICCONNECTION",
+        "BANDWIDTH",
+        "HEALTH",
+        "NONE"
+      ]
+    },
+    "sothreshold": {
+      "type": "integer",
+      "description": "Threshold value for the spillover method. The meaning varies based on the spillover method selected.",
+      "minimum": 1
+    },
+    "sopersistence": {
+      "type": "string",
+      "description": "Whether to maintain persistence sessions when spillover occurs.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "DISABLED"
+    },
+    "sopersistencetimeout": {
+      "type": "integer",
+      "description": "Persistence timeout in minutes during spillover conditions.",
+      "minimum": 2,
+      "maximum": 1440,
+      "default": 2
+    },
+    "healththreshold": {
+      "type": "integer",
+      "description": "Minimum percentage of UP services required for the virtual server to be considered UP.",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0
+    },
+    "redirecturl": {
+      "type": "string",
+      "description": "URL to which client requests are redirected when all bound services are DOWN.",
+      "format": "uri"
+    },
+    "downstateflush": {
+      "type": "string",
+      "description": "Whether to flush all active transactions on all bound services when the virtual server transitions to DOWN.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "ENABLED"
+    },
+    "insertvserveripport": {
+      "type": "string",
+      "description": "Whether to insert the virtual server VIP address and port number into the HTTP request header.",
+      "enum": ["OFF", "VIPADDR", "V6TOV4MAPPING"]
+    },
+    "vipheader": {
+      "type": "string",
+      "description": "Name of the HTTP header in which the VIP address and port are inserted."
+    },
+    "disableprimaryondown": {
+      "type": "string",
+      "description": "Whether to continue directing traffic to the virtual server when it is DOWN in an HA deployment.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "DISABLED"
+    },
+    "authentication": {
+      "type": "string",
+      "description": "Whether authentication is enabled for the virtual server.",
+      "enum": ["ON", "OFF"],
+      "default": "OFF"
+    },
+    "authenticationhost": {
+      "type": "string",
+      "description": "Fully qualified domain name of the authentication virtual server to which users are redirected for authentication.",
+      "format": "hostname"
+    },
+    "authn401": {
+      "type": "string",
+      "description": "Whether to use HTTP 401-based authentication instead of redirect-based authentication.",
+      "enum": ["ON", "OFF"],
+      "default": "OFF"
+    },
+    "authnvsname": {
+      "type": "string",
+      "description": "Name of the authentication virtual server to use for 401-based authentication."
+    },
+    "push": {
+      "type": "string",
+      "description": "Whether to process traffic with the push virtual server bound to this virtual server.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "DISABLED"
+    },
+    "pushlabel": {
+      "type": "string",
+      "description": "Expression for extracting a label from the incoming request for push functionality."
+    },
+    "pushmulticlients": {
+      "type": "string",
+      "description": "Whether to allow multiple clients to connect to the push virtual server.",
+      "enum": ["YES", "NO"],
+      "default": "NO"
+    },
+    "icmpvsrresponse": {
+      "type": "string",
+      "description": "How the NetScaler appliance responds to ICMP ping requests directed at the VIP address.",
+      "enum": ["PASSIVE", "ACTIVE"],
+      "default": "PASSIVE"
+    },
+    "rhistate": {
+      "type": "string",
+      "description": "Route Health Injection state. Controls whether the route to the VIP is advertised via dynamic routing protocols when the server is UP.",
+      "enum": ["PASSIVE", "ACTIVE"],
+      "default": "PASSIVE"
+    },
+    "appflowlog": {
+      "type": "string",
+      "description": "Whether to enable AppFlow logging for the virtual server to capture traffic analytics.",
+      "enum": ["ENABLED", "DISABLED"],
+      "default": "ENABLED"
+    },
+    "connfailover": {
+      "type": "string",
+      "description": "Connection failover mode for the virtual server in HA deployments.",
+      "enum": ["DISABLED", "STATEFUL", "STATELESS"],
+      "default": "DISABLED"
+    },
+    "precedence": {
+      "type": "string",
+      "description": "Type of precedence to apply for content switching policy evaluation. Applicable only to content switching virtual servers.",
+      "enum": ["RULE", "URL"]
+    },
+    "casesensitive": {
+      "type": "string",
+      "description": "Whether URL-based content switching is case sensitive. Applicable only to content switching virtual servers.",
+      "enum": ["ON", "OFF"],
+      "default": "ON"
+    },
+    "lbvserver": {
+      "type": "string",
+      "description": "Name of the default load balancing virtual server bound to this content switching virtual server."
+    },
+    "targetlbvserver": {
+      "type": "string",
+      "description": "Name of the target load balancing virtual server to which matching content is switched."
+    },
+    "cachetype": {
+      "type": "string",
+      "description": "Cache type for integrated caching on the virtual server.",
+      "enum": ["TRANSPARENT", "REVERSE", "FORWARD"]
+    },
+    "isgslb": {
+      "type": "boolean",
+      "description": "Whether this virtual server is a GSLB (Global Server Load Balancing) virtual server.",
+      "readOnly": true
+    }
+  },
+  "additionalProperties": true
+}

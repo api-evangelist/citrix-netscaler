@@ -1,0 +1,279 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ns": "https://developer-docs.netscaler.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "LbVserver": {
+      "@id": "ns:LbVserver",
+      "@context": {
+        "name": "schema:name",
+        "servicetype": "ns:servicetype",
+        "ipv46": {
+          "@id": "ns:ipAddress",
+          "@type": "xsd:string"
+        },
+        "port": {
+          "@id": "ns:port",
+          "@type": "xsd:integer"
+        },
+        "lbmethod": "ns:lbmethod",
+        "backuplbmethod": "ns:backuplbmethod",
+        "persistencetype": "ns:persistencetype",
+        "timeout": {
+          "@id": "ns:persistenceTimeout",
+          "@type": "xsd:integer"
+        },
+        "clttimeout": {
+          "@id": "ns:clientTimeout",
+          "@type": "xsd:integer"
+        },
+        "state": "ns:adminState",
+        "curstate": "ns:operationalState",
+        "effectivestate": "ns:effectiveState",
+        "comment": "dcterms:description",
+        "td": {
+          "@id": "ns:trafficDomain",
+          "@type": "xsd:integer"
+        },
+        "cookiename": "ns:cookieName",
+        "redirecturl": {
+          "@id": "ns:redirectUrl",
+          "@type": "@id"
+        },
+        "health": {
+          "@id": "ns:healthPercentage",
+          "@type": "xsd:integer"
+        },
+        "totalservices": {
+          "@id": "ns:totalServices",
+          "@type": "xsd:integer"
+        },
+        "activeservices": {
+          "@id": "ns:activeServices",
+          "@type": "xsd:integer"
+        },
+        "statechangetimesec": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "connfailover": "ns:connectionFailover",
+        "appflowlog": "ns:appFlowLogging"
+      }
+    },
+
+    "CsVserver": {
+      "@id": "ns:CsVserver",
+      "@context": {
+        "name": "schema:name",
+        "servicetype": "ns:servicetype",
+        "ipv46": {
+          "@id": "ns:ipAddress",
+          "@type": "xsd:string"
+        },
+        "port": {
+          "@id": "ns:port",
+          "@type": "xsd:integer"
+        },
+        "td": {
+          "@id": "ns:trafficDomain",
+          "@type": "xsd:integer"
+        },
+        "state": "ns:adminState",
+        "curstate": "ns:operationalState",
+        "precedence": "ns:precedence",
+        "casesensitive": "ns:caseSensitive",
+        "lbvserver": {
+          "@id": "ns:defaultLbVserver",
+          "@type": "@id"
+        },
+        "targetlbvserver": {
+          "@id": "ns:targetLbVserver",
+          "@type": "@id"
+        },
+        "redirecturl": {
+          "@id": "ns:redirectUrl",
+          "@type": "@id"
+        },
+        "comment": "dcterms:description",
+        "clttimeout": {
+          "@id": "ns:clientTimeout",
+          "@type": "xsd:integer"
+        },
+        "statechangetimesec": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "cachetype": "ns:cacheType",
+        "appflowlog": "ns:appFlowLogging"
+      }
+    },
+
+    "NsConfig": {
+      "@id": "ns:NsConfig",
+      "@context": {
+        "ipaddress": {
+          "@id": "ns:nsipAddress",
+          "@type": "xsd:string"
+        },
+        "netmask": {
+          "@id": "ns:netmask",
+          "@type": "xsd:string"
+        },
+        "systemtype": "ns:systemType",
+        "timezone": "ns:timezone",
+        "maxconn": {
+          "@id": "ns:maxConnections",
+          "@type": "xsd:integer"
+        },
+        "maxreq": {
+          "@id": "ns:maxRequests",
+          "@type": "xsd:integer"
+        },
+        "httpport": {
+          "@id": "ns:httpPort",
+          "@container": "@set"
+        },
+        "primaryip": {
+          "@id": "ns:primaryIp",
+          "@type": "xsd:string"
+        },
+        "lastconfigchangedtime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "lastconfigsavetime": {
+          "@id": "ns:lastSaveTime",
+          "@type": "xsd:dateTime"
+        },
+        "configchanged": {
+          "@id": "ns:hasUnsavedChanges",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "LbVserverServiceBinding": {
+      "@id": "ns:LbVserverServiceBinding",
+      "@context": {
+        "name": {
+          "@id": "ns:vserverName",
+          "@type": "xsd:string"
+        },
+        "servicename": {
+          "@id": "ns:serviceName",
+          "@type": "xsd:string"
+        },
+        "weight": {
+          "@id": "ns:weight",
+          "@type": "xsd:integer"
+        },
+        "curstate": "ns:operationalState"
+      }
+    },
+
+    "CsVserverCsPolicyBinding": {
+      "@id": "ns:CsVserverCsPolicyBinding",
+      "@context": {
+        "name": {
+          "@id": "ns:vserverName",
+          "@type": "xsd:string"
+        },
+        "policyname": {
+          "@id": "ns:policyName",
+          "@type": "xsd:string"
+        },
+        "targetlbvserver": {
+          "@id": "ns:targetLbVserver",
+          "@type": "@id"
+        },
+        "priority": {
+          "@id": "ns:priority",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "LbVserverStats": {
+      "@id": "ns:LbVserverStats",
+      "@context": {
+        "name": "schema:name",
+        "state": "ns:operationalState",
+        "primaryipaddress": {
+          "@id": "ns:ipAddress",
+          "@type": "xsd:string"
+        },
+        "primaryport": {
+          "@id": "ns:port",
+          "@type": "xsd:integer"
+        },
+        "vslbhealth": {
+          "@id": "ns:healthPercentage",
+          "@type": "xsd:double"
+        },
+        "curclntconnections": {
+          "@id": "ns:clientConnections",
+          "@type": "xsd:double"
+        },
+        "cursrvrconnections": {
+          "@id": "ns:serverConnections",
+          "@type": "xsd:double"
+        },
+        "tothits": {
+          "@id": "ns:totalHits",
+          "@type": "xsd:double"
+        },
+        "totalrequests": {
+          "@id": "ns:totalRequests",
+          "@type": "xsd:double"
+        },
+        "totalresponses": {
+          "@id": "ns:totalResponses",
+          "@type": "xsd:double"
+        },
+        "requestsrate": {
+          "@id": "ns:requestsPerSecond",
+          "@type": "xsd:double"
+        },
+        "responsesrate": {
+          "@id": "ns:responsesPerSecond",
+          "@type": "xsd:double"
+        },
+        "cltresponsetimeapdex": {
+          "@id": "ns:apdexScore",
+          "@type": "xsd:double"
+        },
+        "actsvcs": {
+          "@id": "ns:activeServices",
+          "@type": "xsd:double"
+        },
+        "inactsvcs": {
+          "@id": "ns:inactiveServices",
+          "@type": "xsd:double"
+        }
+      }
+    },
+
+    "SystemFile": {
+      "@id": "ns:SystemFile",
+      "@context": {
+        "filename": "schema:name",
+        "filelocation": "ns:fileLocation",
+        "filesize": {
+          "@id": "schema:contentSize",
+          "@type": "xsd:integer"
+        },
+        "filemodifiedtime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "fileaccesstime": {
+          "@id": "dcterms:dateAccepted",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
