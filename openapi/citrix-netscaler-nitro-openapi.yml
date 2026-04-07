@@ -64,7 +64,7 @@ paths:
   /config/login:
     post:
       operationId: login
-      summary: Log in to the NetScaler appliance
+      summary: Citrix NetScaler Log in to the NetScaler appliance
       description: >-
         Authenticates the user and returns a session token (NITRO_AUTH_TOKEN)
         as a cookie. This token must be included in subsequent API requests.
@@ -127,7 +127,7 @@ paths:
   /config/logout:
     post:
       operationId: logout
-      summary: Log out from the NetScaler appliance
+      summary: Citrix NetScaler Log out from the NetScaler appliance
       description: >-
         Terminates the current session and invalidates the
         NITRO_AUTH_TOKEN cookie.
@@ -157,7 +157,7 @@ paths:
   /config/nsconfig:
     get:
       operationId: getNsConfig
-      summary: Get NetScaler configuration
+      summary: Citrix NetScaler Get NetScaler configuration
       description: >-
         Retrieves the current NetScaler appliance configuration including
         IP address, network settings, HTTP ports, and system parameters.
@@ -179,7 +179,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: updateNsConfig
-      summary: Update NetScaler configuration
+      summary: Citrix NetScaler Update NetScaler configuration
       description: >-
         Modifies NetScaler appliance configuration parameters such as
         IP address, network settings, and system-level options.
@@ -211,7 +211,7 @@ paths:
   /config/nsconfig?action=save:
     post:
       operationId: saveNsConfig
-      summary: Save NetScaler configuration
+      summary: Citrix NetScaler Save NetScaler configuration
       description: >-
         Saves the running configuration to the appliance persistent
         storage (ns.conf). This ensures configuration changes persist
@@ -244,7 +244,7 @@ paths:
   /config/nsconfig?action=clear:
     post:
       operationId: clearNsConfig
-      summary: Clear NetScaler configuration
+      summary: Citrix NetScaler Clear NetScaler configuration
       description: >-
         Clears the NetScaler configuration. The level parameter controls
         what is cleared - basic, extended, or full.
@@ -285,7 +285,7 @@ paths:
   /config/systemfile:
     get:
       operationId: listSystemFiles
-      summary: List system files
+      summary: Citrix NetScaler List system files
       description: >-
         Retrieves system files from a specified location on the NetScaler
         appliance.
@@ -316,7 +316,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: uploadSystemFile
-      summary: Upload a system file
+      summary: Citrix NetScaler Upload a system file
       description: >-
         Uploads a file to the NetScaler appliance. The file content must
         be Base64-encoded.
@@ -352,7 +352,7 @@ paths:
   /config/systemfile/{filename}:
     delete:
       operationId: deleteSystemFile
-      summary: Delete a system file
+      summary: Citrix NetScaler Delete a system file
       description: >-
         Deletes a file from the NetScaler appliance at the specified
         location.
@@ -388,7 +388,7 @@ paths:
   /config/lbvserver:
     get:
       operationId: listLbVservers
-      summary: List load balancing virtual servers
+      summary: Citrix NetScaler List load balancing virtual servers
       description: >-
         Retrieves all load balancing virtual server configurations. Supports
         filtering, pagination, attribute selection, and summary/detail views.
@@ -417,7 +417,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createLbVserver
-      summary: Create a load balancing virtual server
+      summary: Citrix NetScaler Create a load balancing virtual server
       description: >-
         Creates a new load balancing virtual server with the specified
         configuration. The name and servicetype properties are required.
@@ -471,7 +471,7 @@ paths:
   /config/lbvserver/{name}:
     get:
       operationId: getLbVserver
-      summary: Get a specific load balancing virtual server
+      summary: Citrix NetScaler Get a specific load balancing virtual server
       description: >-
         Retrieves the configuration of a specific load balancing virtual
         server identified by name.
@@ -507,7 +507,7 @@ paths:
           description: Virtual server not found.
     put:
       operationId: updateLbVserver
-      summary: Update a load balancing virtual server
+      summary: Citrix NetScaler Update a load balancing virtual server
       description: >-
         Updates the configuration of an existing load balancing virtual
         server. Retrieve the current state, modify properties locally,
@@ -554,7 +554,7 @@ paths:
           description: Virtual server not found.
     delete:
       operationId: deleteLbVserver
-      summary: Delete a load balancing virtual server
+      summary: Citrix NetScaler Delete a load balancing virtual server
       description: >-
         Deletes a load balancing virtual server identified by name.
       tags:
@@ -583,7 +583,7 @@ paths:
   /config/lbvserver_service_binding:
     put:
       operationId: bindServiceToLbVserver
-      summary: Bind a service to a load balancing virtual server
+      summary: Citrix NetScaler Bind a service to a load balancing virtual server
       description: >-
         Binds a backend service to a load balancing virtual server,
         allowing the virtual server to distribute traffic to that service.
@@ -618,7 +618,7 @@ paths:
   /config/lbvserver_service_binding/{name}:
     get:
       operationId: getLbVserverServiceBindings
-      summary: Get service bindings for a load balancing virtual server
+      summary: Citrix NetScaler Get service bindings for a load balancing virtual server
       description: >-
         Retrieves all services bound to a specific load balancing virtual
         server.
@@ -648,7 +648,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: unbindServiceFromLbVserver
-      summary: Unbind a service from a load balancing virtual server
+      summary: Citrix NetScaler Unbind a service from a load balancing virtual server
       description: >-
         Removes the binding between a service and a load balancing virtual
         server.
@@ -683,7 +683,7 @@ paths:
   /config/csvserver:
     get:
       operationId: listCsVservers
-      summary: List content switching virtual servers
+      summary: Citrix NetScaler List content switching virtual servers
       description: >-
         Retrieves all content switching virtual server configurations.
         Supports filtering, pagination, attribute selection, and
@@ -713,7 +713,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createCsVserver
-      summary: Create a content switching virtual server
+      summary: Citrix NetScaler Create a content switching virtual server
       description: >-
         Creates a new content switching virtual server. Content switching
         directs incoming client requests to specific load balancing virtual
@@ -760,7 +760,7 @@ paths:
   /config/csvserver/{name}:
     get:
       operationId: getCsVserver
-      summary: Get a specific content switching virtual server
+      summary: Citrix NetScaler Get a specific content switching virtual server
       description: >-
         Retrieves the configuration of a specific content switching virtual
         server identified by name.
@@ -796,7 +796,7 @@ paths:
           description: Content switching virtual server not found.
     put:
       operationId: updateCsVserver
-      summary: Update a content switching virtual server
+      summary: Citrix NetScaler Update a content switching virtual server
       description: >-
         Updates the configuration of an existing content switching virtual
         server.
@@ -837,7 +837,7 @@ paths:
           description: Content switching virtual server not found.
     delete:
       operationId: deleteCsVserver
-      summary: Delete a content switching virtual server
+      summary: Citrix NetScaler Delete a content switching virtual server
       description: >-
         Deletes a content switching virtual server identified by name.
       tags:
@@ -866,7 +866,7 @@ paths:
   /config/csvserver_cspolicy_binding:
     put:
       operationId: bindCsPolicyToCsVserver
-      summary: Bind a content switching policy to a virtual server
+      summary: Citrix NetScaler Bind a content switching policy to a virtual server
       description: >-
         Binds a content switching policy to a content switching virtual
         server, defining how incoming requests are routed to load
@@ -903,7 +903,7 @@ paths:
   /config/csvserver_cspolicy_binding/{name}:
     get:
       operationId: getCsVserverPolicyBindings
-      summary: Get policy bindings for a content switching virtual server
+      summary: Citrix NetScaler Get policy bindings for a content switching virtual server
       description: >-
         Retrieves all content switching policies bound to a specific
         content switching virtual server.
@@ -935,7 +935,7 @@ paths:
   /stat/lbvserver:
     get:
       operationId: listLbVserverStats
-      summary: Get statistics for all load balancing virtual servers
+      summary: Citrix NetScaler Get statistics for all load balancing virtual servers
       description: >-
         Retrieves performance statistics for all load balancing virtual
         servers including connection counts, traffic metrics, health
@@ -988,7 +988,7 @@ paths:
   /stat/lbvserver/{name}:
     get:
       operationId: getLbVserverStats
-      summary: Get statistics for a specific load balancing virtual server
+      summary: Citrix NetScaler Get statistics for a specific load balancing virtual server
       description: >-
         Retrieves detailed performance statistics for a specific load
         balancing virtual server including connections, throughput,
@@ -1035,7 +1035,7 @@ paths:
   /stat/csvserver:
     get:
       operationId: listCsVserverStats
-      summary: Get statistics for all content switching virtual servers
+      summary: Citrix NetScaler Get statistics for all content switching virtual servers
       description: >-
         Retrieves performance statistics for all content switching virtual
         servers.
@@ -1061,7 +1061,7 @@ paths:
   /stat/csvserver/{name}:
     get:
       operationId: getCsVserverStats
-      summary: Get statistics for a specific content switching virtual server
+      summary: Citrix NetScaler Get statistics for a specific content switching virtual server
       description: >-
         Retrieves detailed performance statistics for a specific content
         switching virtual server.
