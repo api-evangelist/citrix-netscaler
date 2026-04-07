@@ -34,29 +34,29 @@ tags:
       Session-based authentication for the NITRO API. Obtain an
       authentication token via login, then include it as a cookie in
       subsequent requests.
-  - name: System
-    description: >-
-      System-level resources for managing the NetScaler appliance including
-      system information, files, users, groups, and global settings.
-  - name: NS Config
-    description: >-
-      NetScaler appliance configuration including IP address, network
-      settings, HTTP ports, and system-level parameters. Supports save,
-      clear, and diff operations.
-  - name: LB Virtual Server
-    description: >-
-      Load balancing virtual servers accept incoming traffic and distribute
-      it across backend services using configurable load balancing methods
-      such as round robin, least connections, and more.
   - name: CS Virtual Server
     description: >-
       Content switching virtual servers direct client requests to different
       load balancing virtual servers based on content switching policies
       that evaluate HTTP request attributes.
+  - name: LB Virtual Server
+    description: >-
+      Load balancing virtual servers accept incoming traffic and distribute
+      it across backend services using configurable load balancing methods
+      such as round robin, least connections, and more.
+  - name: NS Config
+    description: >-
+      NetScaler appliance configuration including IP address, network
+      settings, HTTP ports, and system-level parameters. Supports save,
+      clear, and diff operations.
   - name: Statistics
     description: >-
       Real-time performance and health statistics for configured resources
       including virtual servers, services, and system metrics.
+  - name: System
+    description: >-
+      System-level resources for managing the NetScaler appliance including
+      system information, files, users, groups, and global settings.
 security:
   - nitroAuthToken: []
   - nitroBasicAuth: []

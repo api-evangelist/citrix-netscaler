@@ -8,163 +8,163 @@ created: '2024'
 modified: '2026-03-03'
 specificationVersion: '0.16'
 tags:
-- Load Balancing
-- Application Delivery Controller
-- Traffic Management
-- SSL Offloading
-- Application Security
-- Web Application Firewall
-- API Gateway
+  - API Gateway
+  - Application Delivery Controller
+  - Application Security
+  - Load Balancing
+  - SSL Offloading
+  - Traffic Management
+  - Web Application Firewall
 apis:
-- name: Citrix ADC (NetScaler) NITRO API
-  description: The NITRO API provides programmatic access to configure and monitor NetScaler appliances. It supports REST-based operations for comprehensive management of ADC features including load balancing, content switching, SSL, and more.
-  image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
-  humanURL: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html
-  baseURL: https://<netscaler-ip>/nitro/v1
-  tags:
-  - REST API
-  - Configuration
-  - Monitoring
-  - Automation
-  properties:
+  - name: Citrix ADC (NetScaler) NITRO API
+    description: The NITRO API provides programmatic access to configure and monitor NetScaler appliances. It supports REST-based operations for comprehensive management of ADC features including load balancing, content switching, SSL, and more.
+    image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
+    humanURL: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html
+    baseURL: https://<netscaler-ip>/nitro/v1
+    tags:
+      - Automation
+      - Configuration
+      - Monitoring
+      - REST API
+    properties:
+      - type: Documentation
+        url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html
+      - type: OpenAPI
+        url: openapi/citrix-netscaler-nitro-openapi.yml
+      - type: JSONSchema
+        url: json-schema/citrix-netscaler-vserver-schema.json
+      - type: JSONLD
+        url: json-ld/citrix-netscaler-context.jsonld
+      - type: OpenAPI
+        url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/api-reference.html
+      - type: Authentication
+        url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/performing-basic-netscaler-operations.html
+      - type: GettingStarted
+        url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/before-you-begin.html
+      - type: SDKs
+        url: https://www.citrix.com/downloads/citrix-adc/sdks/
+      - type: Terraform Provider
+        url: https://registry.terraform.io/providers/citrix/citrixadc/latest/docs
+      - type: Change Log
+        url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/nitro-changes-across-releases/
+    contact:
+      - type: Support
+        url: https://support.citrix.com/
+      - type: Developer Portal
+        url: https://developer-docs.netscaler.com/
+  - name: NetScaler ADM NITRO API
+    description: The NetScaler Application Delivery Management (ADM) NITRO API provides programmatic access to manage, monitor, and orchestrate multiple NetScaler instances from a centralized platform, covering analytics, configuration audit, and system management.
+    image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
+    humanURL: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/
+    baseURL: https://<adm-ip>/nitro/v1
+    tags:
+      - Analytics
+      - Management
+      - Orchestration
+      - REST API
+    properties:
+      - type: Documentation
+        url: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/
+      - type: Authentication
+        url: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/configuration/system/Authentication/Authentication.html
+    contact:
+      - type: Support
+        url: https://support.citrix.com/
+      - type: Developer Portal
+        url: https://developer-docs.netscaler.com/
+  - name: NetScaler SDX NITRO API
+    description: The NetScaler SDX NITRO API provides programmatic access to configure and manage NetScaler SDX appliances via REST interfaces, enabling provisioning and management of multiple virtual NetScaler instances on a single hardware platform.
+    image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
+    humanURL: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html
+    baseURL: https://<sdx-ip>/nitro/v1
+    tags:
+      - Management
+      - REST API
+      - SDX
+      - Virtualization
+    properties:
+      - type: Documentation
+        url: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html
+      - type: API Reference
+        url: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/adc-sdx-nitro-api-reference.html
+    contact:
+      - type: Support
+        url: https://support.citrix.com/
+      - type: Developer Portal
+        url: https://developer-docs.netscaler.com/
+  - name: NetScaler Next-Gen API
+    description: NetScaler Next-Gen API is a modern declarative RESTful API built on the OpenAPI 3.0 specification that allows developers to programmatically configure NetScaler with an intuitive application-centric interface, abstracting away low-level configuration complexities.
+    image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
+    humanURL: https://developer-docs.netscaler.com/en-us/nextgen-api.html
+    baseURL: https://<netscaler-ip>/
+    tags:
+      - Application-Centric
+      - Declarative
+      - OpenAPI
+      - REST API
+    properties:
+      - type: Documentation
+        url: https://developer-docs.netscaler.com/en-us/nextgen-api.html
+      - type: GettingStarted
+        url: https://developer-docs.netscaler.com/en-us/nextgen-api/getting-started-guide.html
+      - type: API Reference
+        url: https://developer-docs.netscaler.com/en-us/nextgen-api/apis/
+      - type: Product Page
+        url: https://www.netscaler.com/platform/next-gen-api
+    contact:
+      - type: Support
+        url: https://support.citrix.com/
+      - type: Developer Portal
+        url: https://developer-docs.netscaler.com/
+common:
+  - type: Portal
+    url: https://www.netscaler.com/platform/apis
+  - type: Developer Documentation
+    url: https://developer-docs.netscaler.com/
   - type: Documentation
-    url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html
-  - type: OpenAPI
-    url: openapi/citrix-netscaler-nitro-openapi.yml
-  - type: JSONSchema
-    url: json-schema/citrix-netscaler-vserver-schema.json
-  - type: JSONLD
-    url: json-ld/citrix-netscaler-context.jsonld
-  - type: OpenAPI
-    url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/api-reference.html
-  - type: Authentication
-    url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/performing-basic-netscaler-operations.html
-  - type: GettingStarted
-    url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/before-you-begin.html
-  - type: SDKs
-    url: https://www.citrix.com/downloads/citrix-adc/sdks/
+    url: https://docs.netscaler.com/
+  - type: CLI Reference
+    url: https://developer-docs.netscaler.com/en-us/adc-command-reference-int/current-release.html
+  - type: Blog
+    url: https://www.netscaler.com/blog/
+  - type: GitHub
+    url: https://github.com/netscaler
+  - type: GitHub Organization
+    url: https://github.com/citrix
+  - type: Support
+    url: https://www.netscaler.com/resources/support
+  - type: Status
+    url: https://status.cloud.com/
+  - type: Website
+    url: https://www.netscaler.com/
+  - type: Sign Up
+    url: https://onboarding.cloud.com/
+  - type: Login
+    url: https://citrix.cloud.com/
+  - type: Privacy Policy
+    url: https://www.cloud.com/legal
+  - type: Terms of Service
+    url: https://www.cloud.com/legal
+  - type: Community
+    url: https://community.netscaler.com/s/
+  - type: Forums
+    url: https://community.citrix.com/forums/forum/1624-netscaler/
+  - type: X
+    url: https://x.com/NetScaler
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/netscaler
   - type: Terraform Provider
     url: https://registry.terraform.io/providers/citrix/citrixadc/latest/docs
-  - type: Change Log
-    url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/nitro-changes-across-releases/
-  contact:
-  - type: Support
-    url: https://support.citrix.com/
-  - type: Developer Portal
-    url: https://developer-docs.netscaler.com/
-- name: NetScaler ADM NITRO API
-  description: The NetScaler Application Delivery Management (ADM) NITRO API provides programmatic access to manage, monitor, and orchestrate multiple NetScaler instances from a centralized platform, covering analytics, configuration audit, and system management.
-  image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
-  humanURL: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/
-  baseURL: https://<adm-ip>/nitro/v1
-  tags:
-  - REST API
-  - Management
-  - Analytics
-  - Orchestration
-  properties:
-  - type: Documentation
-    url: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/
-  - type: Authentication
-    url: https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/configuration/system/Authentication/Authentication.html
-  contact:
-  - type: Support
-    url: https://support.citrix.com/
-  - type: Developer Portal
-    url: https://developer-docs.netscaler.com/
-- name: NetScaler SDX NITRO API
-  description: The NetScaler SDX NITRO API provides programmatic access to configure and manage NetScaler SDX appliances via REST interfaces, enabling provisioning and management of multiple virtual NetScaler instances on a single hardware platform.
-  image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
-  humanURL: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html
-  baseURL: https://<sdx-ip>/nitro/v1
-  tags:
-  - REST API
-  - SDX
-  - Virtualization
-  - Management
-  properties:
-  - type: Documentation
-    url: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html
-  - type: API Reference
-    url: https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/adc-sdx-nitro-api-reference.html
-  contact:
-  - type: Support
-    url: https://support.citrix.com/
-  - type: Developer Portal
-    url: https://developer-docs.netscaler.com/
-- name: NetScaler Next-Gen API
-  description: NetScaler Next-Gen API is a modern declarative RESTful API built on the OpenAPI 3.0 specification that allows developers to programmatically configure NetScaler with an intuitive application-centric interface, abstracting away low-level configuration complexities.
-  image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.svg
-  humanURL: https://developer-docs.netscaler.com/en-us/nextgen-api.html
-  baseURL: https://<netscaler-ip>/
-  tags:
-  - REST API
-  - OpenAPI
-  - Declarative
-  - Application-Centric
-  properties:
-  - type: Documentation
-    url: https://developer-docs.netscaler.com/en-us/nextgen-api.html
-  - type: GettingStarted
-    url: https://developer-docs.netscaler.com/en-us/nextgen-api/getting-started-guide.html
-  - type: API Reference
-    url: https://developer-docs.netscaler.com/en-us/nextgen-api/apis/
-  - type: Product Page
-    url: https://www.netscaler.com/platform/next-gen-api
-  contact:
-  - type: Support
-    url: https://support.citrix.com/
-  - type: Developer Portal
-    url: https://developer-docs.netscaler.com/
-common:
-- type: Portal
-  url: https://www.netscaler.com/platform/apis
-- type: Developer Documentation
-  url: https://developer-docs.netscaler.com/
-- type: Documentation
-  url: https://docs.netscaler.com/
-- type: CLI Reference
-  url: https://developer-docs.netscaler.com/en-us/adc-command-reference-int/current-release.html
-- type: Blog
-  url: https://www.netscaler.com/blog/
-- type: GitHub
-  url: https://github.com/netscaler
-- type: GitHub Organization
-  url: https://github.com/citrix
-- type: Support
-  url: https://www.netscaler.com/resources/support
-- type: Status
-  url: https://status.cloud.com/
-- type: Website
-  url: https://www.netscaler.com/
-- type: Sign Up
-  url: https://onboarding.cloud.com/
-- type: Login
-  url: https://citrix.cloud.com/
-- type: Privacy Policy
-  url: https://www.cloud.com/legal
-- type: Terms of Service
-  url: https://www.cloud.com/legal
-- type: Community
-  url: https://community.netscaler.com/s/
-- type: Forums
-  url: https://community.citrix.com/forums/forum/1624-netscaler/
-- type: X
-  url: https://x.com/NetScaler
-- type: LinkedIn
-  url: https://www.linkedin.com/company/netscaler
-- type: Terraform Provider
-  url: https://registry.terraform.io/providers/citrix/citrixadc/latest/docs
-- type: Ansible
-  url: https://docs.netscaler.com/en-us/vpx/current-release/citrix-adc-automation.html
-- type: Downloads
-  url: https://www.citrix.com/downloads/citrix-adc/
-- type: Release Notes
-  url: https://docs.netscaler.com/en-us/citrix-adc/current-release/citrix-adc-release-notes.html
+  - type: Ansible
+    url: https://docs.netscaler.com/en-us/vpx/current-release/citrix-adc-automation.html
+  - type: Downloads
+    url: https://www.citrix.com/downloads/citrix-adc/
+  - type: Release Notes
+    url: https://docs.netscaler.com/en-us/citrix-adc/current-release/citrix-adc-release-notes.html
 include:
-- name: Citrix Developer Portal
-  url: https://developer.citrix.com/
+  - name: Citrix Developer Portal
+    url: https://developer.citrix.com/
 maintainers:
-- name: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com/
+  - name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com/
