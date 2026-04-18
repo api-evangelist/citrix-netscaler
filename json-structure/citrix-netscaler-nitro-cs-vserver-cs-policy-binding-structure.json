@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CsVserverCsPolicyBinding",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "policyname": {
+      "type": "string"
+    },
+    "targetlbvserver": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "gotopriorityexpression": {
+      "type": "string"
+    },
+    "bindpoint": {
+      "type": "string"
+    }
+  }
+}

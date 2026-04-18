@@ -1,0 +1,13 @@
+name: citrix-netscaler API Vocabulary
+provider: citrix-netscaler
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 28
+schemas: 10
+tags:
+- Authentication
+- CS Virtual Server
+- LB Virtual Server
+- NS Config
+- Statistics
+- System

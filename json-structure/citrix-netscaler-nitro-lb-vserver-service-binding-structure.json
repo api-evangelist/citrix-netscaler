@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LbVserverServiceBinding",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "servicename": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "integer"
+    },
+    "servicetype": {
+      "type": "string"
+    },
+    "curstate": {
+      "type": "string"
+    },
+    "ipv46": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "dynamicweight": {
+      "type": "integer"
+    }
+  }
+}

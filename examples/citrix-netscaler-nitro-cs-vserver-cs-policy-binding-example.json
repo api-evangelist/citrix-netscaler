@@ -1,0 +1,8 @@
+{
+  "name": "Example Title",
+  "policyname": "example_value",
+  "targetlbvserver": "example_value",
+  "priority": 10,
+  "gotopriorityexpression": "example_value",
+  "bindpoint": "example_value"
+}

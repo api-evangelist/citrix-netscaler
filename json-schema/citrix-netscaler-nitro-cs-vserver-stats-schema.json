@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CsVserverStats",
+  "type": "object",
+  "description": "Performance statistics for a content switching virtual server.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the content switching virtual server."
+    },
+    "primaryipaddress": {
+      "type": "string",
+      "description": "IP address of the virtual server."
+    },
+    "primaryport": {
+      "type": "integer",
+      "description": "Port number of the virtual server."
+    },
+    "state": {
+      "type": "string",
+      "description": "Current operational state."
+    },
+    "curclntconnections": {
+      "type": "number",
+      "description": "Number of current client connections."
+    },
+    "cursrvrconnections": {
+      "type": "number",
+      "description": "Number of current server connections."
+    },
+    "establishedconn": {
+      "type": "number",
+      "description": "Number of connections in ESTABLISHED state."
+    },
+    "tothits": {
+      "type": "number",
+      "description": "Total number of virtual server hits."
+    },
+    "hitsrate": {
+      "type": "number",
+      "description": "Rate of hits per second."
+    },
+    "totalrequests": {
+      "type": "number",
+      "description": "Total number of requests received."
+    },
+    "requestsrate": {
+      "type": "number",
+      "description": "Rate of requests per second."
+    },
+    "totalresponses": {
+      "type": "number",
+      "description": "Total number of responses sent."
+    },
+    "responsesrate": {
+      "type": "number",
+      "description": "Rate of responses per second."
+    },
+    "totalrequestbytes": {
+      "type": "number",
+      "description": "Total bytes of requests received."
+    },
+    "totalresponsebytes": {
+      "type": "number",
+      "description": "Total bytes of responses sent."
+    },
+    "totalpktsrecvd": {
+      "type": "number",
+      "description": "Total packets received."
+    },
+    "totalpktssent": {
+      "type": "number",
+      "description": "Total packets sent."
+    },
+    "totspillovers": {
+      "type": "number",
+      "description": "Total spillover events."
+    },
+    "labelledconn": {
+      "type": "number",
+      "description": "Total labeled connections."
+    }
+  }
+}

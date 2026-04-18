@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SystemFile",
+  "type": "object",
+  "properties": {
+    "filename": {
+      "type": "string"
+    },
+    "filelocation": {
+      "type": "string"
+    },
+    "filecontent": {
+      "type": "string"
+    },
+    "fileencoding": {
+      "type": "string"
+    },
+    "fileaccesstime": {
+      "type": "string"
+    },
+    "filemodifiedtime": {
+      "type": "string"
+    },
+    "filemode": {
+      "type": "string"
+    },
+    "filesize": {
+      "type": "integer"
+    }
+  }
+}

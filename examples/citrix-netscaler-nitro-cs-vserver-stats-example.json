@@ -1,0 +1,21 @@
+{
+  "name": "Example Title",
+  "primaryipaddress": "example_value",
+  "primaryport": 10,
+  "state": "example_value",
+  "curclntconnections": 42.5,
+  "cursrvrconnections": 42.5,
+  "establishedconn": 42.5,
+  "tothits": 42.5,
+  "hitsrate": 42.5,
+  "totalrequests": 42.5,
+  "requestsrate": 42.5,
+  "totalresponses": 42.5,
+  "responsesrate": 42.5,
+  "totalrequestbytes": 42.5,
+  "totalresponsebytes": 42.5,
+  "totalpktsrecvd": 42.5,
+  "totalpktssent": 42.5,
+  "totspillovers": 42.5,
+  "labelledconn": 42.5
+}

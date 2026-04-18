@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SystemFile",
+  "type": "object",
+  "description": "A system file on the NetScaler appliance.",
+  "properties": {
+    "filename": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "filelocation": {
+      "type": "string",
+      "description": "Location of the file on the appliance filesystem (e.g., /nsconfig/ssl)."
+    },
+    "filecontent": {
+      "type": "string",
+      "description": "Base64-encoded file content. Used when uploading files."
+    },
+    "fileencoding": {
+      "type": "string",
+      "description": "Encoding of the file content."
+    },
+    "fileaccesstime": {
+      "type": "string",
+      "description": "Last access time of the file."
+    },
+    "filemodifiedtime": {
+      "type": "string",
+      "description": "Last modification time of the file."
+    },
+    "filemode": {
+      "type": "string",
+      "description": "File permissions mode."
+    },
+    "filesize": {
+      "type": "integer",
+      "description": "Size of the file in bytes."
+    }
+  }
+}

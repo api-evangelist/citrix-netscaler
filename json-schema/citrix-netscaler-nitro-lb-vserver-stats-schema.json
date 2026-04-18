@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LbVserverStats",
+  "type": "object",
+  "description": "Performance and health statistics for a load balancing virtual server, including connection metrics, throughput, error rates, and APDEX scores.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the load balancing virtual server."
+    },
+    "primaryipaddress": {
+      "type": "string",
+      "description": "IP address of the virtual server."
+    },
+    "primaryport": {
+      "type": "integer",
+      "description": "Port number of the virtual server."
+    },
+    "type": {
+      "type": "string",
+      "description": "Protocol type of the virtual server."
+    },
+    "state": {
+      "type": "string",
+      "description": "Current operational state."
+    },
+    "curclntconnections": {
+      "type": "number",
+      "description": "Number of current client connections."
+    },
+    "cursrvrconnections": {
+      "type": "number",
+      "description": "Number of current server connections."
+    },
+    "establishedconn": {
+      "type": "number",
+      "description": "Number of connections in ESTABLISHED state."
+    },
+    "curpersistencesessions": {
+      "type": "number",
+      "description": "Number of active persistence sessions."
+    },
+    "vslbhealth": {
+      "type": "number",
+      "description": "Percentage of UP services bound to this virtual server."
+    },
+    "actsvcs": {
+      "type": "number",
+      "description": "Number of active (UP) services."
+    },
+    "inactsvcs": {
+      "type": "number",
+      "description": "Number of inactive (DOWN) services."
+    },
+    "tothits": {
+      "type": "number",
+      "description": "Total number of virtual server hits since last restart."
+    },
+    "hitsrate": {
+      "type": "number",
+      "description": "Rate of hits per second."
+    },
+    "totalrequests": {
+      "type": "number",
+      "description": "Total number of requests received."
+    },
+    "requestsrate": {
+      "type": "number",
+      "description": "Rate of requests per second."
+    },
+    "totalresponses": {
+      "type": "number",
+      "description": "Total number of responses sent."
+    },
+    "responsesrate": {
+      "type": "number",
+      "description": "Rate of responses per second."
+    },
+    "totalrequestbytes": {
+      "type": "number",
+      "description": "Total number of request bytes received."
+    },
+    "requestbytesrate": {
+      "type": "number",
+      "description": "Rate of request bytes per second."
+    },
+    "totalresponsebytes": {
+      "type": "number",
+      "description": "Total number of response bytes sent."
+    },
+    "responsebytesrate": {
+      "type": "number",
+      "description": "Rate of response bytes per second."
+    },
+    "totalpktsrecvd": {
+      "type": "number",
+      "description": "Total packets received."
+    },
+    "pktsrecvdrate": {
+      "type": "number",
+      "description": "Rate of packets received per second."
+    },
+    "totalpktssent": {
+      "type": "number",
+      "description": "Total packets sent."
+    },
+    "pktssentrate": {
+      "type": "number",
+      "description": "Rate of packets sent per second."
+    },
+    "totalsvrbusyerr": {
+      "type": "number",
+      "description": "Total server busy errors."
+    },
+    "svrbusyerrrate": {
+      "type": "number",
+      "description": "Rate of server busy errors per second."
+    },
+    "surgecount": {
+      "type": "number",
+      "description": "Number of requests in the surge queue."
+    },
+    "totspillovers": {
+      "type": "number",
+      "description": "Total number of spillover events."
+    },
+    "totvserverdownbackuphits": {
+      "type": "number",
+      "description": "Total diversions to the backup virtual server."
+    },
+    "avgcltttlb": {
+      "type": "number",
+      "description": "Average client time-to-last-byte in microseconds."
+    },
+    "cltresponsetimeapdex": {
+      "type": "number",
+      "description": "APDEX score based on client response times (0.0-1.0)."
+    },
+    "cpuusagepm": {
+      "type": "number",
+      "description": "CPU utilization in parts per million."
+    },
+    "totalh2requests": {
+      "type": "number",
+      "description": "Total HTTP/2 requests received."
+    },
+    "h2requestsrate": {
+      "type": "number",
+      "description": "Rate of HTTP/2 requests per second."
+    },
+    "totalh2responses": {
+      "type": "number",
+      "description": "Total HTTP/2 responses sent."
+    },
+    "h2responsesrate": {
+      "type": "number",
+      "description": "Rate of HTTP/2 responses per second."
+    },
+    "invalidrequestresponse": {
+      "type": "number",
+      "description": "Total invalid request/response count."
+    },
+    "invalidrequestresponsedropped": {
+      "type": "number",
+      "description": "Total dropped invalid request/response count."
+    },
+    "sothreshold": {
+      "type": "number",
+      "description": "Configured spillover threshold."
+    },
+    "reqretrycount": {
+      "type": "number",
+      "description": "Total request retry count."
+    },
+    "reqretrycountexceeded": {
+      "type": "number",
+      "description": "Times retry count was exceeded."
+    },
+    "deferredreq": {
+      "type": "number",
+      "description": "Number of deferred requests."
+    },
+    "deferredreqrate": {
+      "type": "number",
+      "description": "Rate of deferred requests per second."
+    }
+  }
+}

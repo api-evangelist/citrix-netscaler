@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LbVserver",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "servicetype": {
+      "type": "string"
+    },
+    "ipv46": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "ipset": {
+      "type": "string"
+    },
+    "range": {
+      "type": "integer"
+    },
+    "ippattern": {
+      "type": "string"
+    },
+    "ipmask": {
+      "type": "string"
+    },
+    "td": {
+      "type": "integer"
+    },
+    "lbmethod": {
+      "type": "string"
+    },
+    "hashlength": {
+      "type": "integer"
+    },
+    "netmask": {
+      "type": "string"
+    },
+    "v6netmasklen": {
+      "type": "integer"
+    },
+    "backuplbmethod": {
+      "type": "string"
+    },
+    "persistencetype": {
+      "type": "string"
+    },
+    "persistmask": {
+      "type": "string"
+    },
+    "v6persistmasklen": {
+      "type": "integer"
+    },
+    "persistencebackup": {
+      "type": "string"
+    },
+    "timeout": {
+      "type": "integer"
+    },
+    "persistavpno": {
+      "type": "array"
+    },
+    "cookiename": {
+      "type": "string"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "listenpolicy": {
+      "type": "string"
+    },
+    "listenpriority": {
+      "type": "integer"
+    },
+    "resrule": {
+      "type": "string"
+    },
+    "push": {
+      "type": "string"
+    },
+    "pushlabel": {
+      "type": "string"
+    },
+    "pushmulticlients": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "clttimeout": {
+      "type": "integer"
+    },
+    "somethod": {
+      "type": "string"
+    },
+    "sopersistence": {
+      "type": "string"
+    },
+    "sopersistencetimeout": {
+      "type": "integer"
+    },
+    "sothreshold": {
+      "type": "integer"
+    },
+    "healththreshold": {
+      "type": "integer"
+    },
+    "redirecturl": {
+      "type": "string"
+    },
+    "downstateflush": {
+      "type": "string"
+    },
+    "disableprimaryondown": {
+      "type": "string"
+    },
+    "insertvserveripport": {
+      "type": "string"
+    },
+    "vipheader": {
+      "type": "string"
+    },
+    "authenticationhost": {
+      "type": "string"
+    },
+    "authentication": {
+      "type": "string"
+    },
+    "authn401": {
+      "type": "string"
+    },
+    "authnvsname": {
+      "type": "string"
+    },
+    "icmpvsrresponse": {
+      "type": "string"
+    },
+    "rhistate": {
+      "type": "string"
+    },
+    "newservicerequest": {
+      "type": "integer"
+    },
+    "newservicerequestunit": {
+      "type": "string"
+    },
+    "newservicerequestincrementinterval": {
+      "type": "integer"
+    },
+    "minautoscalemembers": {
+      "type": "integer"
+    },
+    "maxautoscalemembers": {
+      "type": "integer"
+    },
+    "skippersistency": {
+      "type": "string"
+    },
+    "appflowlog": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "connfailover": {
+      "type": "string"
+    },
+    "redirurl": {
+      "type": "string"
+    },
+    "curstate": {
+      "type": "string"
+    },
+    "effectivestate": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "lbrrreason": {
+      "type": "integer"
+    },
+    "totalservices": {
+      "type": "integer"
+    },
+    "activeservices": {
+      "type": "integer"
+    },
+    "statechangetimesec": {
+      "type": "string"
+    },
+    "tickssincelaststatechange": {
+      "type": "integer"
+    },
+    "health": {
+      "type": "integer"
+    },
+    "isgslb": {
+      "type": "boolean"
+    }
+  }
+}

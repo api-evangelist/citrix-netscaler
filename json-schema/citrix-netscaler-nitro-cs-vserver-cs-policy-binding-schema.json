@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CsVserverCsPolicyBinding",
+  "type": "object",
+  "description": "Binding between a content switching virtual server and a content switching policy. Defines how requests are evaluated and routed to target load balancing virtual servers.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the content switching virtual server."
+    },
+    "policyname": {
+      "type": "string",
+      "description": "Name of the content switching policy to bind."
+    },
+    "targetlbvserver": {
+      "type": "string",
+      "description": "Name of the target load balancing virtual server to which matching traffic is directed."
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Priority of the policy binding. Lower values indicate higher priority."
+    },
+    "gotopriorityexpression": {
+      "type": "string",
+      "description": "Expression specifying the priority of the next policy to evaluate if the current policy matches."
+    },
+    "bindpoint": {
+      "type": "string",
+      "description": "The bind point at which the policy is bound."
+    }
+  }
+}

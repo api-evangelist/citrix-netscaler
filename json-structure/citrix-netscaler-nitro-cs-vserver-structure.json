@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CsVserver",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "td": {
+      "type": "integer"
+    },
+    "servicetype": {
+      "type": "string"
+    },
+    "ipv46": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "ipset": {
+      "type": "string"
+    },
+    "range": {
+      "type": "integer"
+    },
+    "ippattern": {
+      "type": "string"
+    },
+    "ipmask": {
+      "type": "string"
+    },
+    "stateupdate": {
+      "type": "string"
+    },
+    "precedence": {
+      "type": "string"
+    },
+    "casesensitive": {
+      "type": "string"
+    },
+    "somethod": {
+      "type": "string"
+    },
+    "sopersistence": {
+      "type": "string"
+    },
+    "sopersistencetimeout": {
+      "type": "integer"
+    },
+    "sothreshold": {
+      "type": "integer"
+    },
+    "redirecturl": {
+      "type": "string"
+    },
+    "clttimeout": {
+      "type": "integer"
+    },
+    "downstateflush": {
+      "type": "string"
+    },
+    "insertvserveripport": {
+      "type": "string"
+    },
+    "vipheader": {
+      "type": "string"
+    },
+    "disableprimaryondown": {
+      "type": "string"
+    },
+    "authentication": {
+      "type": "string"
+    },
+    "authenticationhost": {
+      "type": "string"
+    },
+    "authn401": {
+      "type": "string"
+    },
+    "authnvsname": {
+      "type": "string"
+    },
+    "push": {
+      "type": "string"
+    },
+    "pushlabel": {
+      "type": "string"
+    },
+    "pushmulticlients": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "l2conn": {
+      "type": "string"
+    },
+    "icmpvsrresponse": {
+      "type": "string"
+    },
+    "rhistate": {
+      "type": "string"
+    },
+    "appflowlog": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "lbvserver": {
+      "type": "string"
+    },
+    "targetlbvserver": {
+      "type": "string"
+    },
+    "cachetype": {
+      "type": "string"
+    },
+    "redirect": {
+      "type": "string"
+    },
+    "curstate": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "statechangetimesec": {
+      "type": "string"
+    },
+    "tickssincelaststatechange": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "ngname": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

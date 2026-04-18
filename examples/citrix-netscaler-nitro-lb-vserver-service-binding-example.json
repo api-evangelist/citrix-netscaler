@@ -1,0 +1,10 @@
+{
+  "name": "Example Title",
+  "servicename": "example_value",
+  "weight": 10,
+  "servicetype": "example_value",
+  "curstate": "example_value",
+  "ipv46": "example_value",
+  "port": 10,
+  "dynamicweight": 10
+}

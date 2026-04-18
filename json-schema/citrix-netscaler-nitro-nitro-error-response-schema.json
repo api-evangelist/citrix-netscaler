@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NitroErrorResponse",
+  "type": "object",
+  "description": "NITRO API error response with details about the failure.",
+  "properties": {
+    "errorcode": {
+      "type": "integer",
+      "description": "Numeric error code identifying the specific error."
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message."
+    },
+    "severity": {
+      "type": "string",
+      "description": "Severity level of the error."
+    }
+  }
+}

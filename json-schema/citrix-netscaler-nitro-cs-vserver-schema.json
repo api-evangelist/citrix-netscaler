@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CsVserver",
+  "type": "object",
+  "description": "A content switching virtual server that directs client requests to different load balancing virtual servers based on content switching policies evaluating request attributes such as URL, HTTP header, or source IP address.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the content switching virtual server. Must be unique and begin with a letter, number, or underscore. Maximum 127 characters."
+    },
+    "td": {
+      "type": "integer",
+      "description": "Traffic domain identifier. Range 0-4094."
+    },
+    "servicetype": {
+      "type": "string",
+      "description": "Protocol of the service running on the virtual server."
+    },
+    "ipv46": {
+      "type": "string",
+      "description": "IPv4 or IPv6 address of the content switching virtual server."
+    },
+    "port": {
+      "type": "integer",
+      "description": "Port number on which the content switching virtual server listens."
+    },
+    "ipset": {
+      "type": "string",
+      "description": "Name of the IP set to bind to the virtual server."
+    },
+    "range": {
+      "type": "integer",
+      "description": "Number of consecutive IP addresses for the virtual server. Range 2-254."
+    },
+    "ippattern": {
+      "type": "string",
+      "description": "IP address pattern for matching incoming requests."
+    },
+    "ipmask": {
+      "type": "string",
+      "description": "IP mask applied with ippattern to form an address range."
+    },
+    "stateupdate": {
+      "type": "string",
+      "description": "Whether the virtual server checks the backend server state for updates."
+    },
+    "precedence": {
+      "type": "string",
+      "description": "Type of precedence for content switching policies. RULE means policies are evaluated in priority order. URL means URL-based switching takes precedence."
+    },
+    "casesensitive": {
+      "type": "string",
+      "description": "Whether URL-based content switching is case sensitive."
+    },
+    "somethod": {
+      "type": "string",
+      "description": "Spillover method for the content switching virtual server."
+    },
+    "sopersistence": {
+      "type": "string",
+      "description": "Whether to maintain persistence during spillover."
+    },
+    "sopersistencetimeout": {
+      "type": "integer",
+      "description": "Persistence timeout in minutes during spillover. Range 2-1440."
+    },
+    "sothreshold": {
+      "type": "integer",
+      "description": "Threshold value for the spillover method."
+    },
+    "redirecturl": {
+      "type": "string",
+      "description": "URL to redirect requests to when the virtual server is DOWN."
+    },
+    "clttimeout": {
+      "type": "integer",
+      "description": "Client idle timeout in seconds. Range 0-31536000."
+    },
+    "downstateflush": {
+      "type": "string",
+      "description": "Flush all active transactions when the virtual server goes DOWN."
+    },
+    "insertvserveripport": {
+      "type": "string",
+      "description": "Insert the virtual server VIP address and port into the HTTP header of the request."
+    },
+    "vipheader": {
+      "type": "string",
+      "description": "Name of the HTTP header in which the VIP is inserted."
+    },
+    "disableprimaryondown": {
+      "type": "string",
+      "description": "Continue to direct traffic to the virtual server even when DOWN in HA mode."
+    },
+    "authentication": {
+      "type": "string",
+      "description": "Whether authentication is enabled for the virtual server."
+    },
+    "authenticationhost": {
+      "type": "string",
+      "description": "FQDN of the authentication virtual server."
+    },
+    "authn401": {
+      "type": "string",
+      "description": "Whether HTTP 401-based authentication is enabled."
+    },
+    "authnvsname": {
+      "type": "string",
+      "description": "Name of the authentication virtual server."
+    },
+    "push": {
+      "type": "string",
+      "description": "Whether push functionality is enabled."
+    },
+    "pushlabel": {
+      "type": "string",
+      "description": "Expression for extracting a label from the request."
+    },
+    "pushmulticlients": {
+      "type": "string",
+      "description": "Allow multiple clients to connect to the push vserver."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Description or comments about the content switching virtual server."
+    },
+    "l2conn": {
+      "type": "string",
+      "description": "Whether Layer 2 connectivity is enabled between the client and server."
+    },
+    "icmpvsrresponse": {
+      "type": "string",
+      "description": "How the appliance responds to ICMP ping requests for the VIP."
+    },
+    "rhistate": {
+      "type": "string",
+      "description": "Route health injection state for the virtual server."
+    },
+    "appflowlog": {
+      "type": "string",
+      "description": "Whether to log AppFlow records for the virtual server."
+    },
+    "state": {
+      "type": "string",
+      "description": "Administrative state of the virtual server."
+    },
+    "lbvserver": {
+      "type": "string",
+      "description": "Name of the default load balancing virtual server bound to this content switching virtual server. Requests that do not match any policy are sent here."
+    },
+    "targetlbvserver": {
+      "type": "string",
+      "description": "Name of the target load balancing virtual server to which content is switched."
+    },
+    "cachetype": {
+      "type": "string",
+      "description": "Cache type for integrated caching."
+    },
+    "redirect": {
+      "type": "string",
+      "description": "Type of cache redirect for the virtual server."
+    },
+    "curstate": {
+      "type": "string",
+      "description": "Current operational state of the virtual server."
+    },
+    "status": {
+      "type": "integer",
+      "description": "Current status of the virtual server. 1 indicates UP."
+    },
+    "statechangetimesec": {
+      "type": "string",
+      "description": "Time when the virtual server state last changed."
+    },
+    "tickssincelaststatechange": {
+      "type": "integer",
+      "description": "Number of ticks since the last state change."
+    },
+    "type": {
+      "type": "string",
+      "description": "Virtual server type (e.g., content-based or IP-address based)."
+    },
+    "ngname": {
+      "type": "string",
+      "description": "Node group name to which the virtual server is bound."
+    },
+    "value": {
+      "type": "string",
+      "description": "The value of the IP address, based on the virtual server type."
+    }
+  }
+}

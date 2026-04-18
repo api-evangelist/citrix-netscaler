@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LbVserverStats",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "primaryipaddress": {
+      "type": "string"
+    },
+    "primaryport": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "curclntconnections": {
+      "type": "number"
+    },
+    "cursrvrconnections": {
+      "type": "number"
+    },
+    "establishedconn": {
+      "type": "number"
+    },
+    "curpersistencesessions": {
+      "type": "number"
+    },
+    "vslbhealth": {
+      "type": "number"
+    },
+    "actsvcs": {
+      "type": "number"
+    },
+    "inactsvcs": {
+      "type": "number"
+    },
+    "tothits": {
+      "type": "number"
+    },
+    "hitsrate": {
+      "type": "number"
+    },
+    "totalrequests": {
+      "type": "number"
+    },
+    "requestsrate": {
+      "type": "number"
+    },
+    "totalresponses": {
+      "type": "number"
+    },
+    "responsesrate": {
+      "type": "number"
+    },
+    "totalrequestbytes": {
+      "type": "number"
+    },
+    "requestbytesrate": {
+      "type": "number"
+    },
+    "totalresponsebytes": {
+      "type": "number"
+    },
+    "responsebytesrate": {
+      "type": "number"
+    },
+    "totalpktsrecvd": {
+      "type": "number"
+    },
+    "pktsrecvdrate": {
+      "type": "number"
+    },
+    "totalpktssent": {
+      "type": "number"
+    },
+    "pktssentrate": {
+      "type": "number"
+    },
+    "totalsvrbusyerr": {
+      "type": "number"
+    },
+    "svrbusyerrrate": {
+      "type": "number"
+    },
+    "surgecount": {
+      "type": "number"
+    },
+    "totspillovers": {
+      "type": "number"
+    },
+    "totvserverdownbackuphits": {
+      "type": "number"
+    },
+    "avgcltttlb": {
+      "type": "number"
+    },
+    "cltresponsetimeapdex": {
+      "type": "number"
+    },
+    "cpuusagepm": {
+      "type": "number"
+    },
+    "totalh2requests": {
+      "type": "number"
+    },
+    "h2requestsrate": {
+      "type": "number"
+    },
+    "totalh2responses": {
+      "type": "number"
+    },
+    "h2responsesrate": {
+      "type": "number"
+    },
+    "invalidrequestresponse": {
+      "type": "number"
+    },
+    "invalidrequestresponsedropped": {
+      "type": "number"
+    },
+    "sothreshold": {
+      "type": "number"
+    },
+    "reqretrycount": {
+      "type": "number"
+    },
+    "reqretrycountexceeded": {
+      "type": "number"
+    },
+    "deferredreq": {
+      "type": "number"
+    },
+    "deferredreqrate": {
+      "type": "number"
+    }
+  }
+}

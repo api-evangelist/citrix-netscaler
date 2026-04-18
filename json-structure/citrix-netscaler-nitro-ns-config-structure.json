@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "NsConfig",
+  "type": "object",
+  "properties": {
+    "ipaddress": {
+      "type": "string"
+    },
+    "netmask": {
+      "type": "string"
+    },
+    "nsvlan": {
+      "type": "integer"
+    },
+    "ifnum": {
+      "type": "string"
+    },
+    "tagged": {
+      "type": "string"
+    },
+    "httpport": {
+      "type": "array"
+    },
+    "maxconn": {
+      "type": "integer"
+    },
+    "maxreq": {
+      "type": "integer"
+    },
+    "cip": {
+      "type": "string"
+    },
+    "cipheader": {
+      "type": "string"
+    },
+    "cookieversion": {
+      "type": "string"
+    },
+    "securecookie": {
+      "type": "string"
+    },
+    "pmtumin": {
+      "type": "integer"
+    },
+    "pmtutimeout": {
+      "type": "integer"
+    },
+    "ftpportrange": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "grantquotamaxclient": {
+      "type": "integer"
+    },
+    "grantquotaspillover": {
+      "type": "integer"
+    },
+    "crportrange": {
+      "type": "string"
+    },
+    "systemtype": {
+      "type": "string"
+    },
+    "primaryip": {
+      "type": "string"
+    },
+    "primaryip6": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "integer"
+    },
+    "lastconfigchangedtime": {
+      "type": "string"
+    },
+    "lastconfigsavetime": {
+      "type": "string"
+    },
+    "currentsytemtime": {
+      "type": "string"
+    },
+    "systemtime": {
+      "type": "integer"
+    },
+    "configchanged": {
+      "type": "boolean"
+    },
+    "mappedip": {
+      "type": "string"
+    },
+    "range": {
+      "type": "integer"
+    }
+  }
+}

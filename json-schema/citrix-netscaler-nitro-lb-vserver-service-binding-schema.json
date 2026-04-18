@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LbVserverServiceBinding",
+  "type": "object",
+  "description": "Binding between a load balancing virtual server and a backend service. This allows the virtual server to distribute traffic to the bound service.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the load balancing virtual server to which the service is bound."
+    },
+    "servicename": {
+      "type": "string",
+      "description": "Name of the service to bind to the virtual server."
+    },
+    "weight": {
+      "type": "integer",
+      "description": "Weight assigned to the service for weighted load balancing. Range 1-100."
+    },
+    "servicetype": {
+      "type": "string",
+      "description": "Protocol type of the bound service."
+    },
+    "curstate": {
+      "type": "string",
+      "description": "Current state of the bound service."
+    },
+    "ipv46": {
+      "type": "string",
+      "description": "IP address of the bound service."
+    },
+    "port": {
+      "type": "integer",
+      "description": "Port of the bound service."
+    },
+    "dynamicweight": {
+      "type": "integer",
+      "description": "Dynamic weight of the service based on server health."
+    }
+  }
+}

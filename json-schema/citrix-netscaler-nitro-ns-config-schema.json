@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NsConfig",
+  "type": "object",
+  "description": "NetScaler appliance configuration including network settings, system parameters, and operational options.",
+  "properties": {
+    "ipaddress": {
+      "type": "string",
+      "description": "The NetScaler IP (NSIP) address of the appliance. This is the primary management IP address."
+    },
+    "netmask": {
+      "type": "string",
+      "description": "Subnet mask associated with the NSIP address."
+    },
+    "nsvlan": {
+      "type": "integer",
+      "description": "VLAN ID for the NSIP address. Range 2-4094."
+    },
+    "ifnum": {
+      "type": "string",
+      "description": "Network interfaces bound to the NSVLAN. Format is slot/port (e.g., 1/1)."
+    },
+    "tagged": {
+      "type": "string",
+      "description": "Whether the NSVLAN is tagged or untagged."
+    },
+    "httpport": {
+      "type": "array",
+      "description": "HTTP port(s) on the appliance. Default is 80."
+    },
+    "maxconn": {
+      "type": "integer",
+      "description": "Maximum number of connections per service. Zero means unlimited."
+    },
+    "maxreq": {
+      "type": "integer",
+      "description": "Maximum number of requests per connection. Zero means unlimited."
+    },
+    "cip": {
+      "type": "string",
+      "description": "Whether to insert the client IP address into the HTTP header of requests forwarded to the service."
+    },
+    "cipheader": {
+      "type": "string",
+      "description": "Name of the HTTP header used to insert the client IP address when CIP is enabled."
+    },
+    "cookieversion": {
+      "type": "string",
+      "description": "Version of the cookie inserted by the NetScaler for persistence."
+    },
+    "securecookie": {
+      "type": "string",
+      "description": "Whether the secure flag is set on persistence cookies."
+    },
+    "pmtumin": {
+      "type": "integer",
+      "description": "Minimum path MTU value. Range 168-1500."
+    },
+    "pmtutimeout": {
+      "type": "integer",
+      "description": "Timeout in minutes for path MTU discovery. Range 1-1440."
+    },
+    "ftpportrange": {
+      "type": "string",
+      "description": "Port range for FTP data connections (e.g., 1024-65535)."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Time zone setting for the appliance (e.g., GMT+05:30-IST-Asia/Kolkata)."
+    },
+    "grantquotamaxclient": {
+      "type": "integer",
+      "description": "Percentage of shared quota to be granted at a time for max client connections."
+    },
+    "grantquotaspillover": {
+      "type": "integer",
+      "description": "Percentage of shared quota to be granted at a time for spillover threshold."
+    },
+    "crportrange": {
+      "type": "string",
+      "description": "Port range for cache redirection."
+    },
+    "systemtype": {
+      "type": "string",
+      "description": "The type of the NetScaler appliance."
+    },
+    "primaryip": {
+      "type": "string",
+      "description": "Primary IP address of the HA pair."
+    },
+    "primaryip6": {
+      "type": "string",
+      "description": "Primary IPv6 address of the HA pair."
+    },
+    "flags": {
+      "type": "integer",
+      "description": "Internal flags for the configuration."
+    },
+    "lastconfigchangedtime": {
+      "type": "string",
+      "description": "Timestamp of the last configuration change."
+    },
+    "lastconfigsavetime": {
+      "type": "string",
+      "description": "Timestamp of the last configuration save."
+    },
+    "currentsytemtime": {
+      "type": "string",
+      "description": "Current system time on the appliance."
+    },
+    "systemtime": {
+      "type": "integer",
+      "description": "Current system time as epoch seconds."
+    },
+    "configchanged": {
+      "type": "boolean",
+      "description": "Whether the running configuration has unsaved changes."
+    },
+    "mappedip": {
+      "type": "string",
+      "description": "Mapped IP address for the NSIP."
+    },
+    "range": {
+      "type": "integer",
+      "description": "Number of consecutive IP addresses in the range beginning with the mapped IP."
+    }
+  }
+}
