@@ -1,0 +1,13 @@
+{
+  "repo": "citrix-netscaler",
+  "feeds": [
+    {
+      "source": "https://www.netscaler.com/blog/",
+      "feed_url": "https://www.netscaler.com/blog/feed/",
+      "saved": 10,
+      "title": "NetScaler Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:25:16Z"
+}
