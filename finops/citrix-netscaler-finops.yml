@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,156 +9,95 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Citrix NetScaler
 providerId: citrix-netscaler
-publisherName: Citrix NetScaler
-serviceCategory: API
+publisherName: Cloud Software Group, Inc.
+serviceCategory: Application Delivery
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - API Gateway
   - Application Delivery Controller
-  - Application Security
   - Load Balancing
-  - SSL Offloading
-  - Traffic Management
   - Web Application Firewall
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Citrix NetScaler API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: >-
+  FOCUS-aligned FinOps shape for NetScaler. Cost is driven by NetScaler edition (Standard / Advanced
+  / Premium), throughput tier, and form factor (MPX / VPX / SDX / CPX), increasingly delivered via
+  pooled-capacity subscriptions managed by NetScaler Console. Underlying compute / network for VPX /
+  CPX instances is billed by the hosting hyperscaler or on-prem hypervisor.
+notes: Underlying compute / network for virtual NetScaler instances on AWS / Azure / GCP / on-prem
+  is billed separately by those providers and tracked through their FinOps surfaces.
+sources:
+  - https://www.netscaler.com
+  - https://docs.netscaler.com
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription + Perpetual License
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
+    - Usage
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Citrix NetScaler
-  ServiceCategory: Developer Tools / API
-  ProviderName: Citrix NetScaler
-  PublisherName: Citrix NetScaler
-  InvoiceIssuerName: Citrix NetScaler
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Application Delivery
+  ProviderName: NetScaler
+  PublisherName: Cloud Software Group, Inc.
+  InvoiceIssuerName: Cloud Software Group, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
-    aggregation: sum
+  - name: netscaler_instance_license
+    description: Per-instance NetScaler edition + throughput-tier license.
+    unit: instance-month
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
+      - edition
+      - throughput_tier
+      - form_factor
+      - region
+  - name: netscaler_pooled_bandwidth
+    description: Pooled bandwidth allocated across NetScaler instances under Pooled Capacity.
+    unit: Mbps-month
+    aggregation: max
+    dimensions:
+      - region
+  - name: netscaler_pooled_ssl_tps
+    description: Pooled SSL transactions-per-second under Pooled Capacity.
+    unit: TPS-month
+    aggregation: max
+    dimensions:
+      - region
+  - name: netscaler_console_management
+    description: NetScaler Console (ADM) management capacity (managed instances / agents).
+    unit: instance-month
+    aggregation: max
+    dimensions:
       - tier
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: hyperscaler_compute
+    description: Underlying VM / container compute for VPX / CPX deployments.
+    unit: instance-hour
     aggregation: sum
     dimensions:
-      - api
+      - cloud
+      - instance_type
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Citrix ADC (NetScaler) NITRO API
-    baseURL: https://<netscaler-ip>/nitro/v1
-    tags:
-      - Automation
-      - Configuration
-      - Monitoring
-      - REST API
-    serviceName: Citrix ADC (NetScaler) NITRO API
-    serviceCategory: API
-  - name: NetScaler ADM NITRO API
-    baseURL: https://<adm-ip>/nitro/v1
-    tags:
-      - Analytics
-      - Management
-      - Orchestration
-      - REST API
-    serviceName: NetScaler ADM NITRO API
-    serviceCategory: API
-  - name: NetScaler SDX NITRO API
-    baseURL: https://<sdx-ip>/nitro/v1
-    tags:
-      - Management
-      - REST API
-      - SDX
-      - Virtualization
-    serviceName: NetScaler SDX NITRO API
-    serviceCategory: API
-  - name: NetScaler Next-Gen API
-    baseURL: https://<netscaler-ip>/
-    tags:
-      - Application-Centric
-      - Declarative
-      - OpenAPI
-      - REST API
-    serviceName: NetScaler Next-Gen API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Use NetScaler Console (ADM) for license-pool consumption, throughput, and SSL TPS
+      utilization; pair with hyperscaler cost reports for VPX / CPX compute.
+  - name: Allocation
+    description: Allocate appliance license cost to platform / network team budgets; chargeback by
+      virtual server / tenant using ADM analytics tags.
+  - name: Optimization
+    description: Move to Pooled Capacity to share bandwidth across MPX / VPX / SDX / CPX, retire
+      under-utilized appliances, choose the right edition (Standard vs Premium), and prefer reserved
+      / savings-plan commitments for hyperscaler compute hosting VPX.
+  - name: Accountability
+    description: Network / platform owner is accountable for NetScaler license-pool sizing,
+      term-renewal cadence, and coordination with cloud platform teams on the underlying compute.
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com/

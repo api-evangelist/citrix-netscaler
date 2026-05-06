@@ -4,104 +4,52 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Citrix NetScaler
 providerId: citrix-netscaler
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - API Gateway
   - Application Delivery Controller
-  - Application Security
   - Load Balancing
-  - SSL Offloading
-  - Traffic Management
-  - Web Application Firewall
+  - API Gateway
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Citrix NetScaler API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: >-
+  NetScaler is a customer-deployed appliance (MPX / VPX / SDX / CPX) plus the NetScaler Console
+  (ADM) management plane. The NITRO REST/JSON API is the primary management interface; throughput
+  is bounded by the appliance's management-CPU and the licensed throughput tier rather than a
+  cloud-style per-second quota. NetScaler itself can also enforce data-plane rate-limit and
+  responder policies on the customer's traffic, configured per virtual server.
+notes: Numbers below are descriptive placeholders. Replace with per-platform NITRO management
+  throughput from the NetScaler ADC documentation for the deployed version (e.g. 13.1 / 14.1).
+sources:
+  - https://docs.netscaler.com/en-us/citrix-adc/current-release/nitro-api.html
+  - https://docs.netscaler.com/en-us/citrix-adc/current-release/appexpert/rate-limiting.html
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Citrix ADC (NetScaler) NITRO API
-      - NetScaler ADM NITRO API
-      - NetScaler SDX NITRO API
-      - NetScaler Next-Gen API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Citrix ADC (NetScaler) NITRO API
-      - NetScaler ADM NITRO API
-      - NetScaler SDX NITRO API
-      - NetScaler Next-Gen API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Citrix ADC (NetScaler) NITRO API
-      - NetScaler ADM NITRO API
-      - NetScaler SDX NITRO API
-      - NetScaler Next-Gen API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Citrix ADC (NetScaler) NITRO API
-      - NetScaler ADM NITRO API
-      - NetScaler SDX NITRO API
-      - NetScaler Next-Gen API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Citrix ADC (NetScaler) NITRO API
-      - NetScaler ADM NITRO API
-      - NetScaler SDX NITRO API
-      - NetScaler Next-Gen API
+  - name: NITRO management API
+    scope: appliance
+    metric: varies
+    limit: bounded by NetScaler management-CPU and platform
+  - name: NetScaler Console (ADM) API
+    scope: tenant
+    metric: varies
+    limit: see NetScaler Console scale guide for the deployed cluster size
+  - name: Data-plane rate limiting
+    scope: virtual_server
+    metric: configurable
+    limit: configured per virtual-server / responder policy by the appliance administrator
 policies:
+  - name: Capacity-bounded
+    description: Management throughput is bounded by appliance CPU and the licensed throughput tier,
+      not by a cloud-style per-second quota.
+  - name: Bulk operations
+    description: Use NITRO bulk endpoints rather than per-resource calls for large config changes.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Implement exponential backoff with jitter on HTTP 429/503 responses from NITRO and
+      NetScaler Console APIs.
+  - name: Token reuse
+    description: Reuse session tokens until expiry; do not log in per request, which floods the
+      management plane.
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com/
