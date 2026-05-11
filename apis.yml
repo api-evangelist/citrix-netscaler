@@ -170,6 +170,8 @@ common:
       - Citrix Cloud
       - ServiceNow
       - Splunk
+  - type: Integrations
+    url: https://www.citrix.com/partners/
 properties:
   - type: Capabilities
     url: capabilities/adc-management.yaml
@@ -180,6 +182,8 @@ properties:
 include:
   - name: Citrix Developer Portal
     url: https://developer.citrix.com/
+integrations:
+  - name: Citrix Ready partners
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
