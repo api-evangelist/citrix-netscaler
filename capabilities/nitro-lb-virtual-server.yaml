@@ -1,0 +1,352 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Citrix NetScaler NITRO REST API — LB Virtual Server
+  description: 'Citrix NetScaler NITRO REST API — LB Virtual Server. 8 operations. Lead operation: Citrix Netscaler List Load
+    Balancing Virtual Servers. Self-contained Naftiko capability covering one Citrix Netscaler business surface.'
+  tags:
+  - Citrix Netscaler
+  - LB Virtual Server
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CITRIX_NETSCALER_API_KEY: CITRIX_NETSCALER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nitro-lb-virtual-server
+    baseUri: https://{nsip}/nitro/v1
+    description: Citrix NetScaler NITRO REST API — LB Virtual Server business capability. Self-contained, no shared references.
+    resources:
+    - name: config-lbvserver
+      path: /config/lbvserver
+      operations:
+      - name: listlbvservers
+        method: GET
+        description: Citrix Netscaler List Load Balancing Virtual Servers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlbvserver
+        method: POST
+        description: Citrix Netscaler Create a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: config-lbvserver-name
+      path: /config/lbvserver/{name}
+      operations:
+      - name: getlbvserver
+        method: GET
+        description: Citrix Netscaler Get a Specific Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the load balancing virtual server.
+          required: true
+      - name: updatelbvserver
+        method: PUT
+        description: Citrix Netscaler Update a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the load balancing virtual server to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletelbvserver
+        method: DELETE
+        description: Citrix Netscaler Delete a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the load balancing virtual server to delete.
+          required: true
+    - name: config-lbvserver_service_binding
+      path: /config/lbvserver_service_binding
+      operations:
+      - name: bindservicetolbvserver
+        method: PUT
+        description: Citrix Netscaler Bind a Service to a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: config-lbvserver_service_binding-name
+      path: /config/lbvserver_service_binding/{name}
+      operations:
+      - name: getlbvserverservicebindings
+        method: GET
+        description: Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the load balancing virtual server.
+          required: true
+      - name: unbindservicefromlbvserver
+        method: DELETE
+        description: Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the load balancing virtual server.
+          required: true
+        - name: args
+          in: query
+          type: string
+          description: Arguments to identify the service binding to remove, in the format servicename:svc_prod.
+          required: true
+    authentication:
+      type: apikey
+      key: NITRO_AUTH_TOKEN
+      value: '{{env.CITRIX_NETSCALER_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: nitro-lb-virtual-server-rest
+    port: 8080
+    description: REST adapter for Citrix NetScaler NITRO REST API — LB Virtual Server. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/config/lbvserver
+      name: config-lbvserver
+      description: REST surface for config-lbvserver.
+      operations:
+      - method: GET
+        name: listlbvservers
+        description: Citrix Netscaler List Load Balancing Virtual Servers
+        call: nitro-lb-virtual-server.listlbvservers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlbvserver
+        description: Citrix Netscaler Create a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.createlbvserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/config/lbvserver/{name}
+      name: config-lbvserver-name
+      description: REST surface for config-lbvserver-name.
+      operations:
+      - method: GET
+        name: getlbvserver
+        description: Citrix Netscaler Get a Specific Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.getlbvserver
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatelbvserver
+        description: Citrix Netscaler Update a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.updatelbvserver
+        with:
+          name: rest.name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletelbvserver
+        description: Citrix Netscaler Delete a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.deletelbvserver
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/config/lbvserver-service-binding
+      name: config-lbvserver-service-binding
+      description: REST surface for config-lbvserver_service_binding.
+      operations:
+      - method: PUT
+        name: bindservicetolbvserver
+        description: Citrix Netscaler Bind a Service to a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.bindservicetolbvserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/config/lbvserver-service-binding/{name}
+      name: config-lbvserver-service-binding-name
+      description: REST surface for config-lbvserver_service_binding-name.
+      operations:
+      - method: GET
+        name: getlbvserverservicebindings
+        description: Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.getlbvserverservicebindings
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: unbindservicefromlbvserver
+        description: Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server
+        call: nitro-lb-virtual-server.unbindservicefromlbvserver
+        with:
+          name: rest.name
+          args: rest.args
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nitro-lb-virtual-server-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Citrix NetScaler NITRO REST API — LB Virtual Server. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: citrix-netscaler-list-load-balancing
+      description: Citrix Netscaler List Load Balancing Virtual Servers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nitro-lb-virtual-server.listlbvservers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-create-load-balancing
+      description: Citrix Netscaler Create a Load Balancing Virtual Server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nitro-lb-virtual-server.createlbvserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-get-specific-load
+      description: Citrix Netscaler Get a Specific Load Balancing Virtual Server
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nitro-lb-virtual-server.getlbvserver
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-update-load-balancing
+      description: Citrix Netscaler Update a Load Balancing Virtual Server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: nitro-lb-virtual-server.updatelbvserver
+      with:
+        name: tools.name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-delete-load-balancing
+      description: Citrix Netscaler Delete a Load Balancing Virtual Server
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: nitro-lb-virtual-server.deletelbvserver
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-bind-service-load
+      description: Citrix Netscaler Bind a Service to a Load Balancing Virtual Server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: nitro-lb-virtual-server.bindservicetolbvserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-get-service-bindings
+      description: Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nitro-lb-virtual-server.getlbvserverservicebindings
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-unbind-service-load
+      description: Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: nitro-lb-virtual-server.unbindservicefromlbvserver
+      with:
+        name: tools.name
+        args: tools.args
+      outputParameters:
+      - type: object
+        mapping: $.

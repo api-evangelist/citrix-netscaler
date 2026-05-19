@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Citrix NetScaler NITRO REST API — NS Config
+  description: 'Citrix NetScaler NITRO REST API — NS Config. 4 operations. Lead operation: Citrix Netscaler Get Netscaler
+    Configuration. Self-contained Naftiko capability covering one Citrix Netscaler business surface.'
+  tags:
+  - Citrix Netscaler
+  - NS Config
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CITRIX_NETSCALER_API_KEY: CITRIX_NETSCALER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: nitro-ns-config
+    baseUri: https://{nsip}/nitro/v1
+    description: Citrix NetScaler NITRO REST API — NS Config business capability. Self-contained, no shared references.
+    resources:
+    - name: config-nsconfig
+      path: /config/nsconfig
+      operations:
+      - name: getnsconfig
+        method: GET
+        description: Citrix Netscaler Get Netscaler Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatensconfig
+        method: PUT
+        description: Citrix Netscaler Update Netscaler Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: config-nsconfig?action=clear
+      path: /config/nsconfig?action=clear
+      operations:
+      - name: clearnsconfig
+        method: POST
+        description: Citrix Netscaler Clear Netscaler Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: config-nsconfig?action=save
+      path: /config/nsconfig?action=save
+      operations:
+      - name: savensconfig
+        method: POST
+        description: Citrix Netscaler Save Netscaler Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: NITRO_AUTH_TOKEN
+      value: '{{env.CITRIX_NETSCALER_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: nitro-ns-config-rest
+    port: 8080
+    description: REST adapter for Citrix NetScaler NITRO REST API — NS Config. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/config/nsconfig
+      name: config-nsconfig
+      description: REST surface for config-nsconfig.
+      operations:
+      - method: GET
+        name: getnsconfig
+        description: Citrix Netscaler Get Netscaler Configuration
+        call: nitro-ns-config.getnsconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatensconfig
+        description: Citrix Netscaler Update Netscaler Configuration
+        call: nitro-ns-config.updatensconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/config/nsconfig-action-clear
+      name: config-nsconfig-action-clear
+      description: REST surface for config-nsconfig?action=clear.
+      operations:
+      - method: POST
+        name: clearnsconfig
+        description: Citrix Netscaler Clear Netscaler Configuration
+        call: nitro-ns-config.clearnsconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/config/nsconfig-action-save
+      name: config-nsconfig-action-save
+      description: REST surface for config-nsconfig?action=save.
+      operations:
+      - method: POST
+        name: savensconfig
+        description: Citrix Netscaler Save Netscaler Configuration
+        call: nitro-ns-config.savensconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: nitro-ns-config-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Citrix NetScaler NITRO REST API — NS Config. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: citrix-netscaler-get-netscaler-configuration
+      description: Citrix Netscaler Get Netscaler Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: nitro-ns-config.getnsconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-update-netscaler-configuration
+      description: Citrix Netscaler Update Netscaler Configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: nitro-ns-config.updatensconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-clear-netscaler-configuration
+      description: Citrix Netscaler Clear Netscaler Configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nitro-ns-config.clearnsconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: citrix-netscaler-save-netscaler-configuration
+      description: Citrix Netscaler Save Netscaler Configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: nitro-ns-config.savensconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
