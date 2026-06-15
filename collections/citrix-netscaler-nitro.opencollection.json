@@ -1,0 +1,672 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Log in to the Netscaler Appliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates the user and returns a session token (NITRO_AUTH_TOKEN) as a cookie. This token must be included in subsequent API requests. The default session timeout is 30 minutes, or a user-configured value when restricted timeout is enabled (default 15 minutes)."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Log Out From the Netscaler Appliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/logout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Terminates the current session and invalidates the NITRO_AUTH_TOKEN cookie."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "NS Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              }
+            ]
+          },
+          "docs": "Retrieves the current NetScaler appliance configuration including IP address, network settings, HTTP ports, and system parameters."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Update Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies NetScaler appliance configuration parameters such as IP address, network settings, and system-level options."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Save Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig?action=save",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the running configuration to the appliance persistent storage (ns.conf). This ensures configuration changes persist across reboots."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Clear Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig?action=clear",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clears the NetScaler configuration. The level parameter controls what is cleared - basic, extended, or full."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler List System Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/systemfile",
+            "params": [
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+              }
+            ]
+          },
+          "docs": "Retrieves system files from a specified location on the NetScaler appliance."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Upload a System File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/systemfile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a file to the NetScaler appliance. The file content must be Base64-encoded."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Delete a System File",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/systemfile/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "example_value",
+                "type": "path",
+                "description": "The name of the file to delete."
+              },
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+              }
+            ]
+          },
+          "docs": "Deletes a file from the NetScaler appliance at the specified location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LB Virtual Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler List Load Balancing Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              },
+              {
+                "name": "filter",
+                "value": "servicetype:HTTP,lbmethod:ROUNDROBIN",
+                "type": "query",
+                "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources."
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query",
+                "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "When set to yes, returns only the count of matching resources instead of the full resource details."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to return per page for paginated responses."
+              },
+              {
+                "name": "pageno",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve in paginated responses."
+              }
+            ]
+          },
+          "docs": "Retrieves all load balancing virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Create a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver",
+            "headers": [
+              {
+                "name": "X-NITRO-ONERROR",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new load balancing virtual server with the specified configuration. The name and servicetype properties are required. Supports bulk creation by passing an array."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get a Specific Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration of a specific load balancing virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Update a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing load balancing virtual server. Retrieve the current state, modify properties locally, and upload the complete updated state."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Delete a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a load balancing virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Bind a Service to a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Binds a backend service to a load balancing virtual server, allowing the virtual server to distribute traffic to that service."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              }
+            ]
+          },
+          "docs": "Retrieves all services bound to a specific load balancing virtual server."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "Arguments to identify the service binding to remove, in the format servicename:svc_prod."
+              }
+            ]
+          },
+          "docs": "Removes the binding between a service and a load balancing virtual server."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CS Virtual Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler List Content Switching Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/csvserver",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              },
+              {
+                "name": "filter",
+                "value": "servicetype:HTTP,lbmethod:ROUNDROBIN",
+                "type": "query",
+                "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources."
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query",
+                "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "When set to yes, returns only the count of matching resources instead of the full resource details."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to return per page for paginated responses."
+              },
+              {
+                "name": "pageno",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve in paginated responses."
+              }
+            ]
+          },
+          "docs": "Retrieves all content switching virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Create a Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/csvserver",
+            "headers": [
+              {
+                "name": "X-NITRO-ONERROR",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new content switching virtual server. Content switching directs incoming client requests to specific load balancing virtual servers based on policies that evaluate request attributes."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get a Specific Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/csvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server."
+              },
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration of a specific content switching virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Update a Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/csvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing content switching virtual server."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Delete a Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/csvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a content switching virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Bind a Content Switching Policy to a Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/csvserver_cspolicy_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Binds a content switching policy to a content switching virtual server, defining how incoming requests are routed to load balancing virtual servers."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Policy Bindings for a Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/csvserver_cspolicy_binding/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server."
+              }
+            ]
+          },
+          "docs": "Retrieves all content switching policies bound to a specific content switching virtual server."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/lbvserver",
+            "params": [
+              {
+                "name": "sortby",
+                "value": "Hits",
+                "type": "query",
+                "description": "Sort statistics by a specific metric."
+              },
+              {
+                "name": "sortorder",
+                "value": "ascending",
+                "type": "query",
+                "description": "Sort order for the statistics results."
+              },
+              {
+                "name": "clearstats",
+                "value": "basic",
+                "type": "query",
+                "description": "Clear statistics after retrieval. Use basic for counters or full for all stats."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for all load balancing virtual servers including connection counts, traffic metrics, health status, and error rates."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "statbindings",
+                "value": "yes",
+                "type": "query",
+                "description": "Include statistics for bound services when set to yes."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed performance statistics for a specific load balancing virtual server including connections, throughput, health, and APDEX scores."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for All Content Switching Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/csvserver"
+          },
+          "docs": "Retrieves performance statistics for all content switching virtual servers."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/csvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed performance statistics for a specific content switching virtual server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
