@@ -47,7 +47,7 @@ apis:
           https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/performing-basic-netscaler-operations.html
       - type: GettingStarted
         url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/before-you-begin.html
-      - type: SDK
+      - type: SDKs
         url: https://www.citrix.com/downloads/citrix-adc/sdks/
       - type: ChangeLog
         url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/nitro-changes-across-releases/
@@ -147,7 +147,7 @@ common:
     url: https://www.netscaler.com/resources/support
   - type: StatusPage
     url: https://status.cloud.com/
-  - type: SignUp
+  - type: Signup
     url: https://onboarding.cloud.com/
   - type: Login
     url: https://citrix.cloud.com/
