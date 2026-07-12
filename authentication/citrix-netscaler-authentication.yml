@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/citrix-netscaler-nitro-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - cookie
+  - header
+schemes:
+- name: nitroAuthToken
+  type: apiKey
+  in: cookie
+  parameter: NITRO_AUTH_TOKEN
+  description: Session-based authentication token obtained via the /config/login endpoint. Provided
+    as a cookie with each request.
+  sources:
+  - openapi/citrix-netscaler-nitro-openapi.yml
+- name: nitroBasicAuth
+  type: apiKey
+  in: header
+  parameter: X-NITRO-USER
+  description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an
+    alternative to session-based tokens.
+  sources:
+  - openapi/citrix-netscaler-nitro-openapi.yml
