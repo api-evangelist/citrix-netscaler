@@ -129,6 +129,8 @@ apis:
       - type: DeveloperPortal
         url: https://developer-docs.netscaler.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/citrix-netscaler-agentic-access.yml
   - type: DomainSecurity
     url: security/citrix-netscaler-domain-security.yml
   - type: Authentication
