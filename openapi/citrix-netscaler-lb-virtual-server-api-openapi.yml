@@ -1,0 +1,1196 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication LB Virtual Server API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: LB Virtual Server
+  description: Load balancing virtual servers accept incoming traffic and distribute it across backend services using configurable load balancing methods such as round robin, least connections, and more.
+paths:
+  /config/lbvserver:
+    get:
+      operationId: listLbVservers
+      summary: Citrix Netscaler List Load Balancing Virtual Servers
+      description: Retrieves all load balancing virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - $ref: '#/components/parameters/Attrs'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/View'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNo'
+      responses:
+        '200':
+          description: Successful retrieval of load balancing virtual servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lbvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserver'
+              examples:
+                Listlbvservers200Example:
+                  summary: Default listLbVservers 200 response
+                  x-microcks-default: true
+                  value:
+                    lbvserver:
+                    - name: Example Title
+                      servicetype: HTTP
+                      ipv46: example_value
+                      port: 10
+                      ipset: example_value
+                      range: 10
+                      ippattern: example_value
+                      ipmask: example_value
+                      td: 10
+                      lbmethod: ROUNDROBIN
+                      hashlength: 10
+                      netmask: example_value
+                      v6netmasklen: 10
+                      backuplbmethod: ROUNDROBIN
+                      persistencetype: SOURCEIP
+                      persistmask: example_value
+                      v6persistmasklen: 10
+                      persistencebackup: SOURCEIP
+                      timeout: 10
+                      persistavpno:
+                      - {}
+                      cookiename: example_value
+                      rule: example_value
+                      listenpolicy: example_value
+                      listenpriority: 10
+                      resrule: example_value
+                      push: ENABLED
+                      pushlabel: example_value
+                      pushmulticlients: 'YES'
+                      comment: example_value
+                      clttimeout: 10
+                      somethod: CONNECTION
+                      sopersistence: ENABLED
+                      sopersistencetimeout: 10
+                      sothreshold: 10
+                      healththreshold: 10
+                      redirecturl: https://www.example.com
+                      downstateflush: ENABLED
+                      disableprimaryondown: ENABLED
+                      insertvserveripport: 'OFF'
+                      vipheader: example_value
+                      authenticationhost: example_value
+                      authentication: 'ON'
+                      authn401: 'ON'
+                      authnvsname: example_value
+                      icmpvsrresponse: PASSIVE
+                      rhistate: PASSIVE
+                      newservicerequest: 10
+                      newservicerequestunit: PER_SECOND
+                      newservicerequestincrementinterval: 10
+                      minautoscalemembers: 10
+                      maxautoscalemembers: 10
+                      skippersistency: Bypass
+                      appflowlog: ENABLED
+                      state: ENABLED
+                      connfailover: DISABLED
+                      redirurl: https://www.example.com
+                      curstate: UP
+                      effectivestate: UP
+                      status: 10
+                      lbrrreason: 10
+                      totalservices: 10
+                      activeservices: 10
+                      statechangetimesec: example_value
+                      tickssincelaststatechange: 10
+                      health: 10
+                      isgslb: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createLbVserver
+      summary: Citrix Netscaler Create a Load Balancing Virtual Server
+      description: Creates a new load balancing virtual server with the specified configuration. The name and servicetype properties are required. Supports bulk creation by passing an array.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - $ref: '#/components/parameters/BulkErrorHandling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - lbvserver
+              properties:
+                lbvserver:
+                  oneOf:
+                  - $ref: '#/components/schemas/LbVserver'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserver'
+            example:
+              lbvserver:
+                name: MyFirstLbVServer
+                servicetype: HTTP
+                ipv46: 10.102.29.88
+                port: 80
+                lbmethod: ROUNDROBIN
+      responses:
+        '201':
+          description: Load balancing virtual server created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Createlbvserver201Example:
+                  summary: Default createLbVserver 201 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '207':
+          description: Multi-status response for bulk operations where some items may have succeeded and others failed.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Resource already exists. A virtual server with the specified name is already configured.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/lbvserver/{name}:
+    get:
+      operationId: getLbVserver
+      summary: Citrix Netscaler Get a Specific Load Balancing Virtual Server
+      description: Retrieves the configuration of a specific load balancing virtual server identified by name.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      - $ref: '#/components/parameters/Attrs'
+      responses:
+        '200':
+          description: Successful retrieval of the virtual server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lbvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserver'
+                    minItems: 1
+                    maxItems: 1
+              examples:
+                Getlbvserver200Example:
+                  summary: Default getLbVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    lbvserver:
+                    - name: Example Title
+                      servicetype: HTTP
+                      ipv46: example_value
+                      port: 10
+                      ipset: example_value
+                      range: 10
+                      ippattern: example_value
+                      ipmask: example_value
+                      td: 10
+                      lbmethod: ROUNDROBIN
+                      hashlength: 10
+                      netmask: example_value
+                      v6netmasklen: 10
+                      backuplbmethod: ROUNDROBIN
+                      persistencetype: SOURCEIP
+                      persistmask: example_value
+                      v6persistmasklen: 10
+                      persistencebackup: SOURCEIP
+                      timeout: 10
+                      persistavpno:
+                      - {}
+                      cookiename: example_value
+                      rule: example_value
+                      listenpolicy: example_value
+                      listenpriority: 10
+                      resrule: example_value
+                      push: ENABLED
+                      pushlabel: example_value
+                      pushmulticlients: 'YES'
+                      comment: example_value
+                      clttimeout: 10
+                      somethod: CONNECTION
+                      sopersistence: ENABLED
+                      sopersistencetimeout: 10
+                      sothreshold: 10
+                      healththreshold: 10
+                      redirecturl: https://www.example.com
+                      downstateflush: ENABLED
+                      disableprimaryondown: ENABLED
+                      insertvserveripport: 'OFF'
+                      vipheader: example_value
+                      authenticationhost: example_value
+                      authentication: 'ON'
+                      authn401: 'ON'
+                      authnvsname: example_value
+                      icmpvsrresponse: PASSIVE
+                      rhistate: PASSIVE
+                      newservicerequest: 10
+                      newservicerequestunit: PER_SECOND
+                      newservicerequestincrementinterval: 10
+                      minautoscalemembers: 10
+                      maxautoscalemembers: 10
+                      skippersistency: Bypass
+                      appflowlog: ENABLED
+                      state: ENABLED
+                      connfailover: DISABLED
+                      redirurl: https://www.example.com
+                      curstate: UP
+                      effectivestate: UP
+                      status: 10
+                      lbrrreason: 10
+                      totalservices: 10
+                      activeservices: 10
+                      statechangetimesec: example_value
+                      tickssincelaststatechange: 10
+                      health: 10
+                      isgslb: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateLbVserver
+      summary: Citrix Netscaler Update a Load Balancing Virtual Server
+      description: Updates the configuration of an existing load balancing virtual server. Retrieve the current state, modify properties locally, and upload the complete updated state.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server to update.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - lbvserver
+              properties:
+                lbvserver:
+                  $ref: '#/components/schemas/LbVserver'
+            example:
+              lbvserver:
+                name: MyFirstLbVServer
+                lbmethod: LEASTCONNECTION
+                comment: Updated via NITRO API
+      responses:
+        '200':
+          description: Virtual server updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Updatelbvserver200Example:
+                  summary: Default updateLbVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteLbVserver
+      summary: Citrix Netscaler Delete a Load Balancing Virtual Server
+      description: Deletes a load balancing virtual server identified by name.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server to delete.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      responses:
+        '200':
+          description: Virtual server deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Deletelbvserver200Example:
+                  summary: Default deleteLbVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/lbvserver_service_binding:
+    put:
+      operationId: bindServiceToLbVserver
+      summary: Citrix Netscaler Bind a Service to a Load Balancing Virtual Server
+      description: Binds a backend service to a load balancing virtual server, allowing the virtual server to distribute traffic to that service.
+      tags:
+      - LB Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - lbvserver_service_binding
+              properties:
+                lbvserver_service_binding:
+                  $ref: '#/components/schemas/LbVserverServiceBinding'
+            example:
+              lbvserver_service_binding:
+                name: MyFirstLbVServer
+                servicename: svc_prod
+                weight: 20
+      responses:
+        '200':
+          description: Service bound successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Bindservicetolbvserver200Example:
+                  summary: Default bindServiceToLbVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/lbvserver_service_binding/{name}:
+    get:
+      operationId: getLbVserverServiceBindings
+      summary: Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server
+      description: Retrieves all services bound to a specific load balancing virtual server.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server.
+        schema:
+          type: string
+        example: Example Title
+      responses:
+        '200':
+          description: Successful retrieval of service bindings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lbvserver_service_binding:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserverServiceBinding'
+              examples:
+                Getlbvserverservicebindings200Example:
+                  summary: Default getLbVserverServiceBindings 200 response
+                  x-microcks-default: true
+                  value:
+                    lbvserver_service_binding:
+                    - name: Example Title
+                      servicename: example_value
+                      weight: 10
+                      servicetype: example_value
+                      curstate: example_value
+                      ipv46: example_value
+                      port: 10
+                      dynamicweight: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: unbindServiceFromLbVserver
+      summary: Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server
+      description: Removes the binding between a service and a load balancing virtual server.
+      tags:
+      - LB Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server.
+        schema:
+          type: string
+        example: Example Title
+      - name: args
+        in: query
+        required: true
+        description: Arguments to identify the service binding to remove, in the format servicename:svc_prod.
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Service unbound successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Unbindservicefromlbvserver200Example:
+                  summary: Default unbindServiceFromLbVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LbVserverServiceBinding:
+      type: object
+      description: Binding between a load balancing virtual server and a backend service. This allows the virtual server to distribute traffic to the bound service.
+      properties:
+        name:
+          type: string
+          description: Name of the load balancing virtual server to which the service is bound.
+          example: Example Title
+        servicename:
+          type: string
+          description: Name of the service to bind to the virtual server.
+          example: example_value
+        weight:
+          type: integer
+          description: Weight assigned to the service for weighted load balancing. Range 1-100.
+          minimum: 1
+          maximum: 100
+          example: 10
+        servicetype:
+          type: string
+          description: Protocol type of the bound service.
+          readOnly: true
+          example: example_value
+        curstate:
+          type: string
+          description: Current state of the bound service.
+          readOnly: true
+          example: example_value
+        ipv46:
+          type: string
+          description: IP address of the bound service.
+          readOnly: true
+          example: example_value
+        port:
+          type: integer
+          description: Port of the bound service.
+          readOnly: true
+          example: 10
+        dynamicweight:
+          type: integer
+          description: Dynamic weight of the service based on server health.
+          readOnly: true
+          example: 10
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    LbVserver:
+      type: object
+      description: A load balancing virtual server configuration that accepts incoming client traffic and distributes it across bound backend services using a configured load balancing algorithm.
+      required:
+      - name
+      - servicetype
+      properties:
+        name:
+          type: string
+          description: Name for the load balancing virtual server. Must be unique and begin with a letter, number, or underscore. Maximum 127 characters.
+          minLength: 1
+          maxLength: 127
+          example: Example Title
+        servicetype:
+          type: string
+          description: Protocol of the service running on the virtual server.
+          enum:
+          - HTTP
+          - FTP
+          - TCP
+          - UDP
+          - SSL
+          - SSL_BRIDGE
+          - SSL_TCP
+          - DTLS
+          - NNTP
+          - DNS
+          - DHCPRA
+          - ANY
+          - SIP_UDP
+          - SIP_TCP
+          - SIP_SSL
+          - DNS_TCP
+          - RTSP
+          - PUSH
+          - SSL_PUSH
+          - RADIUS
+          - RDP
+          - MYSQL
+          - MSSQL
+          - DIAMETER
+          - SSL_DIAMETER
+          - TFTP
+          - ORACLE
+          - SMPP
+          - SYSLOGTCP
+          - SYSLOGUDP
+          - FIX
+          - SSL_FIX
+          - PROXY
+          - USER_TCP
+          - USER_SSL_TCP
+          - QUIC
+          - IPFIX
+          - LOGSTREAM
+          - MONGO
+          - MONGO_TLS
+          - MQTT
+          - MQTT_TLS
+          - QUIC_BRIDGE
+          - HTTP_QUIC
+          example: HTTP
+        ipv46:
+          type: string
+          description: IPv4 or IPv6 address to assign to the virtual server. Usually a VIP address on the NetScaler used as the entry point for client traffic.
+          example: example_value
+        port:
+          type: integer
+          description: Port number on which the virtual server listens.
+          minimum: 0
+          maximum: 65535
+          example: 10
+        ipset:
+          type: string
+          description: Name of the IP set to bind to the virtual server. Provides multiple IPs for the virtual server.
+          example: example_value
+        range:
+          type: integer
+          description: Number of IP addresses that the appliance must generate using the virtual server VIP address and the netmask. Range 2-254.
+          minimum: 2
+          maximum: 254
+          example: 10
+        ippattern:
+          type: string
+          description: IP address pattern for identifying packets to be accepted by the virtual server. Used with ipmask.
+          example: example_value
+        ipmask:
+          type: string
+          description: IP address mask with the IP pattern to form an IP address range for the virtual server.
+          example: example_value
+        td:
+          type: integer
+          description: Traffic domain identifier. Isolates traffic across virtual servers. Range 0-4094.
+          minimum: 0
+          maximum: 4094
+          example: 10
+        lbmethod:
+          type: string
+          description: Load balancing method used to select the backend service for each client request.
+          enum:
+          - ROUNDROBIN
+          - LEASTCONNECTION
+          - LEASTRESPONSETIME
+          - URLHASH
+          - DOMAINHASH
+          - DESTINATIONIPHASH
+          - SOURCEIPHASH
+          - SRCIPDESTIPHASH
+          - LEASTBANDWIDTH
+          - LEASTPACKETS
+          - TOKEN
+          - SRCIPSRCPORTHASH
+          - LRTM
+          - CALLIDHASH
+          - CUSTOMLOAD
+          - LEASTREQUEST
+          - AUDITLOGHASH
+          - STATICPROXIMITY
+          default: LEASTCONNECTION
+          example: ROUNDROBIN
+        hashlength:
+          type: integer
+          description: Number of bytes to use for the hash value in hash-based load balancing methods. Range 1-4096.
+          minimum: 1
+          maximum: 4096
+          default: 80
+          example: 10
+        netmask:
+          type: string
+          description: IPv4 subnet mask for hashing in SOURCEIPHASH, DESTINATIONIPHASH, and SRCIPDESTIPHASH methods.
+          example: example_value
+        v6netmasklen:
+          type: integer
+          description: Number of bits in the IPv6 prefix for hash-based LB methods. Range 1-128.
+          minimum: 1
+          maximum: 128
+          default: 128
+          example: 10
+        backuplbmethod:
+          type: string
+          description: Backup load balancing method used when the primary method fails to select a service.
+          enum:
+          - ROUNDROBIN
+          - LEASTCONNECTION
+          - LEASTRESPONSETIME
+          - SOURCEIPHASH
+          - CUSTOMLOAD
+          default: ROUNDROBIN
+          example: ROUNDROBIN
+        persistencetype:
+          type: string
+          description: Type of persistence for the virtual server. Ensures requests from the same client go to the same service.
+          enum:
+          - SOURCEIP
+          - COOKIEINSERT
+          - SSLSESSION
+          - RULE
+          - URLPASSIVE
+          - CUSTOMSERVERID
+          - DESTIP
+          - SRCIPDESTIP
+          - CALLID
+          - RTSPSID
+          - DIAMETER
+          - FIXSESSION
+          - USERSESSION
+          - NONE
+          example: SOURCEIP
+        persistmask:
+          type: string
+          description: IPv4 netmask for source IP persistence. Applied to the source IP before matching for persistence.
+          example: example_value
+        v6persistmasklen:
+          type: integer
+          description: IPv6 prefix length for source IP persistence. Range 1-128.
+          minimum: 1
+          maximum: 128
+          default: 128
+          example: 10
+        persistencebackup:
+          type: string
+          description: Backup persistence type for the virtual server.
+          enum:
+          - SOURCEIP
+          - NONE
+          example: SOURCEIP
+        timeout:
+          type: integer
+          description: Persistence timeout in minutes. The period for which persistence sessions are maintained. Range 0-1440.
+          minimum: 0
+          maximum: 1440
+          default: 2
+          example: 10
+        persistavpno:
+          type: array
+          description: AVP numbers to use for Diameter persistence.
+          items:
+            type: integer
+          example: []
+        cookiename:
+          type: string
+          description: Name of the cookie generated by the NetScaler for cookie insert persistence.
+          example: example_value
+        rule:
+          type: string
+          description: Expression or name of a named expression that the virtual server uses to evaluate client requests. Default is true.
+          default: '"none"'
+          example: example_value
+        listenpolicy:
+          type: string
+          description: Expression identifying traffic accepted by the virtual server. Default is NONE.
+          default: NONE
+          example: example_value
+        listenpriority:
+          type: integer
+          description: Priority of the listen policy. Range 0-100.
+          minimum: 0
+          maximum: 100
+          default: 101
+          example: 10
+        resrule:
+          type: string
+          description: Expression specifying which response to send when the virtual server matches the client request rule.
+          default: '"none"'
+          example: example_value
+        push:
+          type: string
+          description: Process traffic with the push virtual server bound to this virtual server.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        pushlabel:
+          type: string
+          description: Expression for extracting a label from the request. Used by the push virtual server.
+          example: example_value
+        pushmulticlients:
+          type: string
+          description: Allow multiple clients to connect to the push virtual server.
+          enum:
+          - 'YES'
+          - 'NO'
+          default: 'NO'
+          example: 'YES'
+        comment:
+          type: string
+          description: Informational description or comments about the virtual server.
+          example: example_value
+        clttimeout:
+          type: integer
+          description: Client idle timeout in seconds. Time to wait before closing an idle client connection. Range 0-31536000.
+          minimum: 0
+          maximum: 31536000
+          example: 10
+        somethod:
+          type: string
+          description: Spillover method. Defines the condition under which traffic spills over to the backup virtual server.
+          enum:
+          - CONNECTION
+          - DYNAMICCONNECTION
+          - BANDWIDTH
+          - HEALTH
+          - NONE
+          example: CONNECTION
+        sopersistence:
+          type: string
+          description: Whether to maintain persistence when spillover occurs.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        sopersistencetimeout:
+          type: integer
+          description: Persistence timeout in minutes during spillover. Range 2-1440.
+          minimum: 2
+          maximum: 1440
+          default: 2
+          example: 10
+        sothreshold:
+          type: integer
+          description: Threshold value for the spillover method. Meaning varies based on somethod selected.
+          minimum: 1
+          example: 10
+        healththreshold:
+          type: integer
+          description: Minimum percentage of UP services required to consider the virtual server as UP. Range 0-100.
+          minimum: 0
+          maximum: 100
+          default: 0
+          example: 10
+        redirecturl:
+          type: string
+          description: URL to which requests are redirected when all services bound to the virtual server are DOWN.
+          example: https://www.example.com
+        downstateflush:
+          type: string
+          description: Flush all active transactions on all services bound to the virtual server when the state changes to DOWN.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        disableprimaryondown:
+          type: string
+          description: When a virtual server goes DOWN, remain the primary virtual server in the HA pair so clients continue to connect.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        insertvserveripport:
+          type: string
+          description: Insert the virtual server IP address and port in the request header.
+          enum:
+          - 'OFF'
+          - VIPADDR
+          - V6TOV4MAPPING
+          example: 'OFF'
+        vipheader:
+          type: string
+          description: Name of the HTTP header used to insert the virtual server IP and port.
+          example: example_value
+        authenticationhost:
+          type: string
+          description: FQDN of the authentication virtual server to which the user is redirected for authentication.
+          example: example_value
+        authentication:
+          type: string
+          description: Whether authentication is enabled for the virtual server.
+          enum:
+          - 'ON'
+          - 'OFF'
+          default: 'OFF'
+          example: 'ON'
+        authn401:
+          type: string
+          description: Whether to use HTTP 401-based authentication instead of redirect-based.
+          enum:
+          - 'ON'
+          - 'OFF'
+          default: 'OFF'
+          example: 'ON'
+        authnvsname:
+          type: string
+          description: Name of the authentication virtual server for 401-based authentication.
+          example: example_value
+        icmpvsrresponse:
+          type: string
+          description: How the NetScaler responds to ICMP ping requests sent to the VIP.
+          enum:
+          - PASSIVE
+          - ACTIVE
+          default: PASSIVE
+          example: PASSIVE
+        rhistate:
+          type: string
+          description: Route health injection state. Whether to advertise the route to the VIP via dynamic routing when the server is UP.
+          enum:
+          - PASSIVE
+          - ACTIVE
+          default: PASSIVE
+          example: PASSIVE
+        newservicerequest:
+          type: integer
+          description: Number of requests to accept on a new service before distributing traffic to all bound services. Range 0-100.
+          minimum: 0
+          maximum: 4294967294
+          default: 0
+          example: 10
+        newservicerequestunit:
+          type: string
+          description: Unit for the newservicerequest parameter.
+          enum:
+          - PER_SECOND
+          - PERCENT
+          default: PER_SECOND
+          example: PER_SECOND
+        newservicerequestincrementinterval:
+          type: integer
+          description: Interval in seconds between successive increments for new service request rate. Range 0-3600.
+          minimum: 0
+          maximum: 3600
+          default: 0
+          example: 10
+        minautoscalemembers:
+          type: integer
+          description: Minimum number of members for autoscale. Range 0-5000.
+          minimum: 0
+          maximum: 5000
+          default: 0
+          example: 10
+        maxautoscalemembers:
+          type: integer
+          description: Maximum number of members for autoscale. Range 0-5000.
+          minimum: 0
+          maximum: 5000
+          default: 0
+          example: 10
+        skippersistency:
+          type: string
+          description: Controls persistence behavior when selecting a service for certain virtual server types.
+          enum:
+          - Bypass
+          - ReLb
+          - None
+          default: None
+          example: Bypass
+        appflowlog:
+          type: string
+          description: Whether to log AppFlow records for the virtual server.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        state:
+          type: string
+          description: Administrative state of the virtual server.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        connfailover:
+          type: string
+          description: Mode of connection failover for the virtual server in HA deployments.
+          enum:
+          - DISABLED
+          - STATEFUL
+          - STATELESS
+          default: DISABLED
+          example: DISABLED
+        redirurl:
+          type: string
+          description: Redirect URL string configured on the virtual server.
+          readOnly: true
+          example: https://www.example.com
+        curstate:
+          type: string
+          description: Current operational state of the virtual server.
+          readOnly: true
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          - GOING OUT OF SERVICE
+          - DOWN WHEN GOING OUT OF SERVICE
+          - NS_EMPTY_STR
+          example: UP
+        effectivestate:
+          type: string
+          description: Effective state of the virtual server considering all factors.
+          readOnly: true
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          - GOING OUT OF SERVICE
+          - DOWN WHEN GOING OUT OF SERVICE
+          - NS_EMPTY_STR
+          example: UP
+        status:
+          type: integer
+          description: Current status of the virtual server. 1 indicates UP.
+          readOnly: true
+          example: 10
+        lbrrreason:
+          type: integer
+          description: Reason for the last load balancing redirection.
+          readOnly: true
+          example: 10
+        totalservices:
+          type: integer
+          description: Total number of services bound to the virtual server.
+          readOnly: true
+          example: 10
+        activeservices:
+          type: integer
+          description: Number of active (UP) services bound to the virtual server.
+          readOnly: true
+          example: 10
+        statechangetimesec:
+          type: string
+          description: Time when the virtual server state last changed, in date-time format.
+          readOnly: true
+          example: example_value
+        tickssincelaststatechange:
+          type: integer
+          description: Number of ticks since the last state change.
+          readOnly: true
+          example: 10
+        health:
+          type: integer
+          description: Percentage of UP services to total bound services.
+          readOnly: true
+          example: 10
+        isgslb:
+          type: boolean
+          description: Whether this virtual server is a GSLB virtual server.
+          readOnly: true
+          example: true
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  parameters:
+    BulkErrorHandling:
+      name: X-NITRO-ONERROR
+      in: header
+      description: Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.
+      schema:
+        type: string
+        enum:
+        - CONTINUE
+        - EXIT
+        - ROLLBACK
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    Count:
+      name: count
+      in: query
+      description: When set to yes, returns only the count of matching resources instead of the full resource details.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+    PageSize:
+      name: pagesize
+      in: query
+      description: Number of resources to return per page for paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    View:
+      name: view
+      in: query
+      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
+      schema:
+        type: string
+        enum:
+        - summary
+        - detail
+    Attrs:
+      name: attrs
+      in: query
+      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
+      schema:
+        type: string
+      example: name,ipv46,port,servicetype
+    Filter:
+      name: filter
+      in: query
+      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      schema:
+        type: string
+      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html

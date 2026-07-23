@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: Authentication
+  description: Session-based authentication for the NITRO API. Obtain an authentication token via login, then include it as a cookie in subsequent requests.
+paths:
+  /config/login:
+    post:
+      operationId: login
+      summary: Citrix Netscaler Log in to the Netscaler Appliance
+      description: Authenticates the user and returns a session token (NITRO_AUTH_TOKEN) as a cookie. This token must be included in subsequent API requests. The default session timeout is 30 minutes, or a user-configured value when restricted timeout is enabled (default 15 minutes).
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - login
+              properties:
+                login:
+                  type: object
+                  required:
+                  - username
+                  - password
+                  properties:
+                    username:
+                      type: string
+                      description: The administrator username.
+                      examples:
+                      - nsroot
+                    password:
+                      type: string
+                      description: The administrator password.
+                      format: password
+            example:
+              login:
+                username: nsroot
+                password: nsroot
+      responses:
+        '201':
+          description: Login successful. Session token returned as a Set-Cookie header.
+          headers:
+            Set-Cookie:
+              description: NITRO_AUTH_TOKEN cookie for authenticating subsequent requests.
+              schema:
+                type: string
+                examples:
+                - NITRO_AUTH_TOKEN=abc123xyz; path=/nitro/v1
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Login201Example:
+                  summary: Default login 201 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          description: Authentication failed due to invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroErrorResponse'
+              examples:
+                Login401Example:
+                  summary: Default login 401 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: ERROR
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/logout:
+    post:
+      operationId: logout
+      summary: Citrix Netscaler Log Out From the Netscaler Appliance
+      description: Terminates the current session and invalidates the NITRO_AUTH_TOKEN cookie.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - logout
+              properties:
+                logout:
+                  type: object
+            example:
+              logout: {}
+      responses:
+        '201':
+          description: Logout successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Logout201Example:
+                  summary: Default logout 201 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html

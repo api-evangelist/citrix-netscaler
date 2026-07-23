@@ -1,0 +1,966 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication CS Virtual Server API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: CS Virtual Server
+  description: Content switching virtual servers direct client requests to different load balancing virtual servers based on content switching policies that evaluate HTTP request attributes.
+paths:
+  /config/csvserver:
+    get:
+      operationId: listCsVservers
+      summary: Citrix Netscaler List Content Switching Virtual Servers
+      description: Retrieves all content switching virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - $ref: '#/components/parameters/Attrs'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/View'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNo'
+      responses:
+        '200':
+          description: Successful retrieval of content switching virtual servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserver'
+              examples:
+                Listcsvservers200Example:
+                  summary: Default listCsVservers 200 response
+                  x-microcks-default: true
+                  value:
+                    csvserver:
+                    - name: Example Title
+                      td: 10
+                      servicetype: HTTP
+                      ipv46: example_value
+                      port: 10
+                      ipset: example_value
+                      range: 10
+                      ippattern: example_value
+                      ipmask: example_value
+                      stateupdate: ENABLED
+                      precedence: RULE
+                      casesensitive: 'ON'
+                      somethod: CONNECTION
+                      sopersistence: ENABLED
+                      sopersistencetimeout: 10
+                      sothreshold: 10
+                      redirecturl: https://www.example.com
+                      clttimeout: 10
+                      downstateflush: ENABLED
+                      insertvserveripport: 'OFF'
+                      vipheader: example_value
+                      disableprimaryondown: ENABLED
+                      authentication: 'ON'
+                      authenticationhost: example_value
+                      authn401: 'ON'
+                      authnvsname: example_value
+                      push: ENABLED
+                      pushlabel: example_value
+                      pushmulticlients: 'YES'
+                      comment: example_value
+                      l2conn: 'ON'
+                      icmpvsrresponse: PASSIVE
+                      rhistate: PASSIVE
+                      appflowlog: ENABLED
+                      state: ENABLED
+                      lbvserver: example_value
+                      targetlbvserver: example_value
+                      cachetype: TRANSPARENT
+                      redirect: CACHE
+                      curstate: UP
+                      status: 10
+                      statechangetimesec: example_value
+                      tickssincelaststatechange: 10
+                      type: example_value
+                      ngname: example_value
+                      value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createCsVserver
+      summary: Citrix Netscaler Create a Content Switching Virtual Server
+      description: Creates a new content switching virtual server. Content switching directs incoming client requests to specific load balancing virtual servers based on policies that evaluate request attributes.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - $ref: '#/components/parameters/BulkErrorHandling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - csvserver
+              properties:
+                csvserver:
+                  oneOf:
+                  - $ref: '#/components/schemas/CsVserver'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserver'
+            example:
+              csvserver:
+                name: CSVS-1
+                servicetype: HTTP
+                ipv46: 203.0.113.5
+                port: 80
+      responses:
+        '201':
+          description: Content switching virtual server created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Createcsvserver201Example:
+                  summary: Default createCsVserver 201 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Resource already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/csvserver/{name}:
+    get:
+      operationId: getCsVserver
+      summary: Citrix Netscaler Get a Specific Content Switching Virtual Server
+      description: Retrieves the configuration of a specific content switching virtual server identified by name.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the content switching virtual server.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      - $ref: '#/components/parameters/Attrs'
+      responses:
+        '200':
+          description: Successful retrieval of the content switching virtual server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserver'
+                    minItems: 1
+                    maxItems: 1
+              examples:
+                Getcsvserver200Example:
+                  summary: Default getCsVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    csvserver:
+                    - name: Example Title
+                      td: 10
+                      servicetype: HTTP
+                      ipv46: example_value
+                      port: 10
+                      ipset: example_value
+                      range: 10
+                      ippattern: example_value
+                      ipmask: example_value
+                      stateupdate: ENABLED
+                      precedence: RULE
+                      casesensitive: 'ON'
+                      somethod: CONNECTION
+                      sopersistence: ENABLED
+                      sopersistencetimeout: 10
+                      sothreshold: 10
+                      redirecturl: https://www.example.com
+                      clttimeout: 10
+                      downstateflush: ENABLED
+                      insertvserveripport: 'OFF'
+                      vipheader: example_value
+                      disableprimaryondown: ENABLED
+                      authentication: 'ON'
+                      authenticationhost: example_value
+                      authn401: 'ON'
+                      authnvsname: example_value
+                      push: ENABLED
+                      pushlabel: example_value
+                      pushmulticlients: 'YES'
+                      comment: example_value
+                      l2conn: 'ON'
+                      icmpvsrresponse: PASSIVE
+                      rhistate: PASSIVE
+                      appflowlog: ENABLED
+                      state: ENABLED
+                      lbvserver: example_value
+                      targetlbvserver: example_value
+                      cachetype: TRANSPARENT
+                      redirect: CACHE
+                      curstate: UP
+                      status: 10
+                      statechangetimesec: example_value
+                      tickssincelaststatechange: 10
+                      type: example_value
+                      ngname: example_value
+                      value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Content switching virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateCsVserver
+      summary: Citrix Netscaler Update a Content Switching Virtual Server
+      description: Updates the configuration of an existing content switching virtual server.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the content switching virtual server to update.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - csvserver
+              properties:
+                csvserver:
+                  $ref: '#/components/schemas/CsVserver'
+            examples:
+              UpdatecsvserverRequestExample:
+                summary: Default updateCsVserver request
+                x-microcks-default: true
+                value:
+                  csvserver:
+                    name: Example Title
+                    td: 10
+                    servicetype: HTTP
+                    ipv46: example_value
+                    port: 10
+                    ipset: example_value
+                    range: 10
+                    ippattern: example_value
+                    ipmask: example_value
+                    stateupdate: ENABLED
+                    precedence: RULE
+                    casesensitive: 'ON'
+                    somethod: CONNECTION
+                    sopersistence: ENABLED
+                    sopersistencetimeout: 10
+                    sothreshold: 10
+                    redirecturl: https://www.example.com
+                    clttimeout: 10
+                    downstateflush: ENABLED
+                    insertvserveripport: 'OFF'
+                    vipheader: example_value
+                    disableprimaryondown: ENABLED
+                    authentication: 'ON'
+                    authenticationhost: example_value
+                    authn401: 'ON'
+                    authnvsname: example_value
+                    push: ENABLED
+                    pushlabel: example_value
+                    pushmulticlients: 'YES'
+                    comment: example_value
+                    l2conn: 'ON'
+                    icmpvsrresponse: PASSIVE
+                    rhistate: PASSIVE
+                    appflowlog: ENABLED
+                    state: ENABLED
+                    lbvserver: example_value
+                    targetlbvserver: example_value
+                    cachetype: TRANSPARENT
+                    redirect: CACHE
+                    curstate: UP
+                    status: 10
+                    statechangetimesec: example_value
+                    tickssincelaststatechange: 10
+                    type: example_value
+                    ngname: example_value
+                    value: example_value
+      responses:
+        '200':
+          description: Content switching virtual server updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Updatecsvserver200Example:
+                  summary: Default updateCsVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Content switching virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteCsVserver
+      summary: Citrix Netscaler Delete a Content Switching Virtual Server
+      description: Deletes a content switching virtual server identified by name.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the content switching virtual server to delete.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      responses:
+        '200':
+          description: Content switching virtual server deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Deletecsvserver200Example:
+                  summary: Default deleteCsVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Content switching virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/csvserver_cspolicy_binding:
+    put:
+      operationId: bindCsPolicyToCsVserver
+      summary: Citrix Netscaler Bind a Content Switching Policy to a Virtual Server
+      description: Binds a content switching policy to a content switching virtual server, defining how incoming requests are routed to load balancing virtual servers.
+      tags:
+      - CS Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - csvserver_cspolicy_binding
+              properties:
+                csvserver_cspolicy_binding:
+                  $ref: '#/components/schemas/CsVserverCsPolicyBinding'
+            example:
+              csvserver_cspolicy_binding:
+                name: CSVS-1
+                policyname: CSPOL-EN
+                targetlbvserver: LBVS-EN
+                priority: 10
+      responses:
+        '200':
+          description: Policy bound successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Bindcspolicytocsvserver200Example:
+                  summary: Default bindCsPolicyToCsVserver 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/csvserver_cspolicy_binding/{name}:
+    get:
+      operationId: getCsVserverPolicyBindings
+      summary: Citrix Netscaler Get Policy Bindings for a Content Switching Virtual Server
+      description: Retrieves all content switching policies bound to a specific content switching virtual server.
+      tags:
+      - CS Virtual Server
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the content switching virtual server.
+        schema:
+          type: string
+        example: Example Title
+      responses:
+        '200':
+          description: Successful retrieval of policy bindings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csvserver_cspolicy_binding:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserverCsPolicyBinding'
+              examples:
+                Getcsvserverpolicybindings200Example:
+                  summary: Default getCsVserverPolicyBindings 200 response
+                  x-microcks-default: true
+                  value:
+                    csvserver_cspolicy_binding:
+                    - name: Example Title
+                      policyname: example_value
+                      targetlbvserver: example_value
+                      priority: 10
+                      gotopriorityexpression: example_value
+                      bindpoint: REQUEST
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    BulkErrorHandling:
+      name: X-NITRO-ONERROR
+      in: header
+      description: Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.
+      schema:
+        type: string
+        enum:
+        - CONTINUE
+        - EXIT
+        - ROLLBACK
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    Count:
+      name: count
+      in: query
+      description: When set to yes, returns only the count of matching resources instead of the full resource details.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+    PageSize:
+      name: pagesize
+      in: query
+      description: Number of resources to return per page for paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    View:
+      name: view
+      in: query
+      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
+      schema:
+        type: string
+        enum:
+        - summary
+        - detail
+    Attrs:
+      name: attrs
+      in: query
+      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
+      schema:
+        type: string
+      example: name,ipv46,port,servicetype
+    Filter:
+      name: filter
+      in: query
+      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      schema:
+        type: string
+      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+  schemas:
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    CsVserverCsPolicyBinding:
+      type: object
+      description: Binding between a content switching virtual server and a content switching policy. Defines how requests are evaluated and routed to target load balancing virtual servers.
+      properties:
+        name:
+          type: string
+          description: Name of the content switching virtual server.
+          example: Example Title
+        policyname:
+          type: string
+          description: Name of the content switching policy to bind.
+          example: example_value
+        targetlbvserver:
+          type: string
+          description: Name of the target load balancing virtual server to which matching traffic is directed.
+          example: example_value
+        priority:
+          type: integer
+          description: Priority of the policy binding. Lower values indicate higher priority.
+          minimum: 1
+          example: 10
+        gotopriorityexpression:
+          type: string
+          description: Expression specifying the priority of the next policy to evaluate if the current policy matches.
+          example: example_value
+        bindpoint:
+          type: string
+          description: The bind point at which the policy is bound.
+          enum:
+          - REQUEST
+          - RESPONSE
+          - ICA_REQUEST
+          - OTHERTCP_REQUEST
+          example: REQUEST
+    CsVserver:
+      type: object
+      description: A content switching virtual server that directs client requests to different load balancing virtual servers based on content switching policies evaluating request attributes such as URL, HTTP header, or source IP address.
+      required:
+      - name
+      - servicetype
+      properties:
+        name:
+          type: string
+          description: Name for the content switching virtual server. Must be unique and begin with a letter, number, or underscore. Maximum 127 characters.
+          minLength: 1
+          maxLength: 127
+          example: Example Title
+        td:
+          type: integer
+          description: Traffic domain identifier. Range 0-4094.
+          minimum: 0
+          maximum: 4094
+          example: 10
+        servicetype:
+          type: string
+          description: Protocol of the service running on the virtual server.
+          enum:
+          - HTTP
+          - SSL
+          - TCP
+          - FTP
+          - RTSP
+          - SSL_TCP
+          - UDP
+          - DNS
+          - SIP_UDP
+          - SIP_TCP
+          - SIP_SSL
+          - ANY
+          - RADIUS
+          - RDP
+          - MYSQL
+          - MSSQL
+          - DIAMETER
+          - SSL_DIAMETER
+          - DNS_TCP
+          - ORACLE
+          - SMPP
+          - PROXY
+          - MONGO
+          - MONGO_TLS
+          - MQTT
+          - MQTT_TLS
+          - HTTP_QUIC
+          example: HTTP
+        ipv46:
+          type: string
+          description: IPv4 or IPv6 address of the content switching virtual server.
+          example: example_value
+        port:
+          type: integer
+          description: Port number on which the content switching virtual server listens.
+          minimum: 0
+          maximum: 65535
+          example: 10
+        ipset:
+          type: string
+          description: Name of the IP set to bind to the virtual server.
+          example: example_value
+        range:
+          type: integer
+          description: Number of consecutive IP addresses for the virtual server. Range 2-254.
+          minimum: 2
+          maximum: 254
+          example: 10
+        ippattern:
+          type: string
+          description: IP address pattern for matching incoming requests.
+          example: example_value
+        ipmask:
+          type: string
+          description: IP mask applied with ippattern to form an address range.
+          example: example_value
+        stateupdate:
+          type: string
+          description: Whether the virtual server checks the backend server state for updates.
+          enum:
+          - ENABLED
+          - DISABLED
+          - UPDATEONBACKENDSTATEUP
+          default: DISABLED
+          example: ENABLED
+        precedence:
+          type: string
+          description: Type of precedence for content switching policies. RULE means policies are evaluated in priority order. URL means URL-based switching takes precedence.
+          enum:
+          - RULE
+          - URL
+          example: RULE
+        casesensitive:
+          type: string
+          description: Whether URL-based content switching is case sensitive.
+          enum:
+          - 'ON'
+          - 'OFF'
+          default: 'ON'
+          example: 'ON'
+        somethod:
+          type: string
+          description: Spillover method for the content switching virtual server.
+          enum:
+          - CONNECTION
+          - DYNAMICCONNECTION
+          - BANDWIDTH
+          - HEALTH
+          - NONE
+          example: CONNECTION
+        sopersistence:
+          type: string
+          description: Whether to maintain persistence during spillover.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        sopersistencetimeout:
+          type: integer
+          description: Persistence timeout in minutes during spillover. Range 2-1440.
+          minimum: 2
+          maximum: 1440
+          default: 2
+          example: 10
+        sothreshold:
+          type: integer
+          description: Threshold value for the spillover method.
+          minimum: 1
+          example: 10
+        redirecturl:
+          type: string
+          description: URL to redirect requests to when the virtual server is DOWN.
+          example: https://www.example.com
+        clttimeout:
+          type: integer
+          description: Client idle timeout in seconds. Range 0-31536000.
+          minimum: 0
+          maximum: 31536000
+          example: 10
+        downstateflush:
+          type: string
+          description: Flush all active transactions when the virtual server goes DOWN.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        insertvserveripport:
+          type: string
+          description: Insert the virtual server VIP address and port into the HTTP header of the request.
+          enum:
+          - 'OFF'
+          - VIPADDR
+          - V6TOV4MAPPING
+          example: 'OFF'
+        vipheader:
+          type: string
+          description: Name of the HTTP header in which the VIP is inserted.
+          example: example_value
+        disableprimaryondown:
+          type: string
+          description: Continue to direct traffic to the virtual server even when DOWN in HA mode.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        authentication:
+          type: string
+          description: Whether authentication is enabled for the virtual server.
+          enum:
+          - 'ON'
+          - 'OFF'
+          default: 'OFF'
+          example: 'ON'
+        authenticationhost:
+          type: string
+          description: FQDN of the authentication virtual server.
+          example: example_value
+        authn401:
+          type: string
+          description: Whether HTTP 401-based authentication is enabled.
+          enum:
+          - 'ON'
+          - 'OFF'
+          default: 'OFF'
+          example: 'ON'
+        authnvsname:
+          type: string
+          description: Name of the authentication virtual server.
+          example: example_value
+        push:
+          type: string
+          description: Whether push functionality is enabled.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: DISABLED
+          example: ENABLED
+        pushlabel:
+          type: string
+          description: Expression for extracting a label from the request.
+          example: example_value
+        pushmulticlients:
+          type: string
+          description: Allow multiple clients to connect to the push vserver.
+          enum:
+          - 'YES'
+          - 'NO'
+          default: 'NO'
+          example: 'YES'
+        comment:
+          type: string
+          description: Description or comments about the content switching virtual server.
+          example: example_value
+        l2conn:
+          type: string
+          description: Whether Layer 2 connectivity is enabled between the client and server.
+          enum:
+          - 'ON'
+          - 'OFF'
+          example: 'ON'
+        icmpvsrresponse:
+          type: string
+          description: How the appliance responds to ICMP ping requests for the VIP.
+          enum:
+          - PASSIVE
+          - ACTIVE
+          default: PASSIVE
+          example: PASSIVE
+        rhistate:
+          type: string
+          description: Route health injection state for the virtual server.
+          enum:
+          - PASSIVE
+          - ACTIVE
+          default: PASSIVE
+          example: PASSIVE
+        appflowlog:
+          type: string
+          description: Whether to log AppFlow records for the virtual server.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        state:
+          type: string
+          description: Administrative state of the virtual server.
+          enum:
+          - ENABLED
+          - DISABLED
+          default: ENABLED
+          example: ENABLED
+        lbvserver:
+          type: string
+          description: Name of the default load balancing virtual server bound to this content switching virtual server. Requests that do not match any policy are sent here.
+          example: example_value
+        targetlbvserver:
+          type: string
+          description: Name of the target load balancing virtual server to which content is switched.
+          example: example_value
+        cachetype:
+          type: string
+          description: Cache type for integrated caching.
+          enum:
+          - TRANSPARENT
+          - REVERSE
+          - FORWARD
+          example: TRANSPARENT
+        redirect:
+          type: string
+          description: Type of cache redirect for the virtual server.
+          enum:
+          - CACHE
+          - POLICY
+          - ORIGIN
+          example: CACHE
+        curstate:
+          type: string
+          description: Current operational state of the virtual server.
+          readOnly: true
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          - GOING OUT OF SERVICE
+          - DOWN WHEN GOING OUT OF SERVICE
+          - NS_EMPTY_STR
+          example: UP
+        status:
+          type: integer
+          description: Current status of the virtual server. 1 indicates UP.
+          readOnly: true
+          example: 10
+        statechangetimesec:
+          type: string
+          description: Time when the virtual server state last changed.
+          readOnly: true
+          example: example_value
+        tickssincelaststatechange:
+          type: integer
+          description: Number of ticks since the last state change.
+          readOnly: true
+          example: 10
+        type:
+          type: string
+          description: Virtual server type (e.g., content-based or IP-address based).
+          readOnly: true
+          example: example_value
+        ngname:
+          type: string
+          description: Node group name to which the virtual server is bound.
+          readOnly: true
+          example: example_value
+        value:
+          type: string
+          description: The value of the IP address, based on the virtual server type.
+          readOnly: true
+          example: example_value
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html

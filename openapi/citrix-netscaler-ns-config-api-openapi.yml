@@ -1,0 +1,501 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication NS Config API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: NS Config
+  description: NetScaler appliance configuration including IP address, network settings, HTTP ports, and system-level parameters. Supports save, clear, and diff operations.
+paths:
+  /config/nsconfig:
+    get:
+      operationId: getNsConfig
+      summary: Citrix Netscaler Get Netscaler Configuration
+      description: Retrieves the current NetScaler appliance configuration including IP address, network settings, HTTP ports, and system parameters.
+      tags:
+      - NS Config
+      parameters:
+      - $ref: '#/components/parameters/Attrs'
+      responses:
+        '200':
+          description: Successful retrieval of NS configuration.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nsconfig:
+                    $ref: '#/components/schemas/NsConfig'
+              examples:
+                Getnsconfig200Example:
+                  summary: Default getNsConfig 200 response
+                  x-microcks-default: true
+                  value:
+                    nsconfig:
+                      ipaddress: example_value
+                      netmask: example_value
+                      nsvlan: 10
+                      ifnum: example_value
+                      tagged: 'YES'
+                      httpport:
+                      - 10
+                      maxconn: 10
+                      maxreq: 10
+                      cip: ENABLED
+                      cipheader: example_value
+                      cookieversion: '0'
+                      securecookie: ENABLED
+                      pmtumin: 10
+                      pmtutimeout: 10
+                      ftpportrange: example_value
+                      timezone: example_value
+                      grantquotamaxclient: 10
+                      grantquotaspillover: 10
+                      crportrange: example_value
+                      systemtype: Stand-alone
+                      primaryip: example_value
+                      primaryip6: example_value
+                      flags: 10
+                      lastconfigchangedtime: example_value
+                      lastconfigsavetime: example_value
+                      currentsytemtime: example_value
+                      systemtime: 10
+                      configchanged: true
+                      mappedip: example_value
+                      range: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateNsConfig
+      summary: Citrix Netscaler Update Netscaler Configuration
+      description: Modifies NetScaler appliance configuration parameters such as IP address, network settings, and system-level options.
+      tags:
+      - NS Config
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - nsconfig
+              properties:
+                nsconfig:
+                  $ref: '#/components/schemas/NsConfig'
+            examples:
+              UpdatensconfigRequestExample:
+                summary: Default updateNsConfig request
+                x-microcks-default: true
+                value:
+                  nsconfig:
+                    ipaddress: example_value
+                    netmask: example_value
+                    nsvlan: 10
+                    ifnum: example_value
+                    tagged: 'YES'
+                    httpport:
+                    - 10
+                    maxconn: 10
+                    maxreq: 10
+                    cip: ENABLED
+                    cipheader: example_value
+                    cookieversion: '0'
+                    securecookie: ENABLED
+                    pmtumin: 10
+                    pmtutimeout: 10
+                    ftpportrange: example_value
+                    timezone: example_value
+                    grantquotamaxclient: 10
+                    grantquotaspillover: 10
+                    crportrange: example_value
+                    systemtype: Stand-alone
+                    primaryip: example_value
+                    primaryip6: example_value
+                    flags: 10
+                    lastconfigchangedtime: example_value
+                    lastconfigsavetime: example_value
+                    currentsytemtime: example_value
+                    systemtime: 10
+                    configchanged: true
+                    mappedip: example_value
+                    range: 10
+      responses:
+        '200':
+          description: Configuration updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Updatensconfig200Example:
+                  summary: Default updateNsConfig 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/nsconfig?action=save:
+    post:
+      operationId: saveNsConfig
+      summary: Citrix Netscaler Save Netscaler Configuration
+      description: Saves the running configuration to the appliance persistent storage (ns.conf). This ensures configuration changes persist across reboots.
+      tags:
+      - NS Config
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - nsconfig
+              properties:
+                nsconfig:
+                  type: object
+            example:
+              nsconfig: {}
+      responses:
+        '200':
+          description: Configuration saved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Savensconfig200Example:
+                  summary: Default saveNsConfig 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/nsconfig?action=clear:
+    post:
+      operationId: clearNsConfig
+      summary: Citrix Netscaler Clear Netscaler Configuration
+      description: Clears the NetScaler configuration. The level parameter controls what is cleared - basic, extended, or full.
+      tags:
+      - NS Config
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - nsconfig
+              properties:
+                nsconfig:
+                  type: object
+                  required:
+                  - level
+                  properties:
+                    level:
+                      type: string
+                      description: Level of configuration to clear.
+                      enum:
+                      - basic
+                      - extended
+                      - full
+            examples:
+              ClearnsconfigRequestExample:
+                summary: Default clearNsConfig request
+                x-microcks-default: true
+                value:
+                  nsconfig:
+                    level: basic
+      responses:
+        '200':
+          description: Configuration cleared successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Clearnsconfig200Example:
+                  summary: Default clearNsConfig 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NsConfig:
+      type: object
+      description: NetScaler appliance configuration including network settings, system parameters, and operational options.
+      properties:
+        ipaddress:
+          type: string
+          description: The NetScaler IP (NSIP) address of the appliance. This is the primary management IP address.
+          format: ipv4
+          example: example_value
+        netmask:
+          type: string
+          description: Subnet mask associated with the NSIP address.
+          format: ipv4
+          example: example_value
+        nsvlan:
+          type: integer
+          description: VLAN ID for the NSIP address. Range 2-4094.
+          minimum: 2
+          maximum: 4094
+          example: 10
+        ifnum:
+          type: string
+          description: Network interfaces bound to the NSVLAN. Format is slot/port (e.g., 1/1).
+          example: example_value
+        tagged:
+          type: string
+          description: Whether the NSVLAN is tagged or untagged.
+          enum:
+          - 'YES'
+          - 'NO'
+          example: 'YES'
+        httpport:
+          type: array
+          description: HTTP port(s) on the appliance. Default is 80.
+          items:
+            type: integer
+          example: []
+        maxconn:
+          type: integer
+          description: Maximum number of connections per service. Zero means unlimited.
+          minimum: 0
+          example: 10
+        maxreq:
+          type: integer
+          description: Maximum number of requests per connection. Zero means unlimited.
+          minimum: 0
+          example: 10
+        cip:
+          type: string
+          description: Whether to insert the client IP address into the HTTP header of requests forwarded to the service.
+          enum:
+          - ENABLED
+          - DISABLED
+          example: ENABLED
+        cipheader:
+          type: string
+          description: Name of the HTTP header used to insert the client IP address when CIP is enabled.
+          example: example_value
+        cookieversion:
+          type: string
+          description: Version of the cookie inserted by the NetScaler for persistence.
+          enum:
+          - '0'
+          - '1'
+          example: '0'
+        securecookie:
+          type: string
+          description: Whether the secure flag is set on persistence cookies.
+          enum:
+          - ENABLED
+          - DISABLED
+          example: ENABLED
+        pmtumin:
+          type: integer
+          description: Minimum path MTU value. Range 168-1500.
+          minimum: 168
+          maximum: 1500
+          example: 10
+        pmtutimeout:
+          type: integer
+          description: Timeout in minutes for path MTU discovery. Range 1-1440.
+          minimum: 1
+          maximum: 1440
+          example: 10
+        ftpportrange:
+          type: string
+          description: Port range for FTP data connections (e.g., 1024-65535).
+          example: example_value
+        timezone:
+          type: string
+          description: Time zone setting for the appliance (e.g., GMT+05:30-IST-Asia/Kolkata).
+          example: example_value
+        grantquotamaxclient:
+          type: integer
+          description: Percentage of shared quota to be granted at a time for max client connections.
+          example: 10
+        grantquotaspillover:
+          type: integer
+          description: Percentage of shared quota to be granted at a time for spillover threshold.
+          example: 10
+        crportrange:
+          type: string
+          description: Port range for cache redirection.
+          example: example_value
+        systemtype:
+          type: string
+          description: The type of the NetScaler appliance.
+          readOnly: true
+          enum:
+          - Stand-alone
+          - HA-Primary
+          - HA-Secondary
+          example: Stand-alone
+        primaryip:
+          type: string
+          description: Primary IP address of the HA pair.
+          readOnly: true
+          format: ipv4
+          example: example_value
+        primaryip6:
+          type: string
+          description: Primary IPv6 address of the HA pair.
+          readOnly: true
+          format: ipv6
+          example: example_value
+        flags:
+          type: integer
+          description: Internal flags for the configuration.
+          readOnly: true
+          example: 10
+        lastconfigchangedtime:
+          type: string
+          description: Timestamp of the last configuration change.
+          readOnly: true
+          example: example_value
+        lastconfigsavetime:
+          type: string
+          description: Timestamp of the last configuration save.
+          readOnly: true
+          example: example_value
+        currentsytemtime:
+          type: string
+          description: Current system time on the appliance.
+          readOnly: true
+          example: example_value
+        systemtime:
+          type: integer
+          description: Current system time as epoch seconds.
+          readOnly: true
+          example: 10
+        configchanged:
+          type: boolean
+          description: Whether the running configuration has unsaved changes.
+          readOnly: true
+          example: true
+        mappedip:
+          type: string
+          description: Mapped IP address for the NSIP.
+          format: ipv4
+          example: example_value
+        range:
+          type: integer
+          description: Number of consecutive IP addresses in the range beginning with the mapped IP.
+          minimum: 1
+          example: 10
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+  parameters:
+    Attrs:
+      name: attrs
+      in: query
+      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
+      schema:
+        type: string
+      example: name,ipv46,port,servicetype
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html

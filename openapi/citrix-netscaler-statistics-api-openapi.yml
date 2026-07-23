@@ -1,0 +1,658 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication Statistics API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: Statistics
+  description: Real-time performance and health statistics for configured resources including virtual servers, services, and system metrics.
+paths:
+  /stat/lbvserver:
+    get:
+      operationId: listLbVserverStats
+      summary: Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers
+      description: Retrieves performance statistics for all load balancing virtual servers including connection counts, traffic metrics, health status, and error rates.
+      tags:
+      - Statistics
+      parameters:
+      - name: sortby
+        in: query
+        description: Sort statistics by a specific metric.
+        schema:
+          type: string
+          enum:
+          - Hits
+          - CPU-PM
+        example: Hits
+      - name: sortorder
+        in: query
+        description: Sort order for the statistics results.
+        schema:
+          type: string
+          enum:
+          - ascending
+          - descending
+          default: descending
+        example: ascending
+      - name: clearstats
+        in: query
+        description: Clear statistics after retrieval. Use basic for counters or full for all stats.
+        schema:
+          type: string
+          enum:
+          - basic
+          - full
+        example: basic
+      responses:
+        '200':
+          description: Successful retrieval of LB virtual server statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lbvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserverStats'
+              examples:
+                Listlbvserverstats200Example:
+                  summary: Default listLbVserverStats 200 response
+                  x-microcks-default: true
+                  value:
+                    lbvserver:
+                    - name: Example Title
+                      primaryipaddress: example_value
+                      primaryport: 10
+                      type: example_value
+                      state: UP
+                      curclntconnections: 42.5
+                      cursrvrconnections: 42.5
+                      establishedconn: 42.5
+                      curpersistencesessions: 42.5
+                      vslbhealth: 42.5
+                      actsvcs: 42.5
+                      inactsvcs: 42.5
+                      tothits: 42.5
+                      hitsrate: 42.5
+                      totalrequests: 42.5
+                      requestsrate: 42.5
+                      totalresponses: 42.5
+                      responsesrate: 42.5
+                      totalrequestbytes: 42.5
+                      requestbytesrate: 42.5
+                      totalresponsebytes: 42.5
+                      responsebytesrate: 42.5
+                      totalpktsrecvd: 42.5
+                      pktsrecvdrate: 42.5
+                      totalpktssent: 42.5
+                      pktssentrate: 42.5
+                      totalsvrbusyerr: 42.5
+                      svrbusyerrrate: 42.5
+                      surgecount: 42.5
+                      totspillovers: 42.5
+                      totvserverdownbackuphits: 42.5
+                      avgcltttlb: 42.5
+                      cltresponsetimeapdex: 42.5
+                      cpuusagepm: 42.5
+                      totalh2requests: 42.5
+                      h2requestsrate: 42.5
+                      totalh2responses: 42.5
+                      h2responsesrate: 42.5
+                      invalidrequestresponse: 42.5
+                      invalidrequestresponsedropped: 42.5
+                      sothreshold: 42.5
+                      reqretrycount: 42.5
+                      reqretrycountexceeded: 42.5
+                      deferredreq: 42.5
+                      deferredreqrate: 42.5
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /stat/lbvserver/{name}:
+    get:
+      operationId: getLbVserverStats
+      summary: Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server
+      description: Retrieves detailed performance statistics for a specific load balancing virtual server including connections, throughput, health, and APDEX scores.
+      tags:
+      - Statistics
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the load balancing virtual server.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      - name: statbindings
+        in: query
+        description: Include statistics for bound services when set to yes.
+        schema:
+          type: string
+          enum:
+          - 'yes'
+          - 'no'
+        example: 'yes'
+      responses:
+        '200':
+          description: Successful retrieval of virtual server statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lbvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LbVserverStats'
+                    minItems: 1
+                    maxItems: 1
+              examples:
+                Getlbvserverstats200Example:
+                  summary: Default getLbVserverStats 200 response
+                  x-microcks-default: true
+                  value:
+                    lbvserver:
+                    - name: Example Title
+                      primaryipaddress: example_value
+                      primaryport: 10
+                      type: example_value
+                      state: UP
+                      curclntconnections: 42.5
+                      cursrvrconnections: 42.5
+                      establishedconn: 42.5
+                      curpersistencesessions: 42.5
+                      vslbhealth: 42.5
+                      actsvcs: 42.5
+                      inactsvcs: 42.5
+                      tothits: 42.5
+                      hitsrate: 42.5
+                      totalrequests: 42.5
+                      requestsrate: 42.5
+                      totalresponses: 42.5
+                      responsesrate: 42.5
+                      totalrequestbytes: 42.5
+                      requestbytesrate: 42.5
+                      totalresponsebytes: 42.5
+                      responsebytesrate: 42.5
+                      totalpktsrecvd: 42.5
+                      pktsrecvdrate: 42.5
+                      totalpktssent: 42.5
+                      pktssentrate: 42.5
+                      totalsvrbusyerr: 42.5
+                      svrbusyerrrate: 42.5
+                      surgecount: 42.5
+                      totspillovers: 42.5
+                      totvserverdownbackuphits: 42.5
+                      avgcltttlb: 42.5
+                      cltresponsetimeapdex: 42.5
+                      cpuusagepm: 42.5
+                      totalh2requests: 42.5
+                      h2requestsrate: 42.5
+                      totalh2responses: 42.5
+                      h2responsesrate: 42.5
+                      invalidrequestresponse: 42.5
+                      invalidrequestresponsedropped: 42.5
+                      sothreshold: 42.5
+                      reqretrycount: 42.5
+                      reqretrycountexceeded: 42.5
+                      deferredreq: 42.5
+                      deferredreqrate: 42.5
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /stat/csvserver:
+    get:
+      operationId: listCsVserverStats
+      summary: Citrix Netscaler Get Statistics for All Content Switching Virtual Servers
+      description: Retrieves performance statistics for all content switching virtual servers.
+      tags:
+      - Statistics
+      responses:
+        '200':
+          description: Successful retrieval of content switching virtual server statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserverStats'
+              examples:
+                Listcsvserverstats200Example:
+                  summary: Default listCsVserverStats 200 response
+                  x-microcks-default: true
+                  value:
+                    csvserver:
+                    - name: Example Title
+                      primaryipaddress: example_value
+                      primaryport: 10
+                      state: UP
+                      curclntconnections: 42.5
+                      cursrvrconnections: 42.5
+                      establishedconn: 42.5
+                      tothits: 42.5
+                      hitsrate: 42.5
+                      totalrequests: 42.5
+                      requestsrate: 42.5
+                      totalresponses: 42.5
+                      responsesrate: 42.5
+                      totalrequestbytes: 42.5
+                      totalresponsebytes: 42.5
+                      totalpktsrecvd: 42.5
+                      totalpktssent: 42.5
+                      totspillovers: 42.5
+                      labelledconn: 42.5
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /stat/csvserver/{name}:
+    get:
+      operationId: getCsVserverStats
+      summary: Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server
+      description: Retrieves detailed performance statistics for a specific content switching virtual server.
+      tags:
+      - Statistics
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the content switching virtual server.
+        schema:
+          type: string
+          minLength: 1
+        example: Example Title
+      responses:
+        '200':
+          description: Successful retrieval of virtual server statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csvserver:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CsVserverStats'
+                    minItems: 1
+                    maxItems: 1
+              examples:
+                Getcsvserverstats200Example:
+                  summary: Default getCsVserverStats 200 response
+                  x-microcks-default: true
+                  value:
+                    csvserver:
+                    - name: Example Title
+                      primaryipaddress: example_value
+                      primaryport: 10
+                      state: UP
+                      curclntconnections: 42.5
+                      cursrvrconnections: 42.5
+                      establishedconn: 42.5
+                      tothits: 42.5
+                      hitsrate: 42.5
+                      totalrequests: 42.5
+                      requestsrate: 42.5
+                      totalresponses: 42.5
+                      responsesrate: 42.5
+                      totalrequestbytes: 42.5
+                      totalresponsebytes: 42.5
+                      totalpktsrecvd: 42.5
+                      totalpktssent: 42.5
+                      totspillovers: 42.5
+                      labelledconn: 42.5
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Content switching virtual server not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LbVserverStats:
+      type: object
+      description: Performance and health statistics for a load balancing virtual server, including connection metrics, throughput, error rates, and APDEX scores.
+      properties:
+        name:
+          type: string
+          description: Name of the load balancing virtual server.
+          example: Example Title
+        primaryipaddress:
+          type: string
+          description: IP address of the virtual server.
+          example: example_value
+        primaryport:
+          type: integer
+          description: Port number of the virtual server.
+          example: 10
+        type:
+          type: string
+          description: Protocol type of the virtual server.
+          example: example_value
+        state:
+          type: string
+          description: Current operational state.
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          - GOING OUT OF SERVICE
+          - DOWN WHEN GOING OUT OF SERVICE
+          example: UP
+        curclntconnections:
+          type: number
+          description: Number of current client connections.
+          example: 42.5
+        cursrvrconnections:
+          type: number
+          description: Number of current server connections.
+          example: 42.5
+        establishedconn:
+          type: number
+          description: Number of connections in ESTABLISHED state.
+          example: 42.5
+        curpersistencesessions:
+          type: number
+          description: Number of active persistence sessions.
+          example: 42.5
+        vslbhealth:
+          type: number
+          description: Percentage of UP services bound to this virtual server.
+          example: 42.5
+        actsvcs:
+          type: number
+          description: Number of active (UP) services.
+          example: 42.5
+        inactsvcs:
+          type: number
+          description: Number of inactive (DOWN) services.
+          example: 42.5
+        tothits:
+          type: number
+          description: Total number of virtual server hits since last restart.
+          example: 42.5
+        hitsrate:
+          type: number
+          description: Rate of hits per second.
+          example: 42.5
+        totalrequests:
+          type: number
+          description: Total number of requests received.
+          example: 42.5
+        requestsrate:
+          type: number
+          description: Rate of requests per second.
+          example: 42.5
+        totalresponses:
+          type: number
+          description: Total number of responses sent.
+          example: 42.5
+        responsesrate:
+          type: number
+          description: Rate of responses per second.
+          example: 42.5
+        totalrequestbytes:
+          type: number
+          description: Total number of request bytes received.
+          example: 42.5
+        requestbytesrate:
+          type: number
+          description: Rate of request bytes per second.
+          example: 42.5
+        totalresponsebytes:
+          type: number
+          description: Total number of response bytes sent.
+          example: 42.5
+        responsebytesrate:
+          type: number
+          description: Rate of response bytes per second.
+          example: 42.5
+        totalpktsrecvd:
+          type: number
+          description: Total packets received.
+          example: 42.5
+        pktsrecvdrate:
+          type: number
+          description: Rate of packets received per second.
+          example: 42.5
+        totalpktssent:
+          type: number
+          description: Total packets sent.
+          example: 42.5
+        pktssentrate:
+          type: number
+          description: Rate of packets sent per second.
+          example: 42.5
+        totalsvrbusyerr:
+          type: number
+          description: Total server busy errors.
+          example: 42.5
+        svrbusyerrrate:
+          type: number
+          description: Rate of server busy errors per second.
+          example: 42.5
+        surgecount:
+          type: number
+          description: Number of requests in the surge queue.
+          example: 42.5
+        totspillovers:
+          type: number
+          description: Total number of spillover events.
+          example: 42.5
+        totvserverdownbackuphits:
+          type: number
+          description: Total diversions to the backup virtual server.
+          example: 42.5
+        avgcltttlb:
+          type: number
+          description: Average client time-to-last-byte in microseconds.
+          example: 42.5
+        cltresponsetimeapdex:
+          type: number
+          description: APDEX score based on client response times (0.0-1.0).
+          example: 42.5
+        cpuusagepm:
+          type: number
+          description: CPU utilization in parts per million.
+          example: 42.5
+        totalh2requests:
+          type: number
+          description: Total HTTP/2 requests received.
+          example: 42.5
+        h2requestsrate:
+          type: number
+          description: Rate of HTTP/2 requests per second.
+          example: 42.5
+        totalh2responses:
+          type: number
+          description: Total HTTP/2 responses sent.
+          example: 42.5
+        h2responsesrate:
+          type: number
+          description: Rate of HTTP/2 responses per second.
+          example: 42.5
+        invalidrequestresponse:
+          type: number
+          description: Total invalid request/response count.
+          example: 42.5
+        invalidrequestresponsedropped:
+          type: number
+          description: Total dropped invalid request/response count.
+          example: 42.5
+        sothreshold:
+          type: number
+          description: Configured spillover threshold.
+          example: 42.5
+        reqretrycount:
+          type: number
+          description: Total request retry count.
+          example: 42.5
+        reqretrycountexceeded:
+          type: number
+          description: Times retry count was exceeded.
+          example: 42.5
+        deferredreq:
+          type: number
+          description: Number of deferred requests.
+          example: 42.5
+        deferredreqrate:
+          type: number
+          description: Rate of deferred requests per second.
+          example: 42.5
+    CsVserverStats:
+      type: object
+      description: Performance statistics for a content switching virtual server.
+      properties:
+        name:
+          type: string
+          description: Name of the content switching virtual server.
+          example: Example Title
+        primaryipaddress:
+          type: string
+          description: IP address of the virtual server.
+          example: example_value
+        primaryport:
+          type: integer
+          description: Port number of the virtual server.
+          example: 10
+        state:
+          type: string
+          description: Current operational state.
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          example: UP
+        curclntconnections:
+          type: number
+          description: Number of current client connections.
+          example: 42.5
+        cursrvrconnections:
+          type: number
+          description: Number of current server connections.
+          example: 42.5
+        establishedconn:
+          type: number
+          description: Number of connections in ESTABLISHED state.
+          example: 42.5
+        tothits:
+          type: number
+          description: Total number of virtual server hits.
+          example: 42.5
+        hitsrate:
+          type: number
+          description: Rate of hits per second.
+          example: 42.5
+        totalrequests:
+          type: number
+          description: Total number of requests received.
+          example: 42.5
+        requestsrate:
+          type: number
+          description: Rate of requests per second.
+          example: 42.5
+        totalresponses:
+          type: number
+          description: Total number of responses sent.
+          example: 42.5
+        responsesrate:
+          type: number
+          description: Rate of responses per second.
+          example: 42.5
+        totalrequestbytes:
+          type: number
+          description: Total bytes of requests received.
+          example: 42.5
+        totalresponsebytes:
+          type: number
+          description: Total bytes of responses sent.
+          example: 42.5
+        totalpktsrecvd:
+          type: number
+          description: Total packets received.
+          example: 42.5
+        totalpktssent:
+          type: number
+          description: Total packets sent.
+          example: 42.5
+        totspillovers:
+          type: number
+          description: Total spillover events.
+          example: 42.5
+        labelledconn:
+          type: number
+          description: Total labeled connections.
+          example: 42.5
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html

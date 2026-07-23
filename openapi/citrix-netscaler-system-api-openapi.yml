@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: Citrix NetScaler NITRO REST Authentication System API
+  description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
+  version: '14.1'
+  contact:
+    name: NetScaler Support
+    url: https://support.citrix.com/
+  license:
+    name: Proprietary
+    url: https://www.cloud.com/legal
+  termsOfService: https://www.cloud.com/legal
+servers:
+- url: https://{nsip}/nitro/v1
+  description: NetScaler NITRO API endpoint
+  variables:
+    nsip:
+      default: netscaler.example.com
+      description: The IP address or hostname of the NetScaler appliance (NSIP).
+security:
+- nitroAuthToken: []
+- nitroBasicAuth: []
+tags:
+- name: System
+  description: System-level resources for managing the NetScaler appliance including system information, files, users, groups, and global settings.
+paths:
+  /config/systemfile:
+    get:
+      operationId: listSystemFiles
+      summary: Citrix Netscaler List System Files
+      description: Retrieves system files from a specified location on the NetScaler appliance.
+      tags:
+      - System
+      parameters:
+      - name: args
+        in: query
+        description: File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).
+        required: true
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Successful retrieval of system files.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  systemfile:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SystemFile'
+              examples:
+                Listsystemfiles200Example:
+                  summary: Default listSystemFiles 200 response
+                  x-microcks-default: true
+                  value:
+                    systemfile:
+                    - filename: example_value
+                      filelocation: example_value
+                      filecontent: example_value
+                      fileencoding: BASE64
+                      fileaccesstime: example_value
+                      filemodifiedtime: example_value
+                      filemode: example_value
+                      filesize: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: uploadSystemFile
+      summary: Citrix Netscaler Upload a System File
+      description: Uploads a file to the NetScaler appliance. The file content must be Base64-encoded.
+      tags:
+      - System
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - systemfile
+              properties:
+                systemfile:
+                  $ref: '#/components/schemas/SystemFile'
+            example:
+              systemfile:
+                filename: cert1.crt
+                filelocation: /nsconfig/ssl
+                filecontent: BASE64_ENCODED_CONTENT
+                fileencoding: BASE64
+      responses:
+        '201':
+          description: File uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Uploadsystemfile201Example:
+                  summary: Default uploadSystemFile 201 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /config/systemfile/{filename}:
+    delete:
+      operationId: deleteSystemFile
+      summary: Citrix Netscaler Delete a System File
+      description: Deletes a file from the NetScaler appliance at the specified location.
+      tags:
+      - System
+      parameters:
+      - name: filename
+        in: path
+        required: true
+        description: The name of the file to delete.
+        schema:
+          type: string
+        example: example_value
+      - name: args
+        in: query
+        required: true
+        description: File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: File deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NitroResponse'
+              examples:
+                Deletesystemfile200Example:
+                  summary: Default deleteSystemFile 200 response
+                  x-microcks-default: true
+                  value:
+                    errorcode: 10
+                    message: example_value
+                    severity: NONE
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: File not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SystemFile:
+      type: object
+      description: A system file on the NetScaler appliance.
+      properties:
+        filename:
+          type: string
+          description: Name of the file.
+          example: example_value
+        filelocation:
+          type: string
+          description: Location of the file on the appliance filesystem (e.g., /nsconfig/ssl).
+          example: example_value
+        filecontent:
+          type: string
+          description: Base64-encoded file content. Used when uploading files.
+          example: example_value
+        fileencoding:
+          type: string
+          description: Encoding of the file content.
+          enum:
+          - BASE64
+          example: BASE64
+        fileaccesstime:
+          type: string
+          description: Last access time of the file.
+          readOnly: true
+          example: example_value
+        filemodifiedtime:
+          type: string
+          description: Last modification time of the file.
+          readOnly: true
+          example: example_value
+        filemode:
+          type: string
+          description: File permissions mode.
+          readOnly: true
+          example: example_value
+        filesize:
+          type: integer
+          description: Size of the file in bytes.
+          readOnly: true
+          example: 10
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+  securitySchemes:
+    nitroAuthToken:
+      type: apiKey
+      in: cookie
+      name: NITRO_AUTH_TOKEN
+      description: Session-based authentication token obtained via the /config/login endpoint. Provided as a cookie with each request.
+    nitroBasicAuth:
+      type: apiKey
+      in: header
+      name: X-NITRO-USER
+      description: Per-request authentication using X-NITRO-USER and X-NITRO-PASS headers as an alternative to session-based tokens.
+externalDocs:
+  description: Citrix ADC NITRO API Reference Documentation
+  url: https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html
