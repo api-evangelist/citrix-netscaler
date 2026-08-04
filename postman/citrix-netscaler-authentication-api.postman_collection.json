@@ -1,0 +1,343 @@
+{
+  "info": {
+    "_postman_id": "ca88a057-0647-4f57-9ec2-eab1743d1cd2",
+    "name": "Citrix NetScaler NITRO REST Authentication API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:15.000Z",
+    "updatedAt": "2026-07-28T01:21:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ca88a057-0647-4f57-9ec2-eab1743d1cd2"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "login",
+          "item": [
+            {
+              "name": "Citrix Netscaler Log in to the Netscaler Appliance",
+              "id": "5af41c7b-641c-4642-9d92-72e2244ef81f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "login"
+                  ]
+                },
+                "description": "Authenticates the user and returns a session token (NITRO_AUTH_TOKEN) as a cookie. This token must be included in subsequent API requests. The default session timeout is 30 minutes, or a user-configured value when restricted timeout is enabled (default 15 minutes)."
+              },
+              "response": [
+                {
+                  "id": "82d52699-c323-42ed-82bf-44f956846214",
+                  "name": "Login successful. Session token returned as a Set-Cookie header.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "NITRO_AUTH_TOKEN cookie for authenticating subsequent requests.",
+                        "type": "text/plain"
+                      },
+                      "key": "Set-Cookie",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:16.000Z",
+                  "updatedAt": "2026-07-28T01:21:16.000Z",
+                  "uid": "35240-82d52699-c323-42ed-82bf-44f956846214"
+                },
+                {
+                  "id": "ed99f0f4-0aa2-4e5a-80e0-2c51e98886bd",
+                  "name": "Authentication failed due to invalid credentials.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:16.000Z",
+                  "updatedAt": "2026-07-28T01:21:16.000Z",
+                  "uid": "35240-ed99f0f4-0aa2-4e5a-80e0-2c51e98886bd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:16.000Z",
+              "updatedAt": "2026-07-28T01:21:16.000Z",
+              "uid": "35240-5af41c7b-641c-4642-9d92-72e2244ef81f"
+            }
+          ],
+          "id": "8645ab5a-86ef-4a8b-9ed1-43914e41982e",
+          "createdAt": "2026-07-28T01:21:16.000Z",
+          "updatedAt": "2026-07-28T01:21:16.000Z",
+          "uid": "35240-8645ab5a-86ef-4a8b-9ed1-43914e41982e"
+        },
+        {
+          "name": "logout",
+          "item": [
+            {
+              "name": "Citrix Netscaler Log Out From the Netscaler Appliance",
+              "id": "b96790c9-aa63-48b6-b875-d1fae8c9f7a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logout\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "logout"
+                  ]
+                },
+                "description": "Terminates the current session and invalidates the NITRO_AUTH_TOKEN cookie."
+              },
+              "response": [
+                {
+                  "id": "135327d9-6f16-4920-bcb2-d37e25e7959b",
+                  "name": "Logout successful.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"logout\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:16.000Z",
+                  "updatedAt": "2026-07-28T01:21:16.000Z",
+                  "uid": "35240-135327d9-6f16-4920-bcb2-d37e25e7959b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:16.000Z",
+              "updatedAt": "2026-07-28T01:21:16.000Z",
+              "uid": "35240-b96790c9-aa63-48b6-b875-d1fae8c9f7a9"
+            }
+          ],
+          "id": "5547f279-1a41-4e2b-9efd-768d6271c35f",
+          "createdAt": "2026-07-28T01:21:16.000Z",
+          "updatedAt": "2026-07-28T01:21:16.000Z",
+          "uid": "35240-5547f279-1a41-4e2b-9efd-768d6271c35f"
+        }
+      ],
+      "id": "8b7c395b-5a82-4698-ab1a-5a0013bf6d84",
+      "createdAt": "2026-07-28T01:21:16.000Z",
+      "updatedAt": "2026-07-28T01:21:16.000Z",
+      "uid": "35240-8b7c395b-5a82-4698-ab1a-5a0013bf6d84"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

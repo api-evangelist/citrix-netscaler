@@ -1,0 +1,768 @@
+{
+  "info": {
+    "_postman_id": "5ce1b71b-f175-474b-ba99-74c9daeaaf71",
+    "name": "Citrix NetScaler NITRO REST Authentication NS Config API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:18.000Z",
+    "updatedAt": "2026-07-28T01:21:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ce1b71b-f175-474b-ba99-74c9daeaaf71"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "nsconfig",
+          "item": [
+            {
+              "name": "Citrix Netscaler Get Netscaler Configuration",
+              "id": "d60a9538-b39f-4670-a391-82562358ef87",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config/nsconfig?attrs=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                      "key": "attrs",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves the current NetScaler appliance configuration including IP address, network settings, HTTP ports, and system parameters."
+              },
+              "response": [
+                {
+                  "id": "5301197d-a480-407d-9eb0-56d15372f461",
+                  "name": "Successful retrieval of NS configuration.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig?attrs=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"NO\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"DISABLED\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"0\",\n    \"securecookie\": \"DISABLED\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"systemtype\": \"HA-Secondary\",\n    \"primaryip\": \"<ipv4>\",\n    \"primaryip6\": \"<ipv6>\",\n    \"flags\": \"<integer>\",\n    \"lastconfigchangedtime\": \"<string>\",\n    \"lastconfigsavetime\": \"<string>\",\n    \"currentsytemtime\": \"<string>\",\n    \"systemtime\": \"<integer>\",\n    \"configchanged\": \"<boolean>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-5301197d-a480-407d-9eb0-56d15372f461"
+                },
+                {
+                  "id": "f079eb39-194f-4607-ae6f-ecfdc0b2c51f",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig?attrs=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-f079eb39-194f-4607-ae6f-ecfdc0b2c51f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-d60a9538-b39f-4670-a391-82562358ef87"
+            },
+            {
+              "name": "Citrix Netscaler Update Netscaler Configuration",
+              "id": "04c84e36-9975-4cda-a0c4-0496ee072cea",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"NO\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"1\",\n    \"securecookie\": \"DISABLED\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"systemtype\": \"HA-Secondary\",\n    \"primaryip\": \"<ipv4>\",\n    \"primaryip6\": \"<ipv6>\",\n    \"flags\": \"<integer>\",\n    \"lastconfigchangedtime\": \"<string>\",\n    \"lastconfigsavetime\": \"<string>\",\n    \"currentsytemtime\": \"<string>\",\n    \"systemtime\": \"<integer>\",\n    \"configchanged\": \"<boolean>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/nsconfig",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ]
+                },
+                "description": "Modifies NetScaler appliance configuration parameters such as IP address, network settings, and system-level options."
+              },
+              "response": [
+                {
+                  "id": "799cad2e-3ece-4598-949b-76ab9227fc32",
+                  "name": "Configuration updated successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"NO\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"1\",\n    \"securecookie\": \"DISABLED\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"systemtype\": \"HA-Secondary\",\n    \"primaryip\": \"<ipv4>\",\n    \"primaryip6\": \"<ipv6>\",\n    \"flags\": \"<integer>\",\n    \"lastconfigchangedtime\": \"<string>\",\n    \"lastconfigsavetime\": \"<string>\",\n    \"currentsytemtime\": \"<string>\",\n    \"systemtime\": \"<integer>\",\n    \"configchanged\": \"<boolean>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-799cad2e-3ece-4598-949b-76ab9227fc32"
+                },
+                {
+                  "id": "d9da1967-43d6-4656-832d-4c48beea5827",
+                  "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"NO\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"1\",\n    \"securecookie\": \"DISABLED\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"systemtype\": \"HA-Secondary\",\n    \"primaryip\": \"<ipv4>\",\n    \"primaryip6\": \"<ipv6>\",\n    \"flags\": \"<integer>\",\n    \"lastconfigchangedtime\": \"<string>\",\n    \"lastconfigsavetime\": \"<string>\",\n    \"currentsytemtime\": \"<string>\",\n    \"systemtime\": \"<integer>\",\n    \"configchanged\": \"<boolean>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-d9da1967-43d6-4656-832d-4c48beea5827"
+                },
+                {
+                  "id": "f6d4efbd-0efb-41dd-80ee-b453c87f8d7b",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"NO\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"1\",\n    \"securecookie\": \"DISABLED\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"systemtype\": \"HA-Secondary\",\n    \"primaryip\": \"<ipv4>\",\n    \"primaryip6\": \"<ipv6>\",\n    \"flags\": \"<integer>\",\n    \"lastconfigchangedtime\": \"<string>\",\n    \"lastconfigsavetime\": \"<string>\",\n    \"currentsytemtime\": \"<string>\",\n    \"systemtime\": \"<integer>\",\n    \"configchanged\": \"<boolean>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-f6d4efbd-0efb-41dd-80ee-b453c87f8d7b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-04c84e36-9975-4cda-a0c4-0496ee072cea"
+            }
+          ],
+          "id": "461165a7-b70b-41af-821d-0bd907043c04",
+          "createdAt": "2026-07-28T01:21:19.000Z",
+          "updatedAt": "2026-07-28T01:21:19.000Z",
+          "uid": "35240-461165a7-b70b-41af-821d-0bd907043c04"
+        },
+        {
+          "name": "nsconfig?action=save",
+          "item": [
+            {
+              "name": "Citrix Netscaler Save Netscaler Configuration",
+              "id": "8db9c93b-42c6-4f59-a109-d08474d61aa1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/nsconfig?action=save",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "save"
+                    }
+                  ]
+                },
+                "description": "Saves the running configuration to the appliance persistent storage (ns.conf). This ensures configuration changes persist across reboots."
+              },
+              "response": [
+                {
+                  "id": "a3806277-a072-43f8-8fce-3bb837f9aae1",
+                  "name": "Configuration saved successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-a3806277-a072-43f8-8fce-3bb837f9aae1"
+                },
+                {
+                  "id": "d0d301b3-145f-462e-945f-e781af25de4a",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-d0d301b3-145f-462e-945f-e781af25de4a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-8db9c93b-42c6-4f59-a109-d08474d61aa1"
+            }
+          ],
+          "id": "affb071e-8d74-4165-8e26-07a7f85436bc",
+          "createdAt": "2026-07-28T01:21:19.000Z",
+          "updatedAt": "2026-07-28T01:21:19.000Z",
+          "uid": "35240-affb071e-8d74-4165-8e26-07a7f85436bc"
+        },
+        {
+          "name": "nsconfig?action=clear",
+          "item": [
+            {
+              "name": "Citrix Netscaler Clear Netscaler Configuration",
+              "id": "45d7da33-ded9-405b-a76d-5f0f022296f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"level\": \"extended\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/nsconfig?action=clear",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "clear"
+                    }
+                  ]
+                },
+                "description": "Clears the NetScaler configuration. The level parameter controls what is cleared - basic, extended, or full."
+              },
+              "response": [
+                {
+                  "id": "bbcb7256-0505-4567-b93e-3965de06e1d1",
+                  "name": "Configuration cleared successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {\n    \"level\": \"extended\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-bbcb7256-0505-4567-b93e-3965de06e1d1"
+                },
+                {
+                  "id": "5787a476-a419-4944-86e3-75539928d839",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nsconfig\": {\n    \"level\": \"extended\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/nsconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "nsconfig"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-5787a476-a419-4944-86e3-75539928d839"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-45d7da33-ded9-405b-a76d-5f0f022296f6"
+            }
+          ],
+          "id": "5c62f1be-7dc7-4ad7-95df-3749fdaeb736",
+          "createdAt": "2026-07-28T01:21:19.000Z",
+          "updatedAt": "2026-07-28T01:21:19.000Z",
+          "uid": "35240-5c62f1be-7dc7-4ad7-95df-3749fdaeb736"
+        }
+      ],
+      "id": "37a9bb1e-e6c6-4ec4-a9ac-3288baf36f4d",
+      "createdAt": "2026-07-28T01:21:19.000Z",
+      "updatedAt": "2026-07-28T01:21:19.000Z",
+      "uid": "35240-37a9bb1e-e6c6-4ec4-a9ac-3288baf36f4d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

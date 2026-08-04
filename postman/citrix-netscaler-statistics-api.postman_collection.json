@@ -1,0 +1,762 @@
+{
+  "info": {
+    "_postman_id": "ab0e66d0-b2a6-4fb6-b587-588ea37a5575",
+    "name": "Citrix NetScaler NITRO REST Authentication Statistics API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:19.000Z",
+    "updatedAt": "2026-07-28T01:21:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ab0e66d0-b2a6-4fb6-b587-588ea37a5575"
+  },
+  "item": [
+    {
+      "name": "stat",
+      "item": [
+        {
+          "name": "lbvserver",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server",
+                  "id": "eee7cfb7-a356-47d8-abf0-5d20f0410c27",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/lbvserver/:name?statbindings=no",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "lbvserver",
+                        ":name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Include statistics for bound services when set to yes.",
+                          "key": "statbindings",
+                          "value": "no"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c5da9146-483c-4299-aa71-931d538736a7",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed performance statistics for a specific load balancing virtual server including connections, throughput, health, and APDEX scores."
+                  },
+                  "response": [
+                    {
+                      "id": "b94ac6e3-9da9-4b6e-96f6-f7532258fdfa",
+                      "name": "Successful retrieval of virtual server statistics.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/lbvserver/:name?statbindings=no",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include statistics for bound services when set to yes.",
+                              "key": "statbindings",
+                              "value": "no"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"state\": \"DOWN WHEN GOING OUT OF SERVICE\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"curpersistencesessions\": \"<number>\",\n      \"vslbhealth\": \"<number>\",\n      \"actsvcs\": \"<number>\",\n      \"inactsvcs\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"requestbytesrate\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"responsebytesrate\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"pktsrecvdrate\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"pktssentrate\": \"<number>\",\n      \"totalsvrbusyerr\": \"<number>\",\n      \"svrbusyerrrate\": \"<number>\",\n      \"surgecount\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"totvserverdownbackuphits\": \"<number>\",\n      \"avgcltttlb\": \"<number>\",\n      \"cltresponsetimeapdex\": \"<number>\",\n      \"cpuusagepm\": \"<number>\",\n      \"totalh2requests\": \"<number>\",\n      \"h2requestsrate\": \"<number>\",\n      \"totalh2responses\": \"<number>\",\n      \"h2responsesrate\": \"<number>\",\n      \"invalidrequestresponse\": \"<number>\",\n      \"invalidrequestresponsedropped\": \"<number>\",\n      \"sothreshold\": \"<number>\",\n      \"reqretrycount\": \"<number>\",\n      \"reqretrycountexceeded\": \"<number>\",\n      \"deferredreq\": \"<number>\",\n      \"deferredreqrate\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-b94ac6e3-9da9-4b6e-96f6-f7532258fdfa"
+                    },
+                    {
+                      "id": "c00cefc9-24f1-4ab1-b9d5-9580aa7b2b02",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/lbvserver/:name?statbindings=no",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include statistics for bound services when set to yes.",
+                              "key": "statbindings",
+                              "value": "no"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-c00cefc9-24f1-4ab1-b9d5-9580aa7b2b02"
+                    },
+                    {
+                      "id": "447891c1-afb2-44d3-bb1a-3afcec18bc50",
+                      "name": "Virtual server not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/lbvserver/:name?statbindings=no",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Include statistics for bound services when set to yes.",
+                              "key": "statbindings",
+                              "value": "no"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-447891c1-afb2-44d3-bb1a-3afcec18bc50"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-eee7cfb7-a356-47d8-abf0-5d20f0410c27"
+                }
+              ],
+              "id": "84d07efe-641a-458b-b544-a495eddd3c44",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-84d07efe-641a-458b-b544-a495eddd3c44"
+            },
+            {
+              "name": "Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers",
+              "id": "a882064e-cd03-41c4-afbe-f01377c2cbf0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stat/lbvserver?sortby=CPU-PM&sortorder=descending&clearstats=full",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stat",
+                    "lbvserver"
+                  ],
+                  "query": [
+                    {
+                      "description": "Sort statistics by a specific metric.",
+                      "key": "sortby",
+                      "value": "CPU-PM"
+                    },
+                    {
+                      "description": "Sort order for the statistics results.",
+                      "key": "sortorder",
+                      "value": "descending"
+                    },
+                    {
+                      "description": "Clear statistics after retrieval. Use basic for counters or full for all stats.",
+                      "key": "clearstats",
+                      "value": "full"
+                    }
+                  ]
+                },
+                "description": "Retrieves performance statistics for all load balancing virtual servers including connection counts, traffic metrics, health status, and error rates."
+              },
+              "response": [
+                {
+                  "id": "660adeb2-8706-4f9e-a585-301182bf4254",
+                  "name": "Successful retrieval of LB virtual server statistics.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/lbvserver?sortby=CPU-PM&sortorder=descending&clearstats=full",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "lbvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Sort statistics by a specific metric.",
+                          "key": "sortby",
+                          "value": "CPU-PM"
+                        },
+                        {
+                          "description": "Sort order for the statistics results.",
+                          "key": "sortorder",
+                          "value": "descending"
+                        },
+                        {
+                          "description": "Clear statistics after retrieval. Use basic for counters or full for all stats.",
+                          "key": "clearstats",
+                          "value": "full"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"state\": \"GOING OUT OF SERVICE\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"curpersistencesessions\": \"<number>\",\n      \"vslbhealth\": \"<number>\",\n      \"actsvcs\": \"<number>\",\n      \"inactsvcs\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"requestbytesrate\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"responsebytesrate\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"pktsrecvdrate\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"pktssentrate\": \"<number>\",\n      \"totalsvrbusyerr\": \"<number>\",\n      \"svrbusyerrrate\": \"<number>\",\n      \"surgecount\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"totvserverdownbackuphits\": \"<number>\",\n      \"avgcltttlb\": \"<number>\",\n      \"cltresponsetimeapdex\": \"<number>\",\n      \"cpuusagepm\": \"<number>\",\n      \"totalh2requests\": \"<number>\",\n      \"h2requestsrate\": \"<number>\",\n      \"totalh2responses\": \"<number>\",\n      \"h2responsesrate\": \"<number>\",\n      \"invalidrequestresponse\": \"<number>\",\n      \"invalidrequestresponsedropped\": \"<number>\",\n      \"sothreshold\": \"<number>\",\n      \"reqretrycount\": \"<number>\",\n      \"reqretrycountexceeded\": \"<number>\",\n      \"deferredreq\": \"<number>\",\n      \"deferredreqrate\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"state\": \"DOWN WHEN GOING OUT OF SERVICE\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"curpersistencesessions\": \"<number>\",\n      \"vslbhealth\": \"<number>\",\n      \"actsvcs\": \"<number>\",\n      \"inactsvcs\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"requestbytesrate\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"responsebytesrate\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"pktsrecvdrate\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"pktssentrate\": \"<number>\",\n      \"totalsvrbusyerr\": \"<number>\",\n      \"svrbusyerrrate\": \"<number>\",\n      \"surgecount\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"totvserverdownbackuphits\": \"<number>\",\n      \"avgcltttlb\": \"<number>\",\n      \"cltresponsetimeapdex\": \"<number>\",\n      \"cpuusagepm\": \"<number>\",\n      \"totalh2requests\": \"<number>\",\n      \"h2requestsrate\": \"<number>\",\n      \"totalh2responses\": \"<number>\",\n      \"h2responsesrate\": \"<number>\",\n      \"invalidrequestresponse\": \"<number>\",\n      \"invalidrequestresponsedropped\": \"<number>\",\n      \"sothreshold\": \"<number>\",\n      \"reqretrycount\": \"<number>\",\n      \"reqretrycountexceeded\": \"<number>\",\n      \"deferredreq\": \"<number>\",\n      \"deferredreqrate\": \"<number>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-660adeb2-8706-4f9e-a585-301182bf4254"
+                },
+                {
+                  "id": "36a9578e-e095-407b-986c-5122ae93b921",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/lbvserver?sortby=CPU-PM&sortorder=descending&clearstats=full",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "lbvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Sort statistics by a specific metric.",
+                          "key": "sortby",
+                          "value": "CPU-PM"
+                        },
+                        {
+                          "description": "Sort order for the statistics results.",
+                          "key": "sortorder",
+                          "value": "descending"
+                        },
+                        {
+                          "description": "Clear statistics after retrieval. Use basic for counters or full for all stats.",
+                          "key": "clearstats",
+                          "value": "full"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-36a9578e-e095-407b-986c-5122ae93b921"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-a882064e-cd03-41c4-afbe-f01377c2cbf0"
+            }
+          ],
+          "id": "b522bed6-3ad6-4fbd-8348-bb4e0e6732e8",
+          "createdAt": "2026-07-28T01:21:20.000Z",
+          "updatedAt": "2026-07-28T01:21:20.000Z",
+          "uid": "35240-b522bed6-3ad6-4fbd-8348-bb4e0e6732e8"
+        },
+        {
+          "name": "csvserver",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server",
+                  "id": "c6126c70-2f43-4359-b334-dedf18685683",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/csvserver/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "csvserver",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fb6f6ddd-08df-4077-a9e5-c8f59d8eb475",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the content switching virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed performance statistics for a specific content switching virtual server."
+                  },
+                  "response": [
+                    {
+                      "id": "d7db94c8-e3fc-45cc-8378-da11826ae057",
+                      "name": "Successful retrieval of virtual server statistics.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"state\": \"UNKNOWN\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"labelledconn\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-d7db94c8-e3fc-45cc-8378-da11826ae057"
+                    },
+                    {
+                      "id": "e73bbe91-da14-466b-9714-eb2d155d8308",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-e73bbe91-da14-466b-9714-eb2d155d8308"
+                    },
+                    {
+                      "id": "50f6c1da-564a-45a1-a993-b0391fd4f508",
+                      "name": "Content switching virtual server not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stat/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stat",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-50f6c1da-564a-45a1-a993-b0391fd4f508"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-c6126c70-2f43-4359-b334-dedf18685683"
+                }
+              ],
+              "id": "2268a2ec-88da-4f2b-96d1-b2dc538bc6b0",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-2268a2ec-88da-4f2b-96d1-b2dc538bc6b0"
+            },
+            {
+              "name": "Citrix Netscaler Get Statistics for All Content Switching Virtual Servers",
+              "id": "f9029f9a-ed13-438d-8be5-7e7bc2f71121",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stat/csvserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stat",
+                    "csvserver"
+                  ]
+                },
+                "description": "Retrieves performance statistics for all content switching virtual servers."
+              },
+              "response": [
+                {
+                  "id": "1b66f255-1086-47ec-9861-65947bb6f494",
+                  "name": "Successful retrieval of content switching virtual server statistics.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"state\": \"OUT OF SERVICE\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"labelledconn\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"primaryipaddress\": \"<string>\",\n      \"primaryport\": \"<integer>\",\n      \"state\": \"DOWN\",\n      \"curclntconnections\": \"<number>\",\n      \"cursrvrconnections\": \"<number>\",\n      \"establishedconn\": \"<number>\",\n      \"tothits\": \"<number>\",\n      \"hitsrate\": \"<number>\",\n      \"totalrequests\": \"<number>\",\n      \"requestsrate\": \"<number>\",\n      \"totalresponses\": \"<number>\",\n      \"responsesrate\": \"<number>\",\n      \"totalrequestbytes\": \"<number>\",\n      \"totalresponsebytes\": \"<number>\",\n      \"totalpktsrecvd\": \"<number>\",\n      \"totalpktssent\": \"<number>\",\n      \"totspillovers\": \"<number>\",\n      \"labelledconn\": \"<number>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-1b66f255-1086-47ec-9861-65947bb6f494"
+                },
+                {
+                  "id": "b7b5944d-7227-4348-a5e5-c4f69418c039",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stat/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stat",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-b7b5944d-7227-4348-a5e5-c4f69418c039"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-f9029f9a-ed13-438d-8be5-7e7bc2f71121"
+            }
+          ],
+          "id": "03d81847-a716-402a-b0fe-9cddba5d9c6f",
+          "createdAt": "2026-07-28T01:21:20.000Z",
+          "updatedAt": "2026-07-28T01:21:20.000Z",
+          "uid": "35240-03d81847-a716-402a-b0fe-9cddba5d9c6f"
+        }
+      ],
+      "id": "fc24d5e9-78f7-45e7-b136-c9d8e0bed7cf",
+      "createdAt": "2026-07-28T01:21:20.000Z",
+      "updatedAt": "2026-07-28T01:21:20.000Z",
+      "uid": "35240-fc24d5e9-78f7-45e7-b136-c9d8e0bed7cf"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

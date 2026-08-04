@@ -1,0 +1,1576 @@
+{
+  "info": {
+    "_postman_id": "cd341321-5321-40e1-a984-ed78f234309e",
+    "name": "Citrix NetScaler NITRO REST Authentication CS Virtual Server API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:16.000Z",
+    "updatedAt": "2026-07-28T01:21:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cd341321-5321-40e1-a984-ed78f234309e"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "csvserver",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get a Specific Content Switching Virtual Server",
+                  "id": "f6d9d899-01c1-49cc-b31c-29a518febfb8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver/:name?attrs=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver",
+                        ":name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c0caf64a-cea6-426a-914b-ee0e6be71972",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the content switching virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the configuration of a specific content switching virtual server identified by name."
+                  },
+                  "response": [
+                    {
+                      "id": "0947ef62-d29b-4bd0-ba9b-a9d791ce8058",
+                      "name": "Successful retrieval of the content switching virtual server.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"SIP_SSL\",\n      \"td\": \"<integer>\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"stateupdate\": \"DISABLED\",\n      \"precedence\": \"URL\",\n      \"casesensitive\": \"ON\",\n      \"somethod\": \"CONNECTION\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"redirecturl\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"downstateflush\": \"ENABLED\",\n      \"insertvserveripport\": \"VIPADDR\",\n      \"vipheader\": \"<string>\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"authentication\": \"OFF\",\n      \"authenticationhost\": \"<string>\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"l2conn\": \"ON\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"lbvserver\": \"<string>\",\n      \"targetlbvserver\": \"<string>\",\n      \"cachetype\": \"REVERSE\",\n      \"redirect\": \"CACHE\",\n      \"curstate\": \"GOING OUT OF SERVICE\",\n      \"status\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"ngname\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-0947ef62-d29b-4bd0-ba9b-a9d791ce8058"
+                    },
+                    {
+                      "id": "1ed37a8c-3ca0-47da-b306-c1f13e660158",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-1ed37a8c-3ca0-47da-b306-c1f13e660158"
+                    },
+                    {
+                      "id": "7f5086bd-5a07-4f4c-af20-b25da17d07ed",
+                      "name": "Content switching virtual server not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-7f5086bd-5a07-4f4c-af20-b25da17d07ed"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-f6d9d899-01c1-49cc-b31c-29a518febfb8"
+                },
+                {
+                  "name": "Citrix Netscaler Update a Content Switching Virtual Server",
+                  "id": "d6d48cd9-22a4-4f70-97c9-e50a0d8ddd13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8307ff1d-b69c-40c4-abd6-961d601332b9",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the content switching virtual server to update."
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of an existing content switching virtual server."
+                  },
+                  "response": [
+                    {
+                      "id": "871d4988-9cfc-48fd-8622-6efe8f624234",
+                      "name": "Content switching virtual server updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-871d4988-9cfc-48fd-8622-6efe8f624234"
+                    },
+                    {
+                      "id": "422ea395-ceed-4c01-8f3e-d6ceeb7de7bb",
+                      "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-422ea395-ceed-4c01-8f3e-d6ceeb7de7bb"
+                    },
+                    {
+                      "id": "992caf73-ce64-489a-ae20-0cd0ed81bd16",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-992caf73-ce64-489a-ae20-0cd0ed81bd16"
+                    },
+                    {
+                      "id": "81d1a93b-6d79-42ba-bcb0-79fca36fb9f2",
+                      "name": "Content switching virtual server not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-81d1a93b-6d79-42ba-bcb0-79fca36fb9f2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-d6d48cd9-22a4-4f70-97c9-e50a0d8ddd13"
+                },
+                {
+                  "name": "Citrix Netscaler Delete a Content Switching Virtual Server",
+                  "id": "89eaac3f-5fc9-422a-adff-787a74f6861a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "338a87f8-5b8d-4a17-815e-37e4d5565ab5",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the content switching virtual server to delete."
+                        }
+                      ]
+                    },
+                    "description": "Deletes a content switching virtual server identified by name."
+                  },
+                  "response": [
+                    {
+                      "id": "9b105b87-f7c7-4fe9-9d99-ce5a5193f343",
+                      "name": "Content switching virtual server deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-9b105b87-f7c7-4fe9-9d99-ce5a5193f343"
+                    },
+                    {
+                      "id": "b556f9a1-face-4729-bda3-ec6f10f5d88c",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-b556f9a1-face-4729-bda3-ec6f10f5d88c"
+                    },
+                    {
+                      "id": "3b5efeb8-d5fe-40f4-a49a-d112d0e44e9e",
+                      "name": "Content switching virtual server not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-3b5efeb8-d5fe-40f4-a49a-d112d0e44e9e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-89eaac3f-5fc9-422a-adff-787a74f6861a"
+                }
+              ],
+              "id": "188b569e-0af7-4924-839f-a63e70dde32c",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-188b569e-0af7-4924-839f-a63e70dde32c"
+            },
+            {
+              "name": "Citrix Netscaler List Content Switching Virtual Servers",
+              "id": "31adc087-c0a6-4886-8498-eb479f2e4576",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config/csvserver?attrs=<string>&filter=<string>&view=detail&count=yes&pagesize=<integer>&pageno=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "csvserver"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                      "key": "attrs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                      "key": "view",
+                      "value": "detail"
+                    },
+                    {
+                      "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                      "key": "count",
+                      "value": "yes"
+                    },
+                    {
+                      "description": "Number of resources to return per page for paginated responses.",
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Page number to retrieve in paginated responses.",
+                      "key": "pageno",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all content switching virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views."
+              },
+              "response": [
+                {
+                  "id": "f3f18561-26b5-4b61-bddf-2dab9b5f9d9a",
+                  "name": "Successful retrieval of content switching virtual servers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver?attrs=<string>&filter=<string>&view=detail&count=yes&pagesize=<integer>&pageno=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                          "key": "view",
+                          "value": "detail"
+                        },
+                        {
+                          "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                          "key": "count",
+                          "value": "yes"
+                        },
+                        {
+                          "description": "Number of resources to return per page for paginated responses.",
+                          "key": "pagesize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Page number to retrieve in paginated responses.",
+                          "key": "pageno",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"MONGO\",\n      \"td\": \"<integer>\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"stateupdate\": \"DISABLED\",\n      \"precedence\": \"URL\",\n      \"casesensitive\": \"ON\",\n      \"somethod\": \"NONE\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"redirecturl\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"downstateflush\": \"ENABLED\",\n      \"insertvserveripport\": \"OFF\",\n      \"vipheader\": \"<string>\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"authentication\": \"OFF\",\n      \"authenticationhost\": \"<string>\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"l2conn\": \"ON\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"lbvserver\": \"<string>\",\n      \"targetlbvserver\": \"<string>\",\n      \"cachetype\": \"TRANSPARENT\",\n      \"redirect\": \"ORIGIN\",\n      \"curstate\": \"UP\",\n      \"status\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"ngname\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"MONGO_TLS\",\n      \"td\": \"<integer>\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"stateupdate\": \"DISABLED\",\n      \"precedence\": \"URL\",\n      \"casesensitive\": \"ON\",\n      \"somethod\": \"NONE\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"redirecturl\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"downstateflush\": \"ENABLED\",\n      \"insertvserveripport\": \"VIPADDR\",\n      \"vipheader\": \"<string>\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"authentication\": \"OFF\",\n      \"authenticationhost\": \"<string>\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"l2conn\": \"OFF\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"lbvserver\": \"<string>\",\n      \"targetlbvserver\": \"<string>\",\n      \"cachetype\": \"REVERSE\",\n      \"redirect\": \"CACHE\",\n      \"curstate\": \"BUSY\",\n      \"status\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"ngname\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-f3f18561-26b5-4b61-bddf-2dab9b5f9d9a"
+                },
+                {
+                  "id": "bcce0216-8210-4aea-8b5f-d995116c851e",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver?attrs=<string>&filter=<string>&view=detail&count=yes&pagesize=<integer>&pageno=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                          "key": "view",
+                          "value": "detail"
+                        },
+                        {
+                          "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                          "key": "count",
+                          "value": "yes"
+                        },
+                        {
+                          "description": "Number of resources to return per page for paginated responses.",
+                          "key": "pagesize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Page number to retrieve in paginated responses.",
+                          "key": "pageno",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-bcce0216-8210-4aea-8b5f-d995116c851e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-31adc087-c0a6-4886-8498-eb479f2e4576"
+            },
+            {
+              "name": "Citrix Netscaler Create a Content Switching Virtual Server",
+              "id": "a317009d-8e7f-4055-bd17-52466fded9ef",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "CONTINUE"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/csvserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "csvserver"
+                  ]
+                },
+                "description": "Creates a new content switching virtual server. Content switching directs incoming client requests to specific load balancing virtual servers based on policies that evaluate request attributes."
+              },
+              "response": [
+                {
+                  "id": "f6a6407c-53e5-4bc7-acdc-593af1b0cf6c",
+                  "name": "Content switching virtual server created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-f6a6407c-53e5-4bc7-acdc-593af1b0cf6c"
+                },
+                {
+                  "id": "950fd90f-6613-4721-99bf-17955b205895",
+                  "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-950fd90f-6613-4721-99bf-17955b205895"
+                },
+                {
+                  "id": "cba5a3f0-20d0-4427-a0de-fe8f76acdac0",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-cba5a3f0-20d0-4427-a0de-fe8f76acdac0"
+                },
+                {
+                  "id": "c2a7baef-3cb7-486e-a434-1e602d5df089",
+                  "name": "Resource already exists.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"MONGO_TLS\",\n    \"td\": \"<integer>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"stateupdate\": \"DISABLED\",\n    \"precedence\": \"RULE\",\n    \"casesensitive\": \"ON\",\n    \"somethod\": \"CONNECTION\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"redirecturl\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"downstateflush\": \"ENABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"authentication\": \"OFF\",\n    \"authenticationhost\": \"<string>\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"l2conn\": \"ON\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"lbvserver\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"cachetype\": \"TRANSPARENT\",\n    \"redirect\": \"ORIGIN\",\n    \"curstate\": \"UP\",\n    \"status\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"ngname\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-c2a7baef-3cb7-486e-a434-1e602d5df089"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-a317009d-8e7f-4055-bd17-52466fded9ef"
+            }
+          ],
+          "id": "cd3cc392-575e-4e24-8192-241a473ca200",
+          "createdAt": "2026-07-28T01:21:17.000Z",
+          "updatedAt": "2026-07-28T01:21:17.000Z",
+          "uid": "35240-cd3cc392-575e-4e24-8192-241a473ca200"
+        },
+        {
+          "name": "csvserver_cspolicy_binding",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get Policy Bindings for a Content Switching Virtual Server",
+                  "id": "12ffc79c-d394-4eff-b7ca-5366221bb9ca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver_cspolicy_binding",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a04a1fc0-b74c-4e06-9c0e-4d0d5a43de01",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the content switching virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all content switching policies bound to a specific content switching virtual server."
+                  },
+                  "response": [
+                    {
+                      "id": "fa15a921-6c93-477b-9a7f-e143c3b5207e",
+                      "name": "Successful retrieval of policy bindings.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver_cspolicy_binding",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"csvserver_cspolicy_binding\": [\n    {\n      \"name\": \"<string>\",\n      \"policyname\": \"<string>\",\n      \"targetlbvserver\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"gotopriorityexpression\": \"<string>\",\n      \"bindpoint\": \"ICA_REQUEST\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"policyname\": \"<string>\",\n      \"targetlbvserver\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"gotopriorityexpression\": \"<string>\",\n      \"bindpoint\": \"RESPONSE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-fa15a921-6c93-477b-9a7f-e143c3b5207e"
+                    },
+                    {
+                      "id": "469ff8f0-470d-4a1d-b170-b57bfad612d0",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "csvserver_cspolicy_binding",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-469ff8f0-470d-4a1d-b170-b57bfad612d0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-12ffc79c-d394-4eff-b7ca-5366221bb9ca"
+                }
+              ],
+              "id": "c67b83cc-fb71-4cfa-90bd-9dde932a38bb",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-c67b83cc-fb71-4cfa-90bd-9dde932a38bb"
+            },
+            {
+              "name": "Citrix Netscaler Bind a Content Switching Policy to a Virtual Server",
+              "id": "bb83ca42-1266-44c0-94ea-fbaecae89f04",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"csvserver_cspolicy_binding\": {\n    \"name\": \"<string>\",\n    \"policyname\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"gotopriorityexpression\": \"<string>\",\n    \"bindpoint\": \"RESPONSE\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "csvserver_cspolicy_binding"
+                  ]
+                },
+                "description": "Binds a content switching policy to a content switching virtual server, defining how incoming requests are routed to load balancing virtual servers."
+              },
+              "response": [
+                {
+                  "id": "cbd58716-5ed7-43d5-8dc6-fc327e64c646",
+                  "name": "Policy bound successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver_cspolicy_binding\": {\n    \"name\": \"<string>\",\n    \"policyname\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"gotopriorityexpression\": \"<string>\",\n    \"bindpoint\": \"RESPONSE\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver_cspolicy_binding"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-cbd58716-5ed7-43d5-8dc6-fc327e64c646"
+                },
+                {
+                  "id": "c5d19518-f394-47de-b91f-ca266a120ab1",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"csvserver_cspolicy_binding\": {\n    \"name\": \"<string>\",\n    \"policyname\": \"<string>\",\n    \"targetlbvserver\": \"<string>\",\n    \"priority\": \"<integer>\",\n    \"gotopriorityexpression\": \"<string>\",\n    \"bindpoint\": \"RESPONSE\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/csvserver_cspolicy_binding",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "csvserver_cspolicy_binding"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"ERROR\"\n}",
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-c5d19518-f394-47de-b91f-ca266a120ab1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-bb83ca42-1266-44c0-94ea-fbaecae89f04"
+            }
+          ],
+          "id": "db5fc95a-d42b-4669-95a5-85b1776db23a",
+          "createdAt": "2026-07-28T01:21:17.000Z",
+          "updatedAt": "2026-07-28T01:21:17.000Z",
+          "uid": "35240-db5fc95a-d42b-4669-95a5-85b1776db23a"
+        }
+      ],
+      "id": "02242744-38e6-43b6-91f7-8018e2d044c3",
+      "createdAt": "2026-07-28T01:21:17.000Z",
+      "updatedAt": "2026-07-28T01:21:17.000Z",
+      "uid": "35240-02242744-38e6-43b6-91f7-8018e2d044c3"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

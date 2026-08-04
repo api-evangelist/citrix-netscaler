@@ -1,0 +1,577 @@
+{
+  "info": {
+    "_postman_id": "6dbdc47f-c0ee-4934-bbf2-6bb41640a190",
+    "name": "Citrix NetScaler NITRO REST Authentication System API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:20.000Z",
+    "updatedAt": "2026-07-28T01:21:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6dbdc47f-c0ee-4934-bbf2-6bb41640a190"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "systemfile",
+          "item": [
+            {
+              "name": "{filename}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Delete a System File",
+                  "id": "2448609f-8c5c-4b49-893f-14ca18d79dcc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/systemfile/:filename?args=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "systemfile",
+                        ":filename"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                          "key": "args",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2b57d830-a47e-401f-8fc2-f9a83874f46a",
+                          "key": "filename",
+                          "value": "<string>",
+                          "description": "(Required) The name of the file to delete."
+                        }
+                      ]
+                    },
+                    "description": "Deletes a file from the NetScaler appliance at the specified location."
+                  },
+                  "response": [
+                    {
+                      "id": "46587b83-d9b3-4437-8e95-ea7358a0c8f8",
+                      "name": "File deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/systemfile/:filename?args=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "systemfile",
+                            ":filename"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                              "key": "args",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "filename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:21.000Z",
+                      "updatedAt": "2026-07-28T01:21:21.000Z",
+                      "uid": "35240-46587b83-d9b3-4437-8e95-ea7358a0c8f8"
+                    },
+                    {
+                      "id": "162685d9-2355-4ba7-b829-819ff489f1b6",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/systemfile/:filename?args=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "systemfile",
+                            ":filename"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                              "key": "args",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "filename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:21.000Z",
+                      "updatedAt": "2026-07-28T01:21:21.000Z",
+                      "uid": "35240-162685d9-2355-4ba7-b829-819ff489f1b6"
+                    },
+                    {
+                      "id": "00ca4e59-890b-4b28-8711-674594712f81",
+                      "name": "File not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/systemfile/:filename?args=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "systemfile",
+                            ":filename"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                              "key": "args",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "filename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:21.000Z",
+                      "updatedAt": "2026-07-28T01:21:21.000Z",
+                      "uid": "35240-00ca4e59-890b-4b28-8711-674594712f81"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:21.000Z",
+                  "updatedAt": "2026-07-28T01:21:21.000Z",
+                  "uid": "35240-2448609f-8c5c-4b49-893f-14ca18d79dcc"
+                }
+              ],
+              "id": "2ab47f29-3d2b-4907-a075-4782442d9314",
+              "createdAt": "2026-07-28T01:21:21.000Z",
+              "updatedAt": "2026-07-28T01:21:21.000Z",
+              "uid": "35240-2ab47f29-3d2b-4907-a075-4782442d9314"
+            },
+            {
+              "name": "Citrix Netscaler List System Files",
+              "id": "0a0bee4a-47c4-4e0b-94a0-d1bc5544a79e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config/systemfile?args=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                      "key": "args",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves system files from a specified location on the NetScaler appliance."
+              },
+              "response": [
+                {
+                  "id": "b819c92b-71b8-49b2-8154-6eb5ff2fb260",
+                  "name": "Successful retrieval of system files.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/systemfile?args=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "systemfile"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                          "key": "args",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"systemfile\": [\n    {\n      \"filename\": \"<string>\",\n      \"filelocation\": \"<string>\",\n      \"filecontent\": \"<string>\",\n      \"fileencoding\": \"BASE64\",\n      \"fileaccesstime\": \"<string>\",\n      \"filemodifiedtime\": \"<string>\",\n      \"filemode\": \"<string>\",\n      \"filesize\": \"<integer>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filelocation\": \"<string>\",\n      \"filecontent\": \"<string>\",\n      \"fileencoding\": \"BASE64\",\n      \"fileaccesstime\": \"<string>\",\n      \"filemodifiedtime\": \"<string>\",\n      \"filemode\": \"<string>\",\n      \"filesize\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:21.000Z",
+                  "updatedAt": "2026-07-28T01:21:21.000Z",
+                  "uid": "35240-b819c92b-71b8-49b2-8154-6eb5ff2fb260"
+                },
+                {
+                  "id": "b94bfa4d-d712-4c52-92a4-d70afbd4d45b",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/systemfile?args=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "systemfile"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path).",
+                          "key": "args",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:21.000Z",
+                  "updatedAt": "2026-07-28T01:21:21.000Z",
+                  "uid": "35240-b94bfa4d-d712-4c52-92a4-d70afbd4d45b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:21.000Z",
+              "updatedAt": "2026-07-28T01:21:21.000Z",
+              "uid": "35240-0a0bee4a-47c4-4e0b-94a0-d1bc5544a79e"
+            },
+            {
+              "name": "Citrix Netscaler Upload a System File",
+              "id": "2fb711f0-89c6-4753-8f48-38901e85abdc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemfile\": {\n    \"filename\": \"<string>\",\n    \"filelocation\": \"<string>\",\n    \"filecontent\": \"<string>\",\n    \"fileencoding\": \"BASE64\",\n    \"fileaccesstime\": \"<string>\",\n    \"filemodifiedtime\": \"<string>\",\n    \"filemode\": \"<string>\",\n    \"filesize\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/systemfile",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ]
+                },
+                "description": "Uploads a file to the NetScaler appliance. The file content must be Base64-encoded."
+              },
+              "response": [
+                {
+                  "id": "f04531e4-0a8d-4e74-9f6c-5416d7a18168",
+                  "name": "File uploaded successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"systemfile\": {\n    \"filename\": \"<string>\",\n    \"filelocation\": \"<string>\",\n    \"filecontent\": \"<string>\",\n    \"fileencoding\": \"BASE64\",\n    \"fileaccesstime\": \"<string>\",\n    \"filemodifiedtime\": \"<string>\",\n    \"filemode\": \"<string>\",\n    \"filesize\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/systemfile",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "systemfile"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                  "createdAt": "2026-07-28T01:21:21.000Z",
+                  "updatedAt": "2026-07-28T01:21:21.000Z",
+                  "uid": "35240-f04531e4-0a8d-4e74-9f6c-5416d7a18168"
+                },
+                {
+                  "id": "02e39c45-b535-4c23-b16e-70b42239a0e8",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"systemfile\": {\n    \"filename\": \"<string>\",\n    \"filelocation\": \"<string>\",\n    \"filecontent\": \"<string>\",\n    \"fileencoding\": \"BASE64\",\n    \"fileaccesstime\": \"<string>\",\n    \"filemodifiedtime\": \"<string>\",\n    \"filemode\": \"<string>\",\n    \"filesize\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/systemfile",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "systemfile"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:21.000Z",
+                  "updatedAt": "2026-07-28T01:21:21.000Z",
+                  "uid": "35240-02e39c45-b535-4c23-b16e-70b42239a0e8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:21.000Z",
+              "updatedAt": "2026-07-28T01:21:21.000Z",
+              "uid": "35240-2fb711f0-89c6-4753-8f48-38901e85abdc"
+            }
+          ],
+          "id": "489e3199-0214-4604-9f80-bb97fe0d47cf",
+          "createdAt": "2026-07-28T01:21:21.000Z",
+          "updatedAt": "2026-07-28T01:21:21.000Z",
+          "uid": "35240-489e3199-0214-4604-9f80-bb97fe0d47cf"
+        }
+      ],
+      "id": "038340ac-fe08-4f45-8f7e-40473a972763",
+      "createdAt": "2026-07-28T01:21:21.000Z",
+      "updatedAt": "2026-07-28T01:21:21.000Z",
+      "uid": "35240-038340ac-fe08-4f45-8f7e-40473a972763"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

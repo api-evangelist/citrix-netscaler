@@ -1,0 +1,1789 @@
+{
+  "info": {
+    "_postman_id": "097ee13e-8a58-46cc-b7f7-c9ea8d25c6be",
+    "name": "Citrix NetScaler NITRO REST Authentication LB Virtual Server API",
+    "description": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:17.000Z",
+    "updatedAt": "2026-07-28T01:21:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-097ee13e-8a58-46cc-b7f7-c9ea8d25c6be"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "lbvserver",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get a Specific Load Balancing Virtual Server",
+                  "id": "9f592865-14b1-41dd-8860-b53828e3d7f0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver/:name?attrs=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver",
+                        ":name"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "20b392a6-8e78-4250-af95-d7bd81fd6c4c",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the configuration of a specific load balancing virtual server identified by name."
+                  },
+                  "response": [
+                    {
+                      "id": "50155543-c6dd-4710-81e4-9f5385f40c67",
+                      "name": "Successful retrieval of the virtual server.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"USER_SSL_TCP\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"td\": \"<integer>\",\n      \"lbmethod\": \"LEASTCONNECTION\",\n      \"hashlength\": 80,\n      \"netmask\": \"<string>\",\n      \"v6netmasklen\": 128,\n      \"backuplbmethod\": \"ROUNDROBIN\",\n      \"persistencetype\": \"DESTIP\",\n      \"persistmask\": \"<string>\",\n      \"v6persistmasklen\": 128,\n      \"persistencebackup\": \"SOURCEIP\",\n      \"timeout\": 2,\n      \"persistavpno\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"cookiename\": \"<string>\",\n      \"rule\": \"\\\"none\\\"\",\n      \"listenpolicy\": \"NONE\",\n      \"listenpriority\": 101,\n      \"resrule\": \"\\\"none\\\"\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"somethod\": \"BANDWIDTH\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"healththreshold\": 0,\n      \"redirecturl\": \"<string>\",\n      \"downstateflush\": \"ENABLED\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"insertvserveripport\": \"V6TOV4MAPPING\",\n      \"vipheader\": \"<string>\",\n      \"authenticationhost\": \"<string>\",\n      \"authentication\": \"OFF\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"newservicerequest\": 0,\n      \"newservicerequestunit\": \"PER_SECOND\",\n      \"newservicerequestincrementinterval\": 0,\n      \"minautoscalemembers\": 0,\n      \"maxautoscalemembers\": 0,\n      \"skippersistency\": \"None\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"connfailover\": \"DISABLED\",\n      \"redirurl\": \"<string>\",\n      \"curstate\": \"DOWN\",\n      \"effectivestate\": \"OUT OF SERVICE\",\n      \"status\": \"<integer>\",\n      \"lbrrreason\": \"<integer>\",\n      \"totalservices\": \"<integer>\",\n      \"activeservices\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"health\": \"<integer>\",\n      \"isgslb\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-50155543-c6dd-4710-81e4-9f5385f40c67"
+                    },
+                    {
+                      "id": "0f91362e-aa65-47b4-995c-239ff334696c",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-0f91362e-aa65-47b4-995c-239ff334696c"
+                    },
+                    {
+                      "id": "70cb86f2-782a-45fe-b997-977d2d431fc9",
+                      "name": "Virtual server not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name?attrs=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                              "key": "attrs",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-70cb86f2-782a-45fe-b997-977d2d431fc9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-9f592865-14b1-41dd-8860-b53828e3d7f0"
+                },
+                {
+                  "name": "Citrix Netscaler Update a Load Balancing Virtual Server",
+                  "id": "c6e994e0-a390-49b9-8594-daf883cb6dc6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5baa2830-d0f2-4a35-8e8b-8c5d47a5c809",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server to update."
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of an existing load balancing virtual server. Retrieve the current state, modify properties locally, and upload the complete updated state."
+                  },
+                  "response": [
+                    {
+                      "id": "93a488b9-6bd6-466a-8030-5837f895d8f8",
+                      "name": "Virtual server updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-93a488b9-6bd6-466a-8030-5837f895d8f8"
+                    },
+                    {
+                      "id": "58b9e365-a61a-40b1-84f2-dc0c182baa84",
+                      "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-58b9e365-a61a-40b1-84f2-dc0c182baa84"
+                    },
+                    {
+                      "id": "c2c1ecec-5930-4b28-acfb-573b99468930",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-c2c1ecec-5930-4b28-acfb-573b99468930"
+                    },
+                    {
+                      "id": "c972eeec-519e-46a9-a30d-7f41bd533fb0",
+                      "name": "Virtual server not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-c972eeec-519e-46a9-a30d-7f41bd533fb0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-c6e994e0-a390-49b9-8594-daf883cb6dc6"
+                },
+                {
+                  "name": "Citrix Netscaler Delete a Load Balancing Virtual Server",
+                  "id": "4a0d32b1-b2d7-4d79-a66a-114be0dc8976",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "73f7745d-3ede-431a-8ec9-7a70864e079d",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server to delete."
+                        }
+                      ]
+                    },
+                    "description": "Deletes a load balancing virtual server identified by name."
+                  },
+                  "response": [
+                    {
+                      "id": "bc0d2ad6-f5d2-4f74-9006-87203f2870e6",
+                      "name": "Virtual server deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-bc0d2ad6-f5d2-4f74-9006-87203f2870e6"
+                    },
+                    {
+                      "id": "04b03557-8b1b-4c7b-aec8-27b57bb27aa1",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-04b03557-8b1b-4c7b-aec8-27b57bb27aa1"
+                    },
+                    {
+                      "id": "add51afc-7d4b-4f49-a88d-efe6c542c111",
+                      "name": "Virtual server not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-add51afc-7d4b-4f49-a88d-efe6c542c111"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-4a0d32b1-b2d7-4d79-a66a-114be0dc8976"
+                }
+              ],
+              "id": "3d7f67f6-b012-405f-bcf7-839551681a13",
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-3d7f67f6-b012-405f-bcf7-839551681a13"
+            },
+            {
+              "name": "Citrix Netscaler List Load Balancing Virtual Servers",
+              "id": "346b8d76-8f99-49df-bf8e-d7a41f155b0c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config/lbvserver?attrs=<string>&filter=<string>&view=summary&count=yes&pagesize=<integer>&pageno=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                      "key": "attrs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                      "key": "view",
+                      "value": "summary"
+                    },
+                    {
+                      "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                      "key": "count",
+                      "value": "yes"
+                    },
+                    {
+                      "description": "Number of resources to return per page for paginated responses.",
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Page number to retrieve in paginated responses.",
+                      "key": "pageno",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all load balancing virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views."
+              },
+              "response": [
+                {
+                  "id": "468a3b6d-b13a-473a-ae13-f5a0eaaa986a",
+                  "name": "Successful retrieval of load balancing virtual servers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver?attrs=<string>&filter=<string>&view=summary&count=yes&pagesize=<integer>&pageno=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                          "key": "view",
+                          "value": "summary"
+                        },
+                        {
+                          "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                          "key": "count",
+                          "value": "yes"
+                        },
+                        {
+                          "description": "Number of resources to return per page for paginated responses.",
+                          "key": "pagesize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Page number to retrieve in paginated responses.",
+                          "key": "pageno",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"PUSH\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"td\": \"<integer>\",\n      \"lbmethod\": \"LEASTCONNECTION\",\n      \"hashlength\": 80,\n      \"netmask\": \"<string>\",\n      \"v6netmasklen\": 128,\n      \"backuplbmethod\": \"ROUNDROBIN\",\n      \"persistencetype\": \"COOKIEINSERT\",\n      \"persistmask\": \"<string>\",\n      \"v6persistmasklen\": 128,\n      \"persistencebackup\": \"NONE\",\n      \"timeout\": 2,\n      \"persistavpno\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"cookiename\": \"<string>\",\n      \"rule\": \"\\\"none\\\"\",\n      \"listenpolicy\": \"NONE\",\n      \"listenpriority\": 101,\n      \"resrule\": \"\\\"none\\\"\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"somethod\": \"HEALTH\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"healththreshold\": 0,\n      \"redirecturl\": \"<string>\",\n      \"downstateflush\": \"ENABLED\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"insertvserveripport\": \"VIPADDR\",\n      \"vipheader\": \"<string>\",\n      \"authenticationhost\": \"<string>\",\n      \"authentication\": \"OFF\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"newservicerequest\": 0,\n      \"newservicerequestunit\": \"PER_SECOND\",\n      \"newservicerequestincrementinterval\": 0,\n      \"minautoscalemembers\": 0,\n      \"maxautoscalemembers\": 0,\n      \"skippersistency\": \"None\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"connfailover\": \"DISABLED\",\n      \"redirurl\": \"<string>\",\n      \"curstate\": \"NS_EMPTY_STR\",\n      \"effectivestate\": \"GOING OUT OF SERVICE\",\n      \"status\": \"<integer>\",\n      \"lbrrreason\": \"<integer>\",\n      \"totalservices\": \"<integer>\",\n      \"activeservices\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"health\": \"<integer>\",\n      \"isgslb\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"servicetype\": \"PROXY\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"ipset\": \"<string>\",\n      \"range\": \"<integer>\",\n      \"ippattern\": \"<string>\",\n      \"ipmask\": \"<string>\",\n      \"td\": \"<integer>\",\n      \"lbmethod\": \"LEASTCONNECTION\",\n      \"hashlength\": 80,\n      \"netmask\": \"<string>\",\n      \"v6netmasklen\": 128,\n      \"backuplbmethod\": \"ROUNDROBIN\",\n      \"persistencetype\": \"CUSTOMSERVERID\",\n      \"persistmask\": \"<string>\",\n      \"v6persistmasklen\": 128,\n      \"persistencebackup\": \"NONE\",\n      \"timeout\": 2,\n      \"persistavpno\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"cookiename\": \"<string>\",\n      \"rule\": \"\\\"none\\\"\",\n      \"listenpolicy\": \"NONE\",\n      \"listenpriority\": 101,\n      \"resrule\": \"\\\"none\\\"\",\n      \"push\": \"DISABLED\",\n      \"pushlabel\": \"<string>\",\n      \"pushmulticlients\": \"NO\",\n      \"comment\": \"<string>\",\n      \"clttimeout\": \"<integer>\",\n      \"somethod\": \"CONNECTION\",\n      \"sopersistence\": \"DISABLED\",\n      \"sopersistencetimeout\": 2,\n      \"sothreshold\": \"<integer>\",\n      \"healththreshold\": 0,\n      \"redirecturl\": \"<string>\",\n      \"downstateflush\": \"ENABLED\",\n      \"disableprimaryondown\": \"DISABLED\",\n      \"insertvserveripport\": \"VIPADDR\",\n      \"vipheader\": \"<string>\",\n      \"authenticationhost\": \"<string>\",\n      \"authentication\": \"OFF\",\n      \"authn401\": \"OFF\",\n      \"authnvsname\": \"<string>\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"newservicerequest\": 0,\n      \"newservicerequestunit\": \"PER_SECOND\",\n      \"newservicerequestincrementinterval\": 0,\n      \"minautoscalemembers\": 0,\n      \"maxautoscalemembers\": 0,\n      \"skippersistency\": \"None\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"connfailover\": \"DISABLED\",\n      \"redirurl\": \"<string>\",\n      \"curstate\": \"DOWN\",\n      \"effectivestate\": \"BUSY\",\n      \"status\": \"<integer>\",\n      \"lbrrreason\": \"<integer>\",\n      \"totalservices\": \"<integer>\",\n      \"activeservices\": \"<integer>\",\n      \"statechangetimesec\": \"<string>\",\n      \"tickssincelaststatechange\": \"<integer>\",\n      \"health\": \"<integer>\",\n      \"isgslb\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-468a3b6d-b13a-473a-ae13-f5a0eaaa986a"
+                },
+                {
+                  "id": "d1610cfb-64f1-4ca5-8e28-c65967b76743",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver?attrs=<string>&filter=<string>&view=summary&count=yes&pagesize=<integer>&pageno=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.",
+                          "key": "attrs",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.",
+                          "key": "view",
+                          "value": "summary"
+                        },
+                        {
+                          "description": "When set to yes, returns only the count of matching resources instead of the full resource details.",
+                          "key": "count",
+                          "value": "yes"
+                        },
+                        {
+                          "description": "Number of resources to return per page for paginated responses.",
+                          "key": "pagesize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Page number to retrieve in paginated responses.",
+                          "key": "pageno",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-d1610cfb-64f1-4ca5-8e28-c65967b76743"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-346b8d76-8f99-49df-bf8e-d7a41f155b0c"
+            },
+            {
+              "name": "Citrix Netscaler Create a Load Balancing Virtual Server",
+              "id": "f844dc2c-f655-41ec-bd66-ea9bfae21966",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "CONTINUE"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/lbvserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ]
+                },
+                "description": "Creates a new load balancing virtual server with the specified configuration. The name and servicetype properties are required. Supports bulk creation by passing an array."
+              },
+              "response": [
+                {
+                  "id": "3db98a9a-8c21-4f1b-9561-5f3f0e06ef2d",
+                  "name": "Load balancing virtual server created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-3db98a9a-8c21-4f1b-9561-5f3f0e06ef2d"
+                },
+                {
+                  "id": "01cc9041-055c-423d-a99e-8fd3f6677c4e",
+                  "name": "Multi-status response for bulk operations where some items may have succeeded and others failed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ]
+                    }
+                  },
+                  "status": "Multi-Status (WebDAV) (RFC 4918)",
+                  "code": 207,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-01cc9041-055c-423d-a99e-8fd3f6677c4e"
+                },
+                {
+                  "id": "6e105b08-bee9-442b-ae1f-ac1ae65af43a",
+                  "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-6e105b08-bee9-442b-ae1f-ac1ae65af43a"
+                },
+                {
+                  "id": "355bef3e-19db-45df-88f0-bb13bc07fded",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-355bef3e-19db-45df-88f0-bb13bc07fded"
+                },
+                {
+                  "id": "abc23667-4d9b-4c42-83f0-2351930895d9",
+                  "name": "Resource already exists. A virtual server with the specified name is already configured.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                        "key": "X-NITRO-ONERROR",
+                        "value": "CONTINUE"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"FIX\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"RULE\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"SOURCEIP\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"NONE\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"VIPADDR\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\",\n    \"redirurl\": \"<string>\",\n    \"curstate\": \"UNKNOWN\",\n    \"effectivestate\": \"NS_EMPTY_STR\",\n    \"status\": \"<integer>\",\n    \"lbrrreason\": \"<integer>\",\n    \"totalservices\": \"<integer>\",\n    \"activeservices\": \"<integer>\",\n    \"statechangetimesec\": \"<string>\",\n    \"tickssincelaststatechange\": \"<integer>\",\n    \"health\": \"<integer>\",\n    \"isgslb\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-abc23667-4d9b-4c42-83f0-2351930895d9"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-f844dc2c-f655-41ec-bd66-ea9bfae21966"
+            }
+          ],
+          "id": "6645f976-7124-430d-aa15-f61545a15520",
+          "createdAt": "2026-07-28T01:21:18.000Z",
+          "updatedAt": "2026-07-28T01:21:18.000Z",
+          "uid": "35240-6645f976-7124-430d-aa15-f61545a15520"
+        },
+        {
+          "name": "lbvserver_service_binding",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server",
+                  "id": "3768d1b9-cb44-4ca7-b837-405511377fdf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver_service_binding",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f6415e7e-4a8b-4888-b516-9ae676b24fd3",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all services bound to a specific load balancing virtual server."
+                  },
+                  "response": [
+                    {
+                      "id": "b04637e8-9622-41db-9ab0-6873527044f8",
+                      "name": "Successful retrieval of service bindings.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver_service_binding",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"lbvserver_service_binding\": [\n    {\n      \"name\": \"<string>\",\n      \"servicename\": \"<string>\",\n      \"weight\": \"<integer>\",\n      \"servicetype\": \"<string>\",\n      \"curstate\": \"<string>\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"dynamicweight\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"servicename\": \"<string>\",\n      \"weight\": \"<integer>\",\n      \"servicetype\": \"<string>\",\n      \"curstate\": \"<string>\",\n      \"ipv46\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"dynamicweight\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-b04637e8-9622-41db-9ab0-6873527044f8"
+                    },
+                    {
+                      "id": "1a762546-58c2-4f3b-a3b2-056235bfe548",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver_service_binding",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-1a762546-58c2-4f3b-a3b2-056235bfe548"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-3768d1b9-cb44-4ca7-b837-405511377fdf"
+                },
+                {
+                  "name": "Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server",
+                  "id": "bb7f6960-8d6c-470b-b3c1-2a51ea5067ce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name?args=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver_service_binding",
+                        ":name"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Arguments to identify the service binding to remove, in the format servicename:svc_prod.",
+                          "key": "args",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "93a1294f-05c6-4a15-86b0-39f563a33ff8",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the load balancing virtual server."
+                        }
+                      ]
+                    },
+                    "description": "Removes the binding between a service and a load balancing virtual server."
+                  },
+                  "response": [
+                    {
+                      "id": "ef397f09-3afe-4c4f-8352-1da521fe572b",
+                      "name": "Service unbound successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name?args=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver_service_binding",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Arguments to identify the service binding to remove, in the format servicename:svc_prod.",
+                              "key": "args",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-ef397f09-3afe-4c4f-8352-1da521fe572b"
+                    },
+                    {
+                      "id": "fd84ec69-0eba-4940-9a0e-16f004e5b23d",
+                      "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "NITRO_AUTH_TOKEN",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/config/lbvserver_service_binding/:name?args=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "config",
+                            "lbvserver_service_binding",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Arguments to identify the service binding to remove, in the format servicename:svc_prod.",
+                              "key": "args",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                      "createdAt": "2026-07-28T01:21:18.000Z",
+                      "updatedAt": "2026-07-28T01:21:18.000Z",
+                      "uid": "35240-fd84ec69-0eba-4940-9a0e-16f004e5b23d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-bb7f6960-8d6c-470b-b3c1-2a51ea5067ce"
+                }
+              ],
+              "id": "bdae2604-b44f-4f61-b020-0c19b2420895",
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-bdae2604-b44f-4f61-b020-0c19b2420895"
+            },
+            {
+              "name": "Citrix Netscaler Bind a Service to a Load Balancing Virtual Server",
+              "id": "60ae46a8-1b8f-48b6-ad9f-e3a8a8c94e6a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"<string>\",\n    \"servicename\": \"<string>\",\n    \"weight\": \"<integer>\",\n    \"servicetype\": \"<string>\",\n    \"curstate\": \"<string>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"dynamicweight\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/config/lbvserver_service_binding",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding"
+                  ]
+                },
+                "description": "Binds a backend service to a load balancing virtual server, allowing the virtual server to distribute traffic to that service."
+              },
+              "response": [
+                {
+                  "id": "4a67ec1b-3318-4a95-8546-d60b61d3ce8c",
+                  "name": "Service bound successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"<string>\",\n    \"servicename\": \"<string>\",\n    \"weight\": \"<integer>\",\n    \"servicetype\": \"<string>\",\n    \"curstate\": \"<string>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"dynamicweight\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver_service_binding",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver_service_binding"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"NONE\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-4a67ec1b-3318-4a95-8546-d60b61d3ce8c"
+                },
+                {
+                  "id": "579f1233-2dcf-4a09-ba7c-cc601e34183c",
+                  "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "NITRO_AUTH_TOKEN",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"<string>\",\n    \"servicename\": \"<string>\",\n    \"weight\": \"<integer>\",\n    \"servicetype\": \"<string>\",\n    \"curstate\": \"<string>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"dynamicweight\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/config/lbvserver_service_binding",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "config",
+                        "lbvserver_service_binding"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorcode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"severity\": \"WARNING\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-579f1233-2dcf-4a09-ba7c-cc601e34183c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-60ae46a8-1b8f-48b6-ad9f-e3a8a8c94e6a"
+            }
+          ],
+          "id": "8f0c4fcb-5461-43e6-aba8-a6f293bd5126",
+          "createdAt": "2026-07-28T01:21:18.000Z",
+          "updatedAt": "2026-07-28T01:21:18.000Z",
+          "uid": "35240-8f0c4fcb-5461-43e6-aba8-a6f293bd5126"
+        }
+      ],
+      "id": "654de576-8b1a-45d1-8073-d04a5e774b07",
+      "createdAt": "2026-07-28T01:21:18.000Z",
+      "updatedAt": "2026-07-28T01:21:18.000Z",
+      "uid": "35240-654de576-8b1a-45d1-8073-d04a5e774b07"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "nsip",
+      "value": "netscaler.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{nsip}}/nitro/v1"
+    }
+  ]
+}

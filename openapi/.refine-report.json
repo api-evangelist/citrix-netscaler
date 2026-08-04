@@ -1,0 +1,24 @@
+{
+  "provider": "citrix-netscaler",
+  "sources": [
+    "citrix-netscaler-authentication-api-openapi.yml",
+    "citrix-netscaler-cs-virtual-server-api-openapi.yml",
+    "citrix-netscaler-lb-virtual-server-api-openapi.yml",
+    "citrix-netscaler-ns-config-api-openapi.yml",
+    "citrix-netscaler-statistics-api-openapi.yml",
+    "citrix-netscaler-system-api-openapi.yml"
+  ],
+  "outputs": [
+    "citrix-netscaler-authentication-api-openapi.yml",
+    "citrix-netscaler-cs-virtual-server-api-openapi.yml",
+    "citrix-netscaler-lb-virtual-server-api-openapi.yml",
+    "citrix-netscaler-ns-config-api-openapi.yml",
+    "citrix-netscaler-statistics-api-openapi.yml",
+    "citrix-netscaler-system-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
