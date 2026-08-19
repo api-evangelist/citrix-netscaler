@@ -21,7 +21,7 @@ image: https://www.citrix.com/content/dam/citrix/en_us/images/logos/citrix-logo.
 url: https://www.citrix.com/products/citrix-adc/
 created: '2024'
 modified: '2026-05-19'
-specificationVersion: '0.16'
+specificationVersion: '0.23'
 tags:
   - API Gateway
   - Application Delivery Controller
