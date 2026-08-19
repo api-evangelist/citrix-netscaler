@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "b56093f0-cbfb-425c-8ea6-cb23ee237c19",
+      "name": "Authentication",
+      "description": {
+        "content": "Session-based authentication for the NITRO API. Obtain an authentication token via login, then include it as a cookie in subsequent requests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16866393-1190-4831-9548-a0dfaead7437",
+          "name": "Citrix Netscaler Log in to the Netscaler Appliance",
+          "request": {
+            "name": "Citrix Netscaler Log in to the Netscaler Appliance",
+            "description": {
+              "content": "Authenticates the user and returns a session token (NITRO_AUTH_TOKEN) as a cookie. This token must be included in subsequent API requests. The default session timeout is 30 minutes, or a user-configured value when restricted timeout is enabled (default 15 minutes).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": {\n    \"username\": \"<string>\",\n    \"password\": \"<password>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f36c1b23-3eb4-4bdc-8bcc-cee13e009508",
+              "name": "Login successful. Session token returned as a Set-Cookie header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": {\n    \"username\": \"nsroot\",\n    \"password\": \"nsroot\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "NITRO_AUTH_TOKEN cookie for authenticating subsequent requests.",
+                  "key": "Set-Cookie",
+                  "value": "NITRO_AUTH_TOKEN=abc123xyz; path=/nitro/v1"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87822ca4-f6db-4d61-9def-a2f5fdf603e0",
+              "name": "Authentication failed due to invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": {\n    \"username\": \"nsroot\",\n    \"password\": \"nsroot\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc5b8c7-e2fc-4833-a805-cfa6ae1c63da",
+          "name": "Citrix Netscaler Log Out From the Netscaler Appliance",
+          "request": {
+            "name": "Citrix Netscaler Log Out From the Netscaler Appliance",
+            "description": {
+              "content": "Terminates the current session and invalidates the NITRO_AUTH_TOKEN cookie.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"logout\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86006d60-1783-4e49-bbe8-ce8ebef89e57",
+              "name": "Logout successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logout\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IP address or hostname of the NetScaler appliance (NSIP).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "netscaler.example.com",
+      "key": "nsip"
+    },
+    {
+      "type": "string",
+      "value": "https://{{nsip}}/nitro/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "79d3667c-f7a4-4b6e-bcc9-37a9ce5e94a4",
+    "name": "Citrix NetScaler NITRO REST Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+      "type": "text/plain"
+    }
+  }
+}

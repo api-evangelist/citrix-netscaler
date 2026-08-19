@@ -1,0 +1,863 @@
+{
+  "item": [
+    {
+      "id": "38199fe0-2e6d-4819-8222-27b8adafcd7a",
+      "name": "Statistics",
+      "description": {
+        "content": "Real-time performance and health statistics for configured resources including virtual servers, services, and system metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71c340d8-cb18-4f0f-9792-84940d0254b1",
+          "name": "Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers",
+          "request": {
+            "name": "Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers",
+            "description": {
+              "content": "Retrieves performance statistics for all load balancing virtual servers including connection counts, traffic metrics, health status, and error rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stat",
+                "lbvserver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sortby",
+                  "value": "<string>",
+                  "description": "Sort statistics by a specific metric."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortorder",
+                  "value": "descending",
+                  "description": "Sort order for the statistics results."
+                },
+                {
+                  "disabled": false,
+                  "key": "clearstats",
+                  "value": "<string>",
+                  "description": "Clear statistics after retrieval. Use basic for counters or full for all stats."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbf24584-134d-4e64-a116-cfdac4a348d3",
+              "name": "Successful retrieval of LB virtual server statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortby",
+                      "value": "Hits"
+                    },
+                    {
+                      "key": "sortorder",
+                      "value": "ascending"
+                    },
+                    {
+                      "key": "clearstats",
+                      "value": "basic"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"primaryipaddress\": \"example_value\",\n      \"primaryport\": 10,\n      \"type\": \"example_value\",\n      \"state\": \"UP\",\n      \"curclntconnections\": 42.5,\n      \"cursrvrconnections\": 42.5,\n      \"establishedconn\": 42.5,\n      \"curpersistencesessions\": 42.5,\n      \"vslbhealth\": 42.5,\n      \"actsvcs\": 42.5,\n      \"inactsvcs\": 42.5,\n      \"tothits\": 42.5,\n      \"hitsrate\": 42.5,\n      \"totalrequests\": 42.5,\n      \"requestsrate\": 42.5,\n      \"totalresponses\": 42.5,\n      \"responsesrate\": 42.5,\n      \"totalrequestbytes\": 42.5,\n      \"requestbytesrate\": 42.5,\n      \"totalresponsebytes\": 42.5,\n      \"responsebytesrate\": 42.5,\n      \"totalpktsrecvd\": 42.5,\n      \"pktsrecvdrate\": 42.5,\n      \"totalpktssent\": 42.5,\n      \"pktssentrate\": 42.5,\n      \"totalsvrbusyerr\": 42.5,\n      \"svrbusyerrrate\": 42.5,\n      \"surgecount\": 42.5,\n      \"totspillovers\": 42.5,\n      \"totvserverdownbackuphits\": 42.5,\n      \"avgcltttlb\": 42.5,\n      \"cltresponsetimeapdex\": 42.5,\n      \"cpuusagepm\": 42.5,\n      \"totalh2requests\": 42.5,\n      \"h2requestsrate\": 42.5,\n      \"totalh2responses\": 42.5,\n      \"h2responsesrate\": 42.5,\n      \"invalidrequestresponse\": 42.5,\n      \"invalidrequestresponsedropped\": 42.5,\n      \"sothreshold\": 42.5,\n      \"reqretrycount\": 42.5,\n      \"reqretrycountexceeded\": 42.5,\n      \"deferredreq\": 42.5,\n      \"deferredreqrate\": 42.5\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "349c53df-0baa-455f-aa09-b6e008ea358f",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortby",
+                      "value": "Hits"
+                    },
+                    {
+                      "key": "sortorder",
+                      "value": "ascending"
+                    },
+                    {
+                      "key": "clearstats",
+                      "value": "basic"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fabdb4fa-cd82-493a-823a-b4437eb5c370",
+          "name": "Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server",
+            "description": {
+              "content": "Retrieves detailed performance statistics for a specific load balancing virtual server including connections, throughput, health, and APDEX scores.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stat",
+                "lbvserver",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statbindings",
+                  "value": "<string>",
+                  "description": "Include statistics for bound services when set to yes."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "675cdd4a-9bc0-4a76-baa5-cd22da99aef1",
+              "name": "Successful retrieval of virtual server statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statbindings",
+                      "value": "yes"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"primaryipaddress\": \"example_value\",\n      \"primaryport\": 10,\n      \"type\": \"example_value\",\n      \"state\": \"UP\",\n      \"curclntconnections\": 42.5,\n      \"cursrvrconnections\": 42.5,\n      \"establishedconn\": 42.5,\n      \"curpersistencesessions\": 42.5,\n      \"vslbhealth\": 42.5,\n      \"actsvcs\": 42.5,\n      \"inactsvcs\": 42.5,\n      \"tothits\": 42.5,\n      \"hitsrate\": 42.5,\n      \"totalrequests\": 42.5,\n      \"requestsrate\": 42.5,\n      \"totalresponses\": 42.5,\n      \"responsesrate\": 42.5,\n      \"totalrequestbytes\": 42.5,\n      \"requestbytesrate\": 42.5,\n      \"totalresponsebytes\": 42.5,\n      \"responsebytesrate\": 42.5,\n      \"totalpktsrecvd\": 42.5,\n      \"pktsrecvdrate\": 42.5,\n      \"totalpktssent\": 42.5,\n      \"pktssentrate\": 42.5,\n      \"totalsvrbusyerr\": 42.5,\n      \"svrbusyerrrate\": 42.5,\n      \"surgecount\": 42.5,\n      \"totspillovers\": 42.5,\n      \"totvserverdownbackuphits\": 42.5,\n      \"avgcltttlb\": 42.5,\n      \"cltresponsetimeapdex\": 42.5,\n      \"cpuusagepm\": 42.5,\n      \"totalh2requests\": 42.5,\n      \"h2requestsrate\": 42.5,\n      \"totalh2responses\": 42.5,\n      \"h2responsesrate\": 42.5,\n      \"invalidrequestresponse\": 42.5,\n      \"invalidrequestresponsedropped\": 42.5,\n      \"sothreshold\": 42.5,\n      \"reqretrycount\": 42.5,\n      \"reqretrycountexceeded\": 42.5,\n      \"deferredreq\": 42.5,\n      \"deferredreqrate\": 42.5\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97f55b88-307c-4fe9-8558-959ce9bfe6d5",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statbindings",
+                      "value": "yes"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c1b8362-03c9-4794-ab47-681b1f16779d",
+              "name": "Virtual server not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statbindings",
+                      "value": "yes"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dc47e42-810b-48ba-8f09-ef92ceb0bfcf",
+          "name": "Citrix Netscaler Get Statistics for All Content Switching Virtual Servers",
+          "request": {
+            "name": "Citrix Netscaler Get Statistics for All Content Switching Virtual Servers",
+            "description": {
+              "content": "Retrieves performance statistics for all content switching virtual servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stat",
+                "csvserver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3674555-7b23-43c3-b629-93352d9efdb8",
+              "name": "Successful retrieval of content switching virtual server statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "csvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"primaryipaddress\": \"example_value\",\n      \"primaryport\": 10,\n      \"state\": \"UP\",\n      \"curclntconnections\": 42.5,\n      \"cursrvrconnections\": 42.5,\n      \"establishedconn\": 42.5,\n      \"tothits\": 42.5,\n      \"hitsrate\": 42.5,\n      \"totalrequests\": 42.5,\n      \"requestsrate\": 42.5,\n      \"totalresponses\": 42.5,\n      \"responsesrate\": 42.5,\n      \"totalrequestbytes\": 42.5,\n      \"totalresponsebytes\": 42.5,\n      \"totalpktsrecvd\": 42.5,\n      \"totalpktssent\": 42.5,\n      \"totspillovers\": 42.5,\n      \"labelledconn\": 42.5\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31edd8d2-b7d6-429f-a1b8-d72f54f81e90",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "csvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b91d7209-e4a4-4c36-bbc5-391304d6e69a",
+          "name": "Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server",
+            "description": {
+              "content": "Retrieves detailed performance statistics for a specific content switching virtual server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stat",
+                "csvserver",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the content switching virtual server."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ed6582b-f89a-4e38-968d-4d0ad0c3392d",
+              "name": "Successful retrieval of virtual server statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "csvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the content switching virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"csvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"primaryipaddress\": \"example_value\",\n      \"primaryport\": 10,\n      \"state\": \"UP\",\n      \"curclntconnections\": 42.5,\n      \"cursrvrconnections\": 42.5,\n      \"establishedconn\": 42.5,\n      \"tothits\": 42.5,\n      \"hitsrate\": 42.5,\n      \"totalrequests\": 42.5,\n      \"requestsrate\": 42.5,\n      \"totalresponses\": 42.5,\n      \"responsesrate\": 42.5,\n      \"totalrequestbytes\": 42.5,\n      \"totalresponsebytes\": 42.5,\n      \"totalpktsrecvd\": 42.5,\n      \"totalpktssent\": 42.5,\n      \"totspillovers\": 42.5,\n      \"labelledconn\": 42.5\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "150a9f02-31cb-40ad-9d79-bfb5f5356c3e",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "csvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the content switching virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcf75212-47a3-4904-bd11-f1a82cb17846",
+              "name": "Content switching virtual server not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stat",
+                    "csvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the content switching virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IP address or hostname of the NetScaler appliance (NSIP).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "netscaler.example.com",
+      "key": "nsip"
+    },
+    {
+      "type": "string",
+      "value": "https://{{nsip}}/nitro/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ca611337-b728-4359-a808-f63875a7288a",
+    "name": "Citrix NetScaler NITRO REST Authentication Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+      "type": "text/plain"
+    }
+  }
+}

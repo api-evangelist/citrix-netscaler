@@ -1,0 +1,640 @@
+{
+  "item": [
+    {
+      "id": "b40173d2-6a48-4a59-be25-8ac1b61aaf09",
+      "name": "System",
+      "description": {
+        "content": "System-level resources for managing the NetScaler appliance including system information, files, users, groups, and global settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e38bc037-8487-49a6-9e92-4a19c87d44b0",
+          "name": "Citrix Netscaler List System Files",
+          "request": {
+            "name": "Citrix Netscaler List System Files",
+            "description": {
+              "content": "Retrieves system files from a specified location on the NetScaler appliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "systemfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "args",
+                  "value": "<string>",
+                  "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4efb1794-24b1-47f8-9a3e-9f042ff82e1c",
+              "name": "Successful retrieval of system files.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"systemfile\": [\n    {\n      \"filename\": \"example_value\",\n      \"filelocation\": \"example_value\",\n      \"filecontent\": \"example_value\",\n      \"fileencoding\": \"BASE64\",\n      \"fileaccesstime\": \"example_value\",\n      \"filemodifiedtime\": \"example_value\",\n      \"filemode\": \"example_value\",\n      \"filesize\": 10\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4997aa08-8b1d-417d-ae65-897fba274e74",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c15fced-206d-4579-957b-69097f36c2c5",
+          "name": "Citrix Netscaler Upload a System File",
+          "request": {
+            "name": "Citrix Netscaler Upload a System File",
+            "description": {
+              "content": "Uploads a file to the NetScaler appliance. The file content must be Base64-encoded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "systemfile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"systemfile\": {\n    \"filename\": \"<string>\",\n    \"filelocation\": \"<string>\",\n    \"filecontent\": \"<string>\",\n    \"fileencoding\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d39329fb-7d12-47ea-a6f4-744da5dc31b2",
+              "name": "File uploaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemfile\": {\n    \"filename\": \"cert1.crt\",\n    \"filelocation\": \"/nsconfig/ssl\",\n    \"filecontent\": \"BASE64_ENCODED_CONTENT\",\n    \"fileencoding\": \"BASE64\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2740afcc-cfe4-4dad-acf0-4ab086ccc668",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemfile\": {\n    \"filename\": \"cert1.crt\",\n    \"filelocation\": \"/nsconfig/ssl\",\n    \"filecontent\": \"BASE64_ENCODED_CONTENT\",\n    \"fileencoding\": \"BASE64\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c5d74de-abe3-4f2d-bf8d-328000dd3666",
+          "name": "Citrix Netscaler Delete a System File",
+          "request": {
+            "name": "Citrix Netscaler Delete a System File",
+            "description": {
+              "content": "Deletes a file from the NetScaler appliance at the specified location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "systemfile",
+                ":filename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "args",
+                  "value": "<string>",
+                  "description": "(Required) File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filename",
+                  "description": "(Required) The name of the file to delete."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dc20f9d-c4bd-40c6-85a5-a4df7faaf982",
+              "name": "File deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile",
+                    ":filename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filename",
+                      "description": "(Required) The name of the file to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef7f6b8b-ffd8-4cae-9285-05674263c5aa",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile",
+                    ":filename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filename",
+                      "description": "(Required) The name of the file to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "360679b8-8a58-46c1-ae3c-0498b1f42fbf",
+              "name": "File not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "systemfile",
+                    ":filename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filename",
+                      "description": "(Required) The name of the file to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IP address or hostname of the NetScaler appliance (NSIP).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "netscaler.example.com",
+      "key": "nsip"
+    },
+    {
+      "type": "string",
+      "value": "https://{{nsip}}/nitro/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c85fc3a-f150-4e65-91e6-5c7e2d5c4629",
+    "name": "Citrix NetScaler NITRO REST Authentication System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+      "type": "text/plain"
+    }
+  }
+}

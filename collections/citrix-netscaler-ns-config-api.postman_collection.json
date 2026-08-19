@@ -1,0 +1,811 @@
+{
+  "item": [
+    {
+      "id": "ef4cac4a-ce59-49eb-b1b9-910df40b2706",
+      "name": "NS Config",
+      "description": {
+        "content": "NetScaler appliance configuration including IP address, network settings, HTTP ports, and system-level parameters. Supports save, clear, and diff operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a909eff3-8351-4449-89ad-40b1c1416cac",
+          "name": "Citrix Netscaler Get Netscaler Configuration",
+          "request": {
+            "name": "Citrix Netscaler Get Netscaler Configuration",
+            "description": {
+              "content": "Retrieves the current NetScaler appliance configuration including IP address, network settings, HTTP ports, and system parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "nsconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attrs",
+                  "value": "<string>",
+                  "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e609b29-7f27-4e75-bf7d-5cd73615186c",
+              "name": "Successful retrieval of NS configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"example_value\",\n    \"netmask\": \"example_value\",\n    \"nsvlan\": 10,\n    \"ifnum\": \"example_value\",\n    \"tagged\": \"YES\",\n    \"httpport\": [\n      10\n    ],\n    \"maxconn\": 10,\n    \"maxreq\": 10,\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"example_value\",\n    \"cookieversion\": \"0\",\n    \"securecookie\": \"ENABLED\",\n    \"pmtumin\": 10,\n    \"pmtutimeout\": 10,\n    \"ftpportrange\": \"example_value\",\n    \"timezone\": \"example_value\",\n    \"grantquotamaxclient\": 10,\n    \"grantquotaspillover\": 10,\n    \"crportrange\": \"example_value\",\n    \"systemtype\": \"Stand-alone\",\n    \"primaryip\": \"example_value\",\n    \"primaryip6\": \"example_value\",\n    \"flags\": 10,\n    \"lastconfigchangedtime\": \"example_value\",\n    \"lastconfigsavetime\": \"example_value\",\n    \"currentsytemtime\": \"example_value\",\n    \"systemtime\": 10,\n    \"configchanged\": true,\n    \"mappedip\": \"example_value\",\n    \"range\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3087f148-02ea-4b39-ad13-d15200e4d20a",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c48cc6-444f-4526-85f3-7f4f3f8ef2db",
+          "name": "Citrix Netscaler Update Netscaler Configuration",
+          "request": {
+            "name": "Citrix Netscaler Update Netscaler Configuration",
+            "description": {
+              "content": "Modifies NetScaler appliance configuration parameters such as IP address, network settings, and system-level options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "nsconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"<ipv4>\",\n    \"netmask\": \"<ipv4>\",\n    \"nsvlan\": \"<integer>\",\n    \"ifnum\": \"<string>\",\n    \"tagged\": \"<string>\",\n    \"httpport\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"maxconn\": \"<integer>\",\n    \"maxreq\": \"<integer>\",\n    \"cip\": \"<string>\",\n    \"cipheader\": \"<string>\",\n    \"cookieversion\": \"<string>\",\n    \"securecookie\": \"<string>\",\n    \"pmtumin\": \"<integer>\",\n    \"pmtutimeout\": \"<integer>\",\n    \"ftpportrange\": \"<string>\",\n    \"timezone\": \"<string>\",\n    \"grantquotamaxclient\": \"<integer>\",\n    \"grantquotaspillover\": \"<integer>\",\n    \"crportrange\": \"<string>\",\n    \"mappedip\": \"<ipv4>\",\n    \"range\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b4cca56-df33-4d24-a92d-77891f1e1dc9",
+              "name": "Configuration updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"example_value\",\n    \"netmask\": \"example_value\",\n    \"nsvlan\": 10,\n    \"ifnum\": \"example_value\",\n    \"tagged\": \"YES\",\n    \"httpport\": [\n      10\n    ],\n    \"maxconn\": 10,\n    \"maxreq\": 10,\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"example_value\",\n    \"cookieversion\": \"0\",\n    \"securecookie\": \"ENABLED\",\n    \"pmtumin\": 10,\n    \"pmtutimeout\": 10,\n    \"ftpportrange\": \"example_value\",\n    \"timezone\": \"example_value\",\n    \"grantquotamaxclient\": 10,\n    \"grantquotaspillover\": 10,\n    \"crportrange\": \"example_value\",\n    \"systemtype\": \"Stand-alone\",\n    \"primaryip\": \"example_value\",\n    \"primaryip6\": \"example_value\",\n    \"flags\": 10,\n    \"lastconfigchangedtime\": \"example_value\",\n    \"lastconfigsavetime\": \"example_value\",\n    \"currentsytemtime\": \"example_value\",\n    \"systemtime\": 10,\n    \"configchanged\": true,\n    \"mappedip\": \"example_value\",\n    \"range\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be4a642b-359f-4daa-ab7d-fc405f27d3ac",
+              "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"example_value\",\n    \"netmask\": \"example_value\",\n    \"nsvlan\": 10,\n    \"ifnum\": \"example_value\",\n    \"tagged\": \"YES\",\n    \"httpport\": [\n      10\n    ],\n    \"maxconn\": 10,\n    \"maxreq\": 10,\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"example_value\",\n    \"cookieversion\": \"0\",\n    \"securecookie\": \"ENABLED\",\n    \"pmtumin\": 10,\n    \"pmtutimeout\": 10,\n    \"ftpportrange\": \"example_value\",\n    \"timezone\": \"example_value\",\n    \"grantquotamaxclient\": 10,\n    \"grantquotaspillover\": 10,\n    \"crportrange\": \"example_value\",\n    \"systemtype\": \"Stand-alone\",\n    \"primaryip\": \"example_value\",\n    \"primaryip6\": \"example_value\",\n    \"flags\": 10,\n    \"lastconfigchangedtime\": \"example_value\",\n    \"lastconfigsavetime\": \"example_value\",\n    \"currentsytemtime\": \"example_value\",\n    \"systemtime\": 10,\n    \"configchanged\": true,\n    \"mappedip\": \"example_value\",\n    \"range\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09046200-e6a4-40a0-ae34-3869eddc54c6",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"ipaddress\": \"example_value\",\n    \"netmask\": \"example_value\",\n    \"nsvlan\": 10,\n    \"ifnum\": \"example_value\",\n    \"tagged\": \"YES\",\n    \"httpport\": [\n      10\n    ],\n    \"maxconn\": 10,\n    \"maxreq\": 10,\n    \"cip\": \"ENABLED\",\n    \"cipheader\": \"example_value\",\n    \"cookieversion\": \"0\",\n    \"securecookie\": \"ENABLED\",\n    \"pmtumin\": 10,\n    \"pmtutimeout\": 10,\n    \"ftpportrange\": \"example_value\",\n    \"timezone\": \"example_value\",\n    \"grantquotamaxclient\": 10,\n    \"grantquotaspillover\": 10,\n    \"crportrange\": \"example_value\",\n    \"systemtype\": \"Stand-alone\",\n    \"primaryip\": \"example_value\",\n    \"primaryip6\": \"example_value\",\n    \"flags\": 10,\n    \"lastconfigchangedtime\": \"example_value\",\n    \"lastconfigsavetime\": \"example_value\",\n    \"currentsytemtime\": \"example_value\",\n    \"systemtime\": 10,\n    \"configchanged\": true,\n    \"mappedip\": \"example_value\",\n    \"range\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f12809e-4cd6-4895-8c9a-60c7fa587d8e",
+          "name": "Citrix Netscaler Save Netscaler Configuration",
+          "request": {
+            "name": "Citrix Netscaler Save Netscaler Configuration",
+            "description": {
+              "content": "Saves the running configuration to the appliance persistent storage (ns.conf). This ensures configuration changes persist across reboots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "nsconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "save"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nsconfig\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9e711a6-b0c5-4c5c-98db-11c576a86ed4",
+              "name": "Configuration saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0855b9b4-83e7-46f0-81de-ec0bee905e54",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c8bb3b2-d5e9-4279-badd-cbc252d019d2",
+          "name": "Citrix Netscaler Clear Netscaler Configuration",
+          "request": {
+            "name": "Citrix Netscaler Clear Netscaler Configuration",
+            "description": {
+              "content": "Clears the NetScaler configuration. The level parameter controls what is cleared - basic, extended, or full.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "nsconfig"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "clear"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nsconfig\": {\n    \"level\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f27020c3-7105-44f5-8b35-923428826d20",
+              "name": "Configuration cleared successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"level\": \"basic\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "025f5efb-d71e-41e9-88d7-f1cc74aaa5f0",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "nsconfig"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nsconfig\": {\n    \"level\": \"basic\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IP address or hostname of the NetScaler appliance (NSIP).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "netscaler.example.com",
+      "key": "nsip"
+    },
+    {
+      "type": "string",
+      "value": "https://{{nsip}}/nitro/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f82c980-974c-4b31-972a-f7753a3483f0",
+    "name": "Citrix NetScaler NITRO REST Authentication NS Config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+      "type": "text/plain"
+    }
+  }
+}

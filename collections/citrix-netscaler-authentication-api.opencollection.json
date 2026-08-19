@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST Authentication API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Log in to the Netscaler Appliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates the user and returns a session token (NITRO_AUTH_TOKEN) as a cookie. This token must be included in subsequent API requests. The default session timeout is 30 minutes, or a user-configured value when restricted timeout is enabled (default 15 minutes)."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Log Out From the Netscaler Appliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/logout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Terminates the current session and invalidates the NITRO_AUTH_TOKEN cookie."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

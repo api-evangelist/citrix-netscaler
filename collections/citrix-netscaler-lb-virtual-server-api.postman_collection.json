@@ -1,0 +1,1996 @@
+{
+  "item": [
+    {
+      "id": "f0fe8e44-41ac-4b7b-a257-e237d2d22641",
+      "name": "LB Virtual Server",
+      "description": {
+        "content": "Load balancing virtual servers accept incoming traffic and distribute it across backend services using configurable load balancing methods such as round robin, least connections, and more.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2949e5f-fe8c-49e6-8e74-924b2a0dd03a",
+          "name": "Citrix Netscaler List Load Balancing Virtual Servers",
+          "request": {
+            "name": "Citrix Netscaler List Load Balancing Virtual Servers",
+            "description": {
+              "content": "Retrieves all load balancing virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attrs",
+                  "value": "<string>",
+                  "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "view",
+                  "value": "<string>",
+                  "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<string>",
+                  "description": "When set to yes, returns only the count of matching resources instead of the full resource details."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagesize",
+                  "value": "<integer>",
+                  "description": "Number of resources to return per page for paginated responses."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageno",
+                  "value": "<integer>",
+                  "description": "Page number to retrieve in paginated responses."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "089fd5b6-3a09-426f-9151-33c63b597caa",
+              "name": "Successful retrieval of load balancing virtual servers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "servicetype:HTTP,lbmethod:ROUNDROBIN"
+                    },
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageno",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"servicetype\": \"HTTP\",\n      \"ipv46\": \"example_value\",\n      \"port\": 10,\n      \"ipset\": \"example_value\",\n      \"range\": 10,\n      \"ippattern\": \"example_value\",\n      \"ipmask\": \"example_value\",\n      \"td\": 10,\n      \"lbmethod\": \"ROUNDROBIN\",\n      \"hashlength\": 10,\n      \"netmask\": \"example_value\",\n      \"v6netmasklen\": 10,\n      \"backuplbmethod\": \"ROUNDROBIN\",\n      \"persistencetype\": \"SOURCEIP\",\n      \"persistmask\": \"example_value\",\n      \"v6persistmasklen\": 10,\n      \"persistencebackup\": \"SOURCEIP\",\n      \"timeout\": 10,\n      \"persistavpno\": [\n        {}\n      ],\n      \"cookiename\": \"example_value\",\n      \"rule\": \"example_value\",\n      \"listenpolicy\": \"example_value\",\n      \"listenpriority\": 10,\n      \"resrule\": \"example_value\",\n      \"push\": \"ENABLED\",\n      \"pushlabel\": \"example_value\",\n      \"pushmulticlients\": \"YES\",\n      \"comment\": \"example_value\",\n      \"clttimeout\": 10,\n      \"somethod\": \"CONNECTION\",\n      \"sopersistence\": \"ENABLED\",\n      \"sopersistencetimeout\": 10,\n      \"sothreshold\": 10,\n      \"healththreshold\": 10,\n      \"redirecturl\": \"https://www.example.com\",\n      \"downstateflush\": \"ENABLED\",\n      \"disableprimaryondown\": \"ENABLED\",\n      \"insertvserveripport\": \"OFF\",\n      \"vipheader\": \"example_value\",\n      \"authenticationhost\": \"example_value\",\n      \"authentication\": \"ON\",\n      \"authn401\": \"ON\",\n      \"authnvsname\": \"example_value\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"newservicerequest\": 10,\n      \"newservicerequestunit\": \"PER_SECOND\",\n      \"newservicerequestincrementinterval\": 10,\n      \"minautoscalemembers\": 10,\n      \"maxautoscalemembers\": 10,\n      \"skippersistency\": \"Bypass\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"connfailover\": \"DISABLED\",\n      \"redirurl\": \"https://www.example.com\",\n      \"curstate\": \"UP\",\n      \"effectivestate\": \"UP\",\n      \"status\": 10,\n      \"lbrrreason\": 10,\n      \"totalservices\": 10,\n      \"activeservices\": 10,\n      \"statechangetimesec\": \"example_value\",\n      \"tickssincelaststatechange\": 10,\n      \"health\": 10,\n      \"isgslb\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9d041a8-a51a-4b6c-ba20-936dd79f5570",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "servicetype:HTTP,lbmethod:ROUNDROBIN"
+                    },
+                    {
+                      "key": "view",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pagesize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageno",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97eb1f81-aea4-4ff9-9858-6915f2840971",
+          "name": "Citrix Netscaler Create a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Create a Load Balancing Virtual Server",
+            "description": {
+              "content": "Creates a new load balancing virtual server with the specified configuration. The name and servicetype properties are required. Supports bulk creation by passing an array.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                "key": "X-NITRO-ONERROR",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"<string>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"<string>\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"<string>\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"<string>\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"<string>\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c2feed3-2feb-4b21-9fa1-c142dc948d0f",
+              "name": "Load balancing virtual server created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicetype\": \"HTTP\",\n    \"ipv46\": \"10.102.29.88\",\n    \"port\": 80,\n    \"lbmethod\": \"ROUNDROBIN\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae7271f7-858c-438c-9315-f452c4ed95d5",
+              "name": "Multi-status response for bulk operations where some items may have succeeded and others failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicetype\": \"HTTP\",\n    \"ipv46\": \"10.102.29.88\",\n    \"port\": 80,\n    \"lbmethod\": \"ROUNDROBIN\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87728a43-ab6f-4f07-9960-8e84c21b62b6",
+              "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicetype\": \"HTTP\",\n    \"ipv46\": \"10.102.29.88\",\n    \"port\": 80,\n    \"lbmethod\": \"ROUNDROBIN\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22357c1a-c065-4438-9418-739e5f3705bb",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicetype\": \"HTTP\",\n    \"ipv46\": \"10.102.29.88\",\n    \"port\": 80,\n    \"lbmethod\": \"ROUNDROBIN\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "274de641-2140-41df-b7df-e314fc2b0c1e",
+              "name": "Resource already exists. A virtual server with the specified name is already configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.",
+                    "key": "X-NITRO-ONERROR",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicetype\": \"HTTP\",\n    \"ipv46\": \"10.102.29.88\",\n    \"port\": 80,\n    \"lbmethod\": \"ROUNDROBIN\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6baf71f4-da0d-4369-821d-1ec437658aa5",
+          "name": "Citrix Netscaler Get a Specific Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Get a Specific Load Balancing Virtual Server",
+            "description": {
+              "content": "Retrieves the configuration of a specific load balancing virtual server identified by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attrs",
+                  "value": "<string>",
+                  "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b7325fd-ad2a-493b-afc5-76974ec16355",
+              "name": "Successful retrieval of the virtual server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lbvserver\": [\n    {\n      \"name\": \"Example Title\",\n      \"servicetype\": \"HTTP\",\n      \"ipv46\": \"example_value\",\n      \"port\": 10,\n      \"ipset\": \"example_value\",\n      \"range\": 10,\n      \"ippattern\": \"example_value\",\n      \"ipmask\": \"example_value\",\n      \"td\": 10,\n      \"lbmethod\": \"ROUNDROBIN\",\n      \"hashlength\": 10,\n      \"netmask\": \"example_value\",\n      \"v6netmasklen\": 10,\n      \"backuplbmethod\": \"ROUNDROBIN\",\n      \"persistencetype\": \"SOURCEIP\",\n      \"persistmask\": \"example_value\",\n      \"v6persistmasklen\": 10,\n      \"persistencebackup\": \"SOURCEIP\",\n      \"timeout\": 10,\n      \"persistavpno\": [\n        {}\n      ],\n      \"cookiename\": \"example_value\",\n      \"rule\": \"example_value\",\n      \"listenpolicy\": \"example_value\",\n      \"listenpriority\": 10,\n      \"resrule\": \"example_value\",\n      \"push\": \"ENABLED\",\n      \"pushlabel\": \"example_value\",\n      \"pushmulticlients\": \"YES\",\n      \"comment\": \"example_value\",\n      \"clttimeout\": 10,\n      \"somethod\": \"CONNECTION\",\n      \"sopersistence\": \"ENABLED\",\n      \"sopersistencetimeout\": 10,\n      \"sothreshold\": 10,\n      \"healththreshold\": 10,\n      \"redirecturl\": \"https://www.example.com\",\n      \"downstateflush\": \"ENABLED\",\n      \"disableprimaryondown\": \"ENABLED\",\n      \"insertvserveripport\": \"OFF\",\n      \"vipheader\": \"example_value\",\n      \"authenticationhost\": \"example_value\",\n      \"authentication\": \"ON\",\n      \"authn401\": \"ON\",\n      \"authnvsname\": \"example_value\",\n      \"icmpvsrresponse\": \"PASSIVE\",\n      \"rhistate\": \"PASSIVE\",\n      \"newservicerequest\": 10,\n      \"newservicerequestunit\": \"PER_SECOND\",\n      \"newservicerequestincrementinterval\": 10,\n      \"minautoscalemembers\": 10,\n      \"maxautoscalemembers\": 10,\n      \"skippersistency\": \"Bypass\",\n      \"appflowlog\": \"ENABLED\",\n      \"state\": \"ENABLED\",\n      \"connfailover\": \"DISABLED\",\n      \"redirurl\": \"https://www.example.com\",\n      \"curstate\": \"UP\",\n      \"effectivestate\": \"UP\",\n      \"status\": 10,\n      \"lbrrreason\": 10,\n      \"totalservices\": 10,\n      \"activeservices\": 10,\n      \"statechangetimesec\": \"example_value\",\n      \"tickssincelaststatechange\": 10,\n      \"health\": 10,\n      \"isgslb\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ccb0f0-6b5c-4219-9baa-63b8475010e2",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d305c5c-408b-48b3-b16a-4e36482de539",
+              "name": "Virtual server not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attrs",
+                      "value": "name,ipv46,port,servicetype"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4608e6c4-89e1-4b59-a0d9-871c042a22ce",
+          "name": "Citrix Netscaler Update a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Update a Load Balancing Virtual Server",
+            "description": {
+              "content": "Updates the configuration of an existing load balancing virtual server. Retrieve the current state, modify properties locally, and upload the complete updated state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server to update."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lbvserver\": {\n    \"name\": \"<string>\",\n    \"servicetype\": \"<string>\",\n    \"ipv46\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"ipset\": \"<string>\",\n    \"range\": \"<integer>\",\n    \"ippattern\": \"<string>\",\n    \"ipmask\": \"<string>\",\n    \"td\": \"<integer>\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"hashlength\": 80,\n    \"netmask\": \"<string>\",\n    \"v6netmasklen\": 128,\n    \"backuplbmethod\": \"ROUNDROBIN\",\n    \"persistencetype\": \"<string>\",\n    \"persistmask\": \"<string>\",\n    \"v6persistmasklen\": 128,\n    \"persistencebackup\": \"<string>\",\n    \"timeout\": 2,\n    \"persistavpno\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cookiename\": \"<string>\",\n    \"rule\": \"\\\"none\\\"\",\n    \"listenpolicy\": \"NONE\",\n    \"listenpriority\": 101,\n    \"resrule\": \"\\\"none\\\"\",\n    \"push\": \"DISABLED\",\n    \"pushlabel\": \"<string>\",\n    \"pushmulticlients\": \"NO\",\n    \"comment\": \"<string>\",\n    \"clttimeout\": \"<integer>\",\n    \"somethod\": \"<string>\",\n    \"sopersistence\": \"DISABLED\",\n    \"sopersistencetimeout\": 2,\n    \"sothreshold\": \"<integer>\",\n    \"healththreshold\": 0,\n    \"redirecturl\": \"<string>\",\n    \"downstateflush\": \"ENABLED\",\n    \"disableprimaryondown\": \"DISABLED\",\n    \"insertvserveripport\": \"<string>\",\n    \"vipheader\": \"<string>\",\n    \"authenticationhost\": \"<string>\",\n    \"authentication\": \"OFF\",\n    \"authn401\": \"OFF\",\n    \"authnvsname\": \"<string>\",\n    \"icmpvsrresponse\": \"PASSIVE\",\n    \"rhistate\": \"PASSIVE\",\n    \"newservicerequest\": 0,\n    \"newservicerequestunit\": \"PER_SECOND\",\n    \"newservicerequestincrementinterval\": 0,\n    \"minautoscalemembers\": 0,\n    \"maxautoscalemembers\": 0,\n    \"skippersistency\": \"None\",\n    \"appflowlog\": \"ENABLED\",\n    \"state\": \"ENABLED\",\n    \"connfailover\": \"DISABLED\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db56ba39-5ab0-47e0-963c-bcf313ac90dd",
+              "name": "Virtual server updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to update."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"comment\": \"Updated via NITRO API\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a26a81d9-728d-4ed5-a21b-3d1307adbf4e",
+              "name": "Invalid request. Check the request body for missing required fields or invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to update."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"comment\": \"Updated via NITRO API\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f60eebee-b57e-44fa-b7ce-89cb0f7f4b94",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to update."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"comment\": \"Updated via NITRO API\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33327a34-2308-489d-b4c1-088f85c4509f",
+              "name": "Virtual server not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to update."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"lbmethod\": \"LEASTCONNECTION\",\n    \"comment\": \"Updated via NITRO API\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "167d8c05-055d-492c-a9cf-cc6b678dc477",
+          "name": "Citrix Netscaler Delete a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Delete a Load Balancing Virtual Server",
+            "description": {
+              "content": "Deletes a load balancing virtual server identified by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server to delete."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "752a6fef-79c3-47d9-9a2e-e1491b082d77",
+              "name": "Virtual server deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9efb1703-eb0f-4f1a-ac4b-3083f2bec82e",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30a50461-0460-437c-a81e-2d0c551ac29d",
+              "name": "Virtual server not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server to delete."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cf78b55-2cd6-4617-bd33-d1b60369f2aa",
+          "name": "Citrix Netscaler Bind a Service to a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Bind a Service to a Load Balancing Virtual Server",
+            "description": {
+              "content": "Binds a backend service to a load balancing virtual server, allowing the virtual server to distribute traffic to that service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver_service_binding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"<string>\",\n    \"servicename\": \"<string>\",\n    \"weight\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b73fecb-03af-49d2-9a4b-f1e414312ff1",
+              "name": "Service bound successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicename\": \"svc_prod\",\n    \"weight\": 20\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c54dfc75-0afa-4a08-8872-05bbb7bedb18",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lbvserver_service_binding\": {\n    \"name\": \"MyFirstLbVServer\",\n    \"servicename\": \"svc_prod\",\n    \"weight\": 20\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40bbddd0-6c3f-46ba-8ff0-7b56dd7b3b3a",
+          "name": "Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server",
+            "description": {
+              "content": "Retrieves all services bound to a specific load balancing virtual server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver_service_binding",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be88f698-ffa5-42be-a7e9-ab15e92233e3",
+              "name": "Successful retrieval of service bindings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lbvserver_service_binding\": [\n    {\n      \"name\": \"Example Title\",\n      \"servicename\": \"example_value\",\n      \"weight\": 10,\n      \"servicetype\": \"example_value\",\n      \"curstate\": \"example_value\",\n      \"ipv46\": \"example_value\",\n      \"port\": 10,\n      \"dynamicweight\": 10\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8cf7341-6839-441e-a862-1293ecf986bd",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c14b7b89-1e51-47c9-91ca-13330807858a",
+          "name": "Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server",
+          "request": {
+            "name": "Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server",
+            "description": {
+              "content": "Removes the binding between a service and a load balancing virtual server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "lbvserver_service_binding",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "args",
+                  "value": "<string>",
+                  "description": "(Required) Arguments to identify the service binding to remove, in the format servicename:svc_prod."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the load balancing virtual server."
+                },
+                {
+                  "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                  "type": "any",
+                  "value": "{{nsip}}",
+                  "key": "nsip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56615b49-26aa-42ed-b474-97de0a8653f9",
+              "name": "Service unbound successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"NONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f99c81f-c6ae-450d-808e-7805942d15cd",
+              "name": "Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "lbvserver_service_binding",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "args",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the load balancing virtual server."
+                    },
+                    {
+                      "description": "The IP address or hostname of the NetScaler appliance (NSIP).",
+                      "type": "any",
+                      "value": "{{nsip}}",
+                      "key": "nsip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "NITRO_AUTH_TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorcode\": 10,\n  \"message\": \"example_value\",\n  \"severity\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IP address or hostname of the NetScaler appliance (NSIP).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "netscaler.example.com",
+      "key": "nsip"
+    },
+    {
+      "type": "string",
+      "value": "https://{{nsip}}/nitro/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "NITRO_AUTH_TOKEN"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0004b0c6-5a30-4d4d-84ba-6806aacd88a2",
+    "name": "Citrix NetScaler NITRO REST Authentication LB Virtual Server API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.\n\nContact Support:\n Name: NetScaler Support",
+      "type": "text/plain"
+    }
+  }
+}

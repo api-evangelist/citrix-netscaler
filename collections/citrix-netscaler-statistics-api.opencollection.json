@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST Authentication Statistics API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for All Load Balancing Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/lbvserver",
+            "params": [
+              {
+                "name": "sortby",
+                "value": "Hits",
+                "type": "query",
+                "description": "Sort statistics by a specific metric."
+              },
+              {
+                "name": "sortorder",
+                "value": "ascending",
+                "type": "query",
+                "description": "Sort order for the statistics results."
+              },
+              {
+                "name": "clearstats",
+                "value": "basic",
+                "type": "query",
+                "description": "Clear statistics after retrieval. Use basic for counters or full for all stats."
+              }
+            ]
+          },
+          "docs": "Retrieves performance statistics for all load balancing virtual servers including connection counts, traffic metrics, health status, and error rates."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "statbindings",
+                "value": "yes",
+                "type": "query",
+                "description": "Include statistics for bound services when set to yes."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed performance statistics for a specific load balancing virtual server including connections, throughput, health, and APDEX scores."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for All Content Switching Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/csvserver"
+          },
+          "docs": "Retrieves performance statistics for all content switching virtual servers."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Statistics for a Specific Content Switching Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/stat/csvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the content switching virtual server."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed performance statistics for a specific content switching virtual server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST Authentication System API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler List System Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/systemfile",
+            "params": [
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+              }
+            ]
+          },
+          "docs": "Retrieves system files from a specified location on the NetScaler appliance."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Upload a System File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/systemfile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a file to the NetScaler appliance. The file content must be Base64-encoded."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Delete a System File",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/systemfile/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "example_value",
+                "type": "path",
+                "description": "The name of the file to delete."
+              },
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "File location argument in the format filelocation:%2Fnsconfig%2Fssl (URL-encoded path)."
+              }
+            ]
+          },
+          "docs": "Deletes a file from the NetScaler appliance at the specified location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

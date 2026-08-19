@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST Authentication LB Virtual Server API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LB Virtual Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler List Load Balancing Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              },
+              {
+                "name": "filter",
+                "value": "servicetype:HTTP,lbmethod:ROUNDROBIN",
+                "type": "query",
+                "description": "Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources."
+              },
+              {
+                "name": "view",
+                "value": "",
+                "type": "query",
+                "description": "Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "When set to yes, returns only the count of matching resources instead of the full resource details."
+              },
+              {
+                "name": "pagesize",
+                "value": "",
+                "type": "query",
+                "description": "Number of resources to return per page for paginated responses."
+              },
+              {
+                "name": "pageno",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve in paginated responses."
+              }
+            ]
+          },
+          "docs": "Retrieves all load balancing virtual server configurations. Supports filtering, pagination, attribute selection, and summary/detail views."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Create a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver",
+            "headers": [
+              {
+                "name": "X-NITRO-ONERROR",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new load balancing virtual server with the specified configuration. The name and servicetype properties are required. Supports bulk creation by passing an array."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get a Specific Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration of a specific load balancing virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Update a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing load balancing virtual server. Retrieve the current state, modify properties locally, and upload the complete updated state."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Delete a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a load balancing virtual server identified by name."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Bind a Service to a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Binds a backend service to a load balancing virtual server, allowing the virtual server to distribute traffic to that service."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Service Bindings for a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              }
+            ]
+          },
+          "docs": "Retrieves all services bound to a specific load balancing virtual server."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Unbind a Service From a Load Balancing Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{nsip}/nitro/v1/config/lbvserver_service_binding/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "Name of the load balancing virtual server."
+              },
+              {
+                "name": "args",
+                "value": "example_value",
+                "type": "query",
+                "description": "Arguments to identify the service binding to remove, in the format servicename:svc_prod."
+              }
+            ]
+          },
+          "docs": "Removes the binding between a service and a load balancing virtual server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Citrix NetScaler NITRO REST Authentication NS Config API",
+    "version": "14.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "NITRO_AUTH_TOKEN",
+      "value": "{{NITRO_AUTH_TOKEN}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NS Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Citrix Netscaler Get Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig",
+            "params": [
+              {
+                "name": "attrs",
+                "value": "name,ipv46,port,servicetype",
+                "type": "query",
+                "description": "Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency."
+              }
+            ]
+          },
+          "docs": "Retrieves the current NetScaler appliance configuration including IP address, network settings, HTTP ports, and system parameters."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Update Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies NetScaler appliance configuration parameters such as IP address, network settings, and system-level options."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Save Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig?action=save",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves the running configuration to the appliance persistent storage (ns.conf). This ensures configuration changes persist across reboots."
+        },
+        {
+          "info": {
+            "name": "Citrix Netscaler Clear Netscaler Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{nsip}/nitro/v1/config/nsconfig?action=clear",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clears the NetScaler configuration. The level parameter controls what is cleared - basic, extended, or full."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
