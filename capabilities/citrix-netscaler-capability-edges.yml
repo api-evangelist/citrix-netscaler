@@ -1,0 +1,35 @@
+slug: citrix-netscaler
+provider: Citrix NetScaler
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: LB Virtual Server
+  spec_file: citrix-netscaler-lb-virtual-server-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: Citrix Netscaler Create a Load Balancing Virtual Server ... Bind a Service to a Load Balancing
+    Virtual Server
+  reason: Provisioning and binding of load-balancing virtual servers and services — network/compute infrastructure
+    configuration, IT Infrastructure Management.
+- tag: CS Virtual Server
+  spec_file: citrix-netscaler-cs-virtual-server-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: Citrix Netscaler Create a Content Switching Virtual Server
+  reason: CRUD and policy binding for content-switching virtual servers on an ADC appliance — configuration
+    of network infrastructure components, mapped to IT Infrastructure Management.
