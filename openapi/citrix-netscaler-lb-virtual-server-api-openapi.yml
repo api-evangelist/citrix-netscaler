@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Citrix NetScaler NITRO REST Authentication LB Virtual Server API
+  title: Citrix NetScaler NITRO REST LB Virtual Server API
   description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
   version: '14.1'
   contact:
@@ -519,6 +519,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
     LbVserverServiceBinding:
       type: object
       description: Binding between a load balancing virtual server and a backend service. This allows the virtual server to distribute traffic to the bound service.
@@ -562,28 +584,25 @@ components:
           description: Dynamic weight of the service based on server health.
           readOnly: true
           example: 10
-    NitroResponse:
+    NitroErrorResponse:
       type: object
-      description: Standard NITRO API success response.
+      description: NITRO API error response with details about the failure.
       properties:
         errorcode:
           type: integer
-          description: Error code. 0 indicates success.
-          examples:
-          - 0
+          description: Numeric error code identifying the specific error.
+          example: 10
         message:
           type: string
-          description: Human-readable message describing the result.
-          examples:
-          - Done
+          description: Human-readable error message.
+          example: example_value
         severity:
           type: string
-          description: Severity level of the response.
+          description: Severity level of the error.
           enum:
-          - NONE
           - ERROR
           - WARNING
-          example: NONE
+          example: ERROR
     LbVserver:
       type: object
       description: A load balancing virtual server configuration that accepts incoming client traffic and distributes it across bound backend services using a configured load balancing algorithm.
@@ -1091,26 +1110,21 @@ components:
           description: Whether this virtual server is a GSLB virtual server.
           readOnly: true
           example: true
-    NitroErrorResponse:
-      type: object
-      description: NITRO API error response with details about the failure.
-      properties:
-        errorcode:
-          type: integer
-          description: Numeric error code identifying the specific error.
-          example: 10
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
-        severity:
-          type: string
-          description: Severity level of the error.
-          enum:
-          - ERROR
-          - WARNING
-          example: ERROR
   parameters:
+    Filter:
+      name: filter
+      in: query
+      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      schema:
+        type: string
+      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
     BulkErrorHandling:
       name: X-NITRO-ONERROR
       in: header
@@ -1121,29 +1135,6 @@ components:
         - CONTINUE
         - EXIT
         - ROLLBACK
-    PageNo:
-      name: pageno
-      in: query
-      description: Page number to retrieve in paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    Count:
-      name: count
-      in: query
-      description: When set to yes, returns only the count of matching resources instead of the full resource details.
-      schema:
-        type: string
-        enum:
-        - 'yes'
-        - 'no'
-    PageSize:
-      name: pagesize
-      in: query
-      description: Number of resources to return per page for paginated responses.
-      schema:
-        type: integer
-        minimum: 1
     View:
       name: view
       in: query
@@ -1160,22 +1151,31 @@ components:
       schema:
         type: string
       example: name,ipv46,port,servicetype
-    Filter:
-      name: filter
+    PageSize:
+      name: pagesize
       in: query
-      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      description: Number of resources to return per page for paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    Count:
+      name: count
+      in: query
+      description: When set to yes, returns only the count of matching resources instead of the full resource details.
       schema:
         type: string
-      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+        enum:
+        - 'yes'
+        - 'no'
   responses:
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NitroErrorResponse'
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
       content:
         application/json:
           schema:

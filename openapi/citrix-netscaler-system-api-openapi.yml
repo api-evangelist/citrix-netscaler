@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Citrix NetScaler NITRO REST Authentication System API
+  title: Citrix NetScaler NITRO REST System API
   description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
   version: '14.1'
   contact:
@@ -159,6 +159,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
     SystemFile:
       type: object
       description: A system file on the NetScaler appliance.
@@ -201,28 +223,6 @@ components:
           description: Size of the file in bytes.
           readOnly: true
           example: 10
-    NitroResponse:
-      type: object
-      description: Standard NITRO API success response.
-      properties:
-        errorcode:
-          type: integer
-          description: Error code. 0 indicates success.
-          examples:
-          - 0
-        message:
-          type: string
-          description: Human-readable message describing the result.
-          examples:
-          - Done
-        severity:
-          type: string
-          description: Severity level of the response.
-          enum:
-          - NONE
-          - ERROR
-          - WARNING
-          example: NONE
     NitroErrorResponse:
       type: object
       description: NITRO API error response with details about the failure.

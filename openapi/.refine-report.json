@@ -1,12 +1,7 @@
 {
   "provider": "citrix-netscaler",
   "sources": [
-    "citrix-netscaler-authentication-api-openapi.yml",
-    "citrix-netscaler-cs-virtual-server-api-openapi.yml",
-    "citrix-netscaler-lb-virtual-server-api-openapi.yml",
-    "citrix-netscaler-ns-config-api-openapi.yml",
-    "citrix-netscaler-statistics-api-openapi.yml",
-    "citrix-netscaler-system-api-openapi.yml"
+    "_original/citrix-netscaler-nitro-openapi.yml"
   ],
   "outputs": [
     "citrix-netscaler-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "citrix-netscaler-nitro-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "citrix-netscaler-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "citrix-netscaler-cs-virtual-server-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "citrix-netscaler-lb-virtual-server-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "citrix-netscaler-ns-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "citrix-netscaler-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "citrix-netscaler-system-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

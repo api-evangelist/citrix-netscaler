@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Citrix NetScaler NITRO REST Authentication CS Virtual Server API
+  title: Citrix NetScaler NITRO REST CS Virtual Server API
   description: The NITRO (NetScaler Interface Through RESTful Operations) API provides programmatic access to configure, monitor, and manage Citrix NetScaler (ADC) appliances. Built on REST architecture using HTTP/HTTPS, the API supports comprehensive management of application delivery controller features including load balancing virtual servers, content switching virtual servers, system configuration, and appliance-level settings. All NITRO operations are logged to /var/nitro.log on the appliance.
   version: '14.1'
   contact:
@@ -478,76 +478,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    BulkErrorHandling:
-      name: X-NITRO-ONERROR
-      in: header
-      description: Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.
-      schema:
-        type: string
-        enum:
-        - CONTINUE
-        - EXIT
-        - ROLLBACK
-    PageNo:
-      name: pageno
-      in: query
-      description: Page number to retrieve in paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    Count:
-      name: count
-      in: query
-      description: When set to yes, returns only the count of matching resources instead of the full resource details.
-      schema:
-        type: string
-        enum:
-        - 'yes'
-        - 'no'
-    PageSize:
-      name: pagesize
-      in: query
-      description: Number of resources to return per page for paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    View:
-      name: view
-      in: query
-      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
-      schema:
-        type: string
-        enum:
-        - summary
-        - detail
-    Attrs:
-      name: attrs
-      in: query
-      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
-      schema:
-        type: string
-      example: name,ipv46,port,servicetype
-    Filter:
-      name: filter
-      in: query
-      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
-      schema:
-        type: string
-      example: servicetype:HTTP,lbmethod:ROUNDROBIN
-  responses:
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
   schemas:
     NitroResponse:
       type: object
@@ -950,6 +880,76 @@ components:
           - ERROR
           - WARNING
           example: ERROR
+  parameters:
+    Filter:
+      name: filter
+      in: query
+      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      schema:
+        type: string
+      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    BulkErrorHandling:
+      name: X-NITRO-ONERROR
+      in: header
+      description: Controls error handling for bulk operations. CONTINUE proceeds with remaining items, EXIT stops on first error, ROLLBACK reverts all changes on any error.
+      schema:
+        type: string
+        enum:
+        - CONTINUE
+        - EXIT
+        - ROLLBACK
+    View:
+      name: view
+      in: query
+      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
+      schema:
+        type: string
+        enum:
+        - summary
+        - detail
+    Attrs:
+      name: attrs
+      in: query
+      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
+      schema:
+        type: string
+      example: name,ipv46,port,servicetype
+    PageSize:
+      name: pagesize
+      in: query
+      description: Number of resources to return per page for paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    Count:
+      name: count
+      in: query
+      description: When set to yes, returns only the count of matching resources instead of the full resource details.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+  responses:
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
   securitySchemes:
     nitroAuthToken:
       type: apiKey
