@@ -337,14 +337,93 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
   schemas:
+    CsVserverStats:
+      type: object
+      description: Performance statistics for a content switching virtual server.
+      properties:
+        name:
+          type: string
+          description: Name of the content switching virtual server.
+          example: Example Title
+        primaryipaddress:
+          type: string
+          description: IP address of the virtual server.
+          example: example_value
+        primaryport:
+          type: integer
+          description: Port number of the virtual server.
+          example: 10
+        state:
+          type: string
+          description: Current operational state.
+          enum:
+          - UP
+          - DOWN
+          - UNKNOWN
+          - BUSY
+          - OUT OF SERVICE
+          example: UP
+        curclntconnections:
+          type: number
+          description: Number of current client connections.
+          example: 42.5
+        cursrvrconnections:
+          type: number
+          description: Number of current server connections.
+          example: 42.5
+        establishedconn:
+          type: number
+          description: Number of connections in ESTABLISHED state.
+          example: 42.5
+        tothits:
+          type: number
+          description: Total number of virtual server hits.
+          example: 42.5
+        hitsrate:
+          type: number
+          description: Rate of hits per second.
+          example: 42.5
+        totalrequests:
+          type: number
+          description: Total number of requests received.
+          example: 42.5
+        requestsrate:
+          type: number
+          description: Rate of requests per second.
+          example: 42.5
+        totalresponses:
+          type: number
+          description: Total number of responses sent.
+          example: 42.5
+        responsesrate:
+          type: number
+          description: Rate of responses per second.
+          example: 42.5
+        totalrequestbytes:
+          type: number
+          description: Total bytes of requests received.
+          example: 42.5
+        totalresponsebytes:
+          type: number
+          description: Total bytes of responses sent.
+          example: 42.5
+        totalpktsrecvd:
+          type: number
+          description: Total packets received.
+          example: 42.5
+        totalpktssent:
+          type: number
+          description: Total packets sent.
+          example: 42.5
+        totspillovers:
+          type: number
+          description: Total spillover events.
+          example: 42.5
+        labelledconn:
+          type: number
+          description: Total labeled connections.
+          example: 42.5
     LbVserverStats:
       type: object
       description: Performance and health statistics for a load balancing virtual server, including connection metrics, throughput, error rates, and APDEX scores.
@@ -537,92 +616,6 @@ components:
           type: number
           description: Rate of deferred requests per second.
           example: 42.5
-    CsVserverStats:
-      type: object
-      description: Performance statistics for a content switching virtual server.
-      properties:
-        name:
-          type: string
-          description: Name of the content switching virtual server.
-          example: Example Title
-        primaryipaddress:
-          type: string
-          description: IP address of the virtual server.
-          example: example_value
-        primaryport:
-          type: integer
-          description: Port number of the virtual server.
-          example: 10
-        state:
-          type: string
-          description: Current operational state.
-          enum:
-          - UP
-          - DOWN
-          - UNKNOWN
-          - BUSY
-          - OUT OF SERVICE
-          example: UP
-        curclntconnections:
-          type: number
-          description: Number of current client connections.
-          example: 42.5
-        cursrvrconnections:
-          type: number
-          description: Number of current server connections.
-          example: 42.5
-        establishedconn:
-          type: number
-          description: Number of connections in ESTABLISHED state.
-          example: 42.5
-        tothits:
-          type: number
-          description: Total number of virtual server hits.
-          example: 42.5
-        hitsrate:
-          type: number
-          description: Rate of hits per second.
-          example: 42.5
-        totalrequests:
-          type: number
-          description: Total number of requests received.
-          example: 42.5
-        requestsrate:
-          type: number
-          description: Rate of requests per second.
-          example: 42.5
-        totalresponses:
-          type: number
-          description: Total number of responses sent.
-          example: 42.5
-        responsesrate:
-          type: number
-          description: Rate of responses per second.
-          example: 42.5
-        totalrequestbytes:
-          type: number
-          description: Total bytes of requests received.
-          example: 42.5
-        totalresponsebytes:
-          type: number
-          description: Total bytes of responses sent.
-          example: 42.5
-        totalpktsrecvd:
-          type: number
-          description: Total packets received.
-          example: 42.5
-        totalpktssent:
-          type: number
-          description: Total packets sent.
-          example: 42.5
-        totspillovers:
-          type: number
-          description: Total spillover events.
-          example: 42.5
-        labelledconn:
-          type: number
-          description: Total labeled connections.
-          example: 42.5
     NitroErrorResponse:
       type: object
       description: NITRO API error response with details about the failure.
@@ -642,6 +635,13 @@ components:
           - ERROR
           - WARNING
           example: ERROR
+  responses:
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
   securitySchemes:
     nitroAuthToken:
       type: apiKey
