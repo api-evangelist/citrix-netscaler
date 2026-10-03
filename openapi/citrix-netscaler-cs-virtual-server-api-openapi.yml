@@ -479,28 +479,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    NitroResponse:
-      type: object
-      description: Standard NITRO API success response.
-      properties:
-        errorcode:
-          type: integer
-          description: Error code. 0 indicates success.
-          examples:
-          - 0
-        message:
-          type: string
-          description: Human-readable message describing the result.
-          examples:
-          - Done
-        severity:
-          type: string
-          description: Severity level of the response.
-          enum:
-          - NONE
-          - ERROR
-          - WARNING
-          example: NONE
     CsVserverCsPolicyBinding:
       type: object
       description: Binding between a content switching virtual server and a content switching policy. Defines how requests are evaluated and routed to target load balancing virtual servers.
@@ -535,25 +513,6 @@ components:
           - ICA_REQUEST
           - OTHERTCP_REQUEST
           example: REQUEST
-    NitroErrorResponse:
-      type: object
-      description: NITRO API error response with details about the failure.
-      properties:
-        errorcode:
-          type: integer
-          description: Numeric error code identifying the specific error.
-          example: 10
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
-        severity:
-          type: string
-          description: Severity level of the error.
-          enum:
-          - ERROR
-          - WARNING
-          example: ERROR
     CsVserver:
       type: object
       description: A content switching virtual server that directs client requests to different load balancing virtual servers based on content switching policies evaluating request attributes such as URL, HTTP header, or source IP address.
@@ -880,7 +839,87 @@ components:
           description: The value of the IP address, based on the virtual server type.
           readOnly: true
           example: example_value
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
   parameters:
+    View:
+      name: view
+      in: query
+      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
+      schema:
+        type: string
+        enum:
+        - summary
+        - detail
+    Attrs:
+      name: attrs
+      in: query
+      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
+      schema:
+        type: string
+      example: name,ipv46,port,servicetype
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
+    Count:
+      name: count
+      in: query
+      description: When set to yes, returns only the count of matching resources instead of the full resource details.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+    PageSize:
+      name: pagesize
+      in: query
+      description: Number of resources to return per page for paginated responses.
+      schema:
+        type: integer
+        minimum: 1
     BulkErrorHandling:
       name: X-NITRO-ONERROR
       in: header
@@ -891,15 +930,6 @@ components:
         - CONTINUE
         - EXIT
         - ROLLBACK
-    Count:
-      name: count
-      in: query
-      description: When set to yes, returns only the count of matching resources instead of the full resource details.
-      schema:
-        type: string
-        enum:
-        - 'yes'
-        - 'no'
     Filter:
       name: filter
       in: query
@@ -907,45 +937,15 @@ components:
       schema:
         type: string
       example: servicetype:HTTP,lbmethod:ROUNDROBIN
-    Attrs:
-      name: attrs
-      in: query
-      description: Comma-separated list of attributes to retrieve. Limits the response to only the specified fields for efficiency.
-      schema:
-        type: string
-      example: name,ipv46,port,servicetype
-    PageSize:
-      name: pagesize
-      in: query
-      description: Number of resources to return per page for paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    PageNo:
-      name: pageno
-      in: query
-      description: Page number to retrieve in paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    View:
-      name: view
-      in: query
-      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
-      schema:
-        type: string
-        enum:
-        - summary
-        - detail
   responses:
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NitroErrorResponse'
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
       content:
         application/json:
           schema:
