@@ -257,48 +257,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
   schemas:
-    NitroResponse:
-      type: object
-      description: Standard NITRO API success response.
-      properties:
-        errorcode:
-          type: integer
-          description: Error code. 0 indicates success.
-          examples:
-          - 0
-        message:
-          type: string
-          description: Human-readable message describing the result.
-          examples:
-          - Done
-        severity:
-          type: string
-          description: Severity level of the response.
-          enum:
-          - NONE
-          - ERROR
-          - WARNING
-          example: NONE
-    NitroErrorResponse:
-      type: object
-      description: NITRO API error response with details about the failure.
-      properties:
-        errorcode:
-          type: integer
-          description: Numeric error code identifying the specific error.
-          example: 10
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
-        severity:
-          type: string
-          description: Severity level of the error.
-          enum:
-          - ERROR
-          - WARNING
-          example: ERROR
     NsConfig:
       type: object
       description: NetScaler appliance configuration including network settings, system parameters, and operational options.
@@ -464,6 +436,47 @@ components:
           description: Number of consecutive IP addresses in the range beginning with the mapped IP.
           minimum: 1
           example: 10
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
   parameters:
     Attrs:
       name: attrs
@@ -472,19 +485,6 @@ components:
       schema:
         type: string
       example: name,ipv46,port,servicetype
-  responses:
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
   securitySchemes:
     nitroAuthToken:
       type: apiKey

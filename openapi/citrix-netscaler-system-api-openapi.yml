@@ -178,28 +178,6 @@ components:
           - ERROR
           - WARNING
           example: ERROR
-    NitroResponse:
-      type: object
-      description: Standard NITRO API success response.
-      properties:
-        errorcode:
-          type: integer
-          description: Error code. 0 indicates success.
-          examples:
-          - 0
-        message:
-          type: string
-          description: Human-readable message describing the result.
-          examples:
-          - Done
-        severity:
-          type: string
-          description: Severity level of the response.
-          enum:
-          - NONE
-          - ERROR
-          - WARNING
-          example: NONE
     SystemFile:
       type: object
       description: A system file on the NetScaler appliance.
@@ -242,6 +220,28 @@ components:
           description: Size of the file in bytes.
           readOnly: true
           example: 10
+    NitroResponse:
+      type: object
+      description: Standard NITRO API success response.
+      properties:
+        errorcode:
+          type: integer
+          description: Error code. 0 indicates success.
+          examples:
+          - 0
+        message:
+          type: string
+          description: Human-readable message describing the result.
+          examples:
+          - Done
+        severity:
+          type: string
+          description: Severity level of the response.
+          enum:
+          - NONE
+          - ERROR
+          - WARNING
+          example: NONE
   responses:
     Unauthorized:
       description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
