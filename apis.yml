@@ -294,6 +294,12 @@ apis:
     url: >-
       https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/nitro-changes-across-releases/
 common:
+  - type: Plans
+    url: plans/citrix-netscaler-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/citrix-netscaler-rate-limits.yml
+  - type: FinOps
+    url: finops/citrix-netscaler-finops.yml
   - type: CapabilityMap
     url: capabilities/citrix-netscaler-capability-edges.yml
     name: Citrix NetScaler Business Capability Map
