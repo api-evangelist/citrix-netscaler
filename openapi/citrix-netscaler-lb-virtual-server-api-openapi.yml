@@ -519,29 +519,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    PageNo:
-      name: pageno
-      in: query
-      description: Page number to retrieve in paginated responses.
-      schema:
-        type: integer
-        minimum: 1
-    View:
-      name: view
-      in: query
-      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
-      schema:
-        type: string
-        enum:
-        - summary
-        - detail
-    Filter:
-      name: filter
-      in: query
-      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
-      schema:
-        type: string
-      example: servicetype:HTTP,lbmethod:ROUNDROBIN
     PageSize:
       name: pagesize
       in: query
@@ -565,6 +542,29 @@ components:
         enum:
         - 'yes'
         - 'no'
+    Filter:
+      name: filter
+      in: query
+      description: Filter expression in the format property1:value1,property2:value2 to restrict results to matching resources.
+      schema:
+        type: string
+      example: servicetype:HTTP,lbmethod:ROUNDROBIN
+    View:
+      name: view
+      in: query
+      description: Controls the level of detail in the response. Summary returns a minimal set of properties; detail returns all properties.
+      schema:
+        type: string
+        enum:
+        - summary
+        - detail
+    PageNo:
+      name: pageno
+      in: query
+      description: Page number to retrieve in paginated responses.
+      schema:
+        type: integer
+        minimum: 1
     BulkErrorHandling:
       name: X-NITRO-ONERROR
       in: header
@@ -575,20 +575,26 @@ components:
         - CONTINUE
         - EXIT
         - ROLLBACK
-  responses:
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
   schemas:
+    NitroErrorResponse:
+      type: object
+      description: NITRO API error response with details about the failure.
+      properties:
+        errorcode:
+          type: integer
+          description: Numeric error code identifying the specific error.
+          example: 10
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+        severity:
+          type: string
+          description: Severity level of the error.
+          enum:
+          - ERROR
+          - WARNING
+          example: ERROR
     NitroResponse:
       type: object
       description: Standard NITRO API success response.
@@ -611,6 +617,49 @@ components:
           - ERROR
           - WARNING
           example: NONE
+    LbVserverServiceBinding:
+      type: object
+      description: Binding between a load balancing virtual server and a backend service. This allows the virtual server to distribute traffic to the bound service.
+      properties:
+        name:
+          type: string
+          description: Name of the load balancing virtual server to which the service is bound.
+          example: Example Title
+        servicename:
+          type: string
+          description: Name of the service to bind to the virtual server.
+          example: example_value
+        weight:
+          type: integer
+          description: Weight assigned to the service for weighted load balancing. Range 1-100.
+          minimum: 1
+          maximum: 100
+          example: 10
+        servicetype:
+          type: string
+          description: Protocol type of the bound service.
+          readOnly: true
+          example: example_value
+        curstate:
+          type: string
+          description: Current state of the bound service.
+          readOnly: true
+          example: example_value
+        ipv46:
+          type: string
+          description: IP address of the bound service.
+          readOnly: true
+          example: example_value
+        port:
+          type: integer
+          description: Port of the bound service.
+          readOnly: true
+          example: 10
+        dynamicweight:
+          type: integer
+          description: Dynamic weight of the service based on server health.
+          readOnly: true
+          example: 10
     LbVserver:
       type: object
       description: A load balancing virtual server configuration that accepts incoming client traffic and distributes it across bound backend services using a configured load balancing algorithm.
@@ -1118,68 +1167,19 @@ components:
           description: Whether this virtual server is a GSLB virtual server.
           readOnly: true
           example: true
-    NitroErrorResponse:
-      type: object
-      description: NITRO API error response with details about the failure.
-      properties:
-        errorcode:
-          type: integer
-          description: Numeric error code identifying the specific error.
-          example: 10
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
-        severity:
-          type: string
-          description: Severity level of the error.
-          enum:
-          - ERROR
-          - WARNING
-          example: ERROR
-    LbVserverServiceBinding:
-      type: object
-      description: Binding between a load balancing virtual server and a backend service. This allows the virtual server to distribute traffic to the bound service.
-      properties:
-        name:
-          type: string
-          description: Name of the load balancing virtual server to which the service is bound.
-          example: Example Title
-        servicename:
-          type: string
-          description: Name of the service to bind to the virtual server.
-          example: example_value
-        weight:
-          type: integer
-          description: Weight assigned to the service for weighted load balancing. Range 1-100.
-          minimum: 1
-          maximum: 100
-          example: 10
-        servicetype:
-          type: string
-          description: Protocol type of the bound service.
-          readOnly: true
-          example: example_value
-        curstate:
-          type: string
-          description: Current state of the bound service.
-          readOnly: true
-          example: example_value
-        ipv46:
-          type: string
-          description: IP address of the bound service.
-          readOnly: true
-          example: example_value
-        port:
-          type: integer
-          description: Port of the bound service.
-          readOnly: true
-          example: 10
-        dynamicweight:
-          type: integer
-          description: Dynamic weight of the service based on server health.
-          readOnly: true
-          example: 10
+  responses:
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
   securitySchemes:
     nitroAuthToken:
       type: apiKey

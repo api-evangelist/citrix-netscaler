@@ -257,19 +257,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    BadRequest:
-      description: Invalid request. Check the request body for missing required fields or invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
-    Unauthorized:
-      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NitroErrorResponse'
   schemas:
     NsConfig:
       type: object
@@ -477,6 +464,19 @@ components:
           - ERROR
           - WARNING
           example: NONE
+  responses:
+    BadRequest:
+      description: Invalid request. Check the request body for missing required fields or invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
+    Unauthorized:
+      description: Authentication required. Provide a valid NITRO_AUTH_TOKEN cookie or X-NITRO-USER/X-NITRO-PASS headers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NitroErrorResponse'
   parameters:
     Attrs:
       name: attrs
