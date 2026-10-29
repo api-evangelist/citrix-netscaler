@@ -1,4 +1,4 @@
-# Citrix NetScaler (citrix-netscaler)
+# Citrix NetScaler
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,141 +66,169 @@
 
 Citrix NetScaler is an application delivery controller (ADC) that provides load balancing, traffic management, application security, and application acceleration capabilities for web applications and services.
 
-**APIs.json:** [https://www.citrix.com/products/citrix-adc/](https://www.citrix.com/products/citrix-adc/)
+**Areas:** API Gateway · Application Delivery Controller · Application Security · Load Balancing · SSL Offloading · Traffic Management · Web Application Firewall
 
-## Tags
+## Citrix NetScaler on APIs.io
 
-- API Gateway
-- Application Delivery Controller
-- Application Security
-- Load Balancing
-- SSL Offloading
-- Traffic Management
-- Web Application Firewall
+Everything profiled for Citrix NetScaler is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/citrix-netscaler/](https://apis.io/providers/citrix-netscaler/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [NetScaler ADM NITRO API](https://apis.io/apis/citrix-netscaler/netscaler-adm-nitro-api/) — The NetScaler Application Delivery Management (ADM) NITRO API provides programmatic access to manage, monitor, and orchestrate multiple NetScaler instances…
+- [NetScaler SDX NITRO API](https://apis.io/apis/citrix-netscaler/netscaler-sdx-nitro-api/) — The NetScaler SDX NITRO API provides programmatic access to configure and manage NetScaler SDX appliances via REST interfaces, enabling provisioning and…
+- [NetScaler Next-Gen API](https://apis.io/apis/citrix-netscaler/netscaler-next-gen-api/) — NetScaler Next-Gen API is a modern declarative RESTful API built on the OpenAPI 3.0 specification that allows developers to programmatically configure…
+- [Citrix NetScaler Authentication API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-authentication-api/) — Session-based authentication for the NITRO API. Obtain an authentication token via login, then include it as a cookie in subsequent requests.
+- [Citrix NetScaler CS Virtual Server API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-cs-virtual-server-api/) — Content switching virtual servers direct client requests to different load balancing virtual servers based on content switching policies that evaluate HTTP…
+- [Citrix NetScaler LB Virtual Server API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-lb-virtual-server-api/) — Load balancing virtual servers accept incoming traffic and distribute it across backend services using configurable load balancing methods such as round…
+- [Citrix NetScaler NS Config API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-ns-config-api/) — NetScaler appliance configuration including IP address, network settings, HTTP ports, and system-level parameters. Supports save, clear, and diff operations.
+- [Citrix NetScaler Statistics API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-statistics-api/) — Real-time performance and health statistics for configured resources including virtual servers, services, and system metrics.
+- [Citrix NetScaler System API](https://apis.io/apis/citrix-netscaler/citrix-netscaler-system-api/) — System-level resources for managing the NetScaler appliance including system information, files, users, groups, and global settings.
 
-## APIs
+### Published properties
 
-### Citrix ADC (NetScaler) NITRO API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The NITRO API provides programmatic access to configure and monitor NetScaler appliances. It supports REST-based operations for comprehensive management of ADC features including load balancing, content switching, SSL, and more.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html)
-- **Base URL:** `https://<netscaler-ip>/nitro/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Citrix Netscaler Agentic Access](https://apis.io/agentic-access/citrix-netscaler/citrix-netscaler-agentic-access/)
 
-- Automation
-- Configuration
-- Monitoring
-- REST API
+#### JSON Schema (11)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release.html)
-- [OpenAPI](openapi/citrix-netscaler-nitro-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/citrix-netscaler-nitro.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/citrix-netscaler-nitro.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/citrix-netscaler-vserver-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/citrix-netscaler-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [OpenAPI](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/api-reference.html) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/performing-basic-netscaler-operations.html)
-- [Getting Started](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/before-you-begin.html)
-- [SDK](https://www.citrix.com/downloads/citrix-adc/sdks/)
-- [Changelog](https://developer-docs.netscaler.com/en-us/adc-nitro-api/current-release/nitro-changes-across-releases/)
+- [CsVserver](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-cs-vserver/)
+- [CsVserverCsPolicyBinding](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-cs-policy-binding/)
+- [CsVserverStats](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-stats/)
+- [LbVserver](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-lb-vserver/)
+- [LbVserverServiceBinding](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-service-binding/)
+- [LbVserverStats](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-stats/)
+- [NitroErrorResponse](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-nitro-error-response/)
+- [NitroResponse](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-nitro-response/)
+- [NsConfig](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-ns-config/)
+- [SystemFile](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-nitro-system-file/)
+- [Citrix NetScaler Virtual Server](https://apis.io/schemas/citrix-netscaler/citrix-netscaler-vserver/)
 
-### NetScaler ADM NITRO API
+#### JSON Structure (10)
 
-The NetScaler Application Delivery Management (ADM) NITRO API provides programmatic access to manage, monitor, and orchestrate multiple NetScaler instances from a centralized platform, covering analytics, configuration audit, and system management.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/](https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/)
-- **Base URL:** `https://<adm-ip>/nitro/v1`
+- [Citrix Netscaler Nitro Cs Vserver Cs Policy Binding Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-cs-policy-binding-structure/)
+- [Citrix Netscaler Nitro Cs Vserver Stats Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-stats-structure/)
+- [Citrix Netscaler Nitro Cs Vserver Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-structure/)
+- [Citrix Netscaler Nitro Lb Vserver Service Binding Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-service-binding-structure/)
+- [Citrix Netscaler Nitro Lb Vserver Stats Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-stats-structure/)
+- [Citrix Netscaler Nitro Lb Vserver Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-structure/)
+- [Citrix Netscaler Nitro Nitro Error Response Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-nitro-error-response-structure/)
+- [Citrix Netscaler Nitro Nitro Response Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-nitro-response-structure/)
+- [Citrix Netscaler Nitro Ns Config Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-ns-config-structure/)
+- [Citrix Netscaler Nitro System File Structure](https://apis.io/json-structure/citrix-netscaler/citrix-netscaler-nitro-system-file-structure/)
 
-#### Tags
+#### JSON-LD (2)
 
-- Analytics
-- Management
-- Orchestration
-- REST API
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Citrix Netscaler Context](https://apis.io/jsonld/citrix-netscaler/citrix-netscaler-context/)
+- [Citrix Netscaler Nitro Context](https://apis.io/jsonld/citrix-netscaler/citrix-netscaler-nitro-context/)
 
-- [Documentation](https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/)
-- [Authentication](https://developer-docs.netscaler.com/en-us/citrix-adm-nitro-api-reference/configuration/system/Authentication/Authentication.html)
-- [Postman Collection](collections/citrix-netscaler-nitro.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/citrix-netscaler-nitro.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-### NetScaler SDX NITRO API
+The provider's domain terms, defined.
 
-The NetScaler SDX NITRO API provides programmatic access to configure and manage NetScaler SDX appliances via REST interfaces, enabling provisioning and management of multiple virtual NetScaler instances on a single hardware platform.
+- [citrix-netscaler API Vocabulary](https://apis.io/vocabularies/citrix-netscaler/citrix-netscaler-vocabulary/)
 
-- **Human URL:** [https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html](https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html)
-- **Base URL:** `https://<sdx-ip>/nitro/v1`
+#### Examples (10)
 
-#### Tags
+Example requests and responses.
 
-- Management
-- REST API
-- SDX
-- Virtualization
+- [Citrix Netscaler Nitro Cs Vserver Cs Policy Binding Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-cs-policy-binding-example/)
+- [Citrix Netscaler Nitro Cs Vserver Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-example/)
+- [Citrix Netscaler Nitro Cs Vserver Stats Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-cs-vserver-stats-example/)
+- [Citrix Netscaler Nitro Lb Vserver Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-example/)
+- [Citrix Netscaler Nitro Lb Vserver Service Binding Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-service-binding-example/)
+- [Citrix Netscaler Nitro Lb Vserver Stats Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-lb-vserver-stats-example/)
+- [Citrix Netscaler Nitro Nitro Error Response Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-nitro-error-response-example/)
+- [Citrix Netscaler Nitro Nitro Response Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-nitro-response-example/)
+- [Citrix Netscaler Nitro Ns Config Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-ns-config-example/)
+- [Citrix Netscaler Nitro System File Example](https://apis.io/examples/citrix-netscaler/citrix-netscaler-nitro-system-file-example/)
 
-#### Properties
+#### Collections (13)
 
-- [Documentation](https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/current-release.html)
-- [API Reference](https://developer-docs.netscaler.com/en-us/adc-sdx-nitro-api-reference/adc-sdx-nitro-api-reference.html)
-- [Postman Collection](collections/citrix-netscaler-nitro.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/citrix-netscaler-nitro.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### NetScaler Next-Gen API
+- [Citrix NetScaler NITRO REST Authentication API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-authentication-api/)
+- [Citrix NetScaler NITRO REST Authentication CS Virtual Server API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-cs-virtual-server-api/)
+- [Citrix NetScaler NITRO REST Authentication LB Virtual Server API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-lb-virtual-server-api/)
+- [Citrix NetScaler NITRO REST API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-nitro/)
+- [Citrix NetScaler NITRO REST Authentication NS Config API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-ns-config-api/)
+- [Citrix NetScaler NITRO REST Authentication Statistics API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-statistics-api/)
+- [Citrix NetScaler NITRO REST Authentication System API](https://apis.io/collections/citrix-netscaler/open-citrix-netscaler-system-api/)
+- [Citrix NetScaler NITRO REST Authentication API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-authentication-api/)
+- [Citrix NetScaler NITRO REST Authentication CS Virtual Server API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-cs-virtual-server-api/)
+- [Citrix NetScaler NITRO REST Authentication LB Virtual Server API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-lb-virtual-server-api/)
+- [Citrix NetScaler NITRO REST Authentication NS Config API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-ns-config-api/)
+- [Citrix NetScaler NITRO REST Authentication Statistics API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-statistics-api/)
+- [Citrix NetScaler NITRO REST Authentication System API](https://apis.io/collections/citrix-netscaler/postman-citrix-netscaler-system-api/)
 
-NetScaler Next-Gen API is a modern declarative RESTful API built on the OpenAPI 3.0 specification that allows developers to programmatically configure NetScaler with an intuitive application-centric interface, abstracting away low-level configuration complexities.
+#### Governance rules (2)
 
-- **Human URL:** [https://developer-docs.netscaler.com/en-us/nextgen-api.html](https://developer-docs.netscaler.com/en-us/nextgen-api.html)
-- **Base URL:** `https://<netscaler-ip>/`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Citrix NetScaler — jsonschema rules](https://apis.io/rules/citrix-netscaler/citrix-netscaler-jsonschema-spectral-rules/)
+- [Citrix NetScaler API Rules](https://apis.io/rules/citrix-netscaler/citrix-netscaler-spectral-rules/)
 
-- Application-Centric
-- Declarative
-- OpenAPI
-- REST API
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://developer-docs.netscaler.com/en-us/nextgen-api.html)
-- [Getting Started](https://developer-docs.netscaler.com/en-us/nextgen-api/getting-started-guide.html)
-- [API Reference](https://developer-docs.netscaler.com/en-us/nextgen-api/apis/)
-- [Postman Collection](collections/citrix-netscaler-nitro.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/citrix-netscaler-nitro.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Citrix Netscaler Authentication](https://apis.io/security/citrix-netscaler/citrix-netscaler-authentication/)
+- [Citrix Netscaler Domain Security](https://apis.io/security/citrix-netscaler/citrix-netscaler-domain-security/)
 
-## Common Properties
+#### Plans and pricing (1)
 
-- [Portal](https://www.netscaler.com/platform/apis)
+Published plans, tiers and prices.
+
+- [Citrix Netscaler Plans Pricing](https://apis.io/plans/citrix-netscaler/citrix-netscaler-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Citrix Netscaler Rate Limits](https://apis.io/rate-limits/citrix-netscaler/citrix-netscaler-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Citrix Netscaler Finops](https://apis.io/finops/citrix-netscaler/citrix-netscaler-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Documentation](https://developer-docs.netscaler.com/)
-- [Documentation](https://docs.netscaler.com/)
-- [C L I](https://developer-docs.netscaler.com/en-us/adc-command-reference-int/current-release.html)
-- [Blog](https://www.netscaler.com/blog/)
-- [GitHub Repository](https://github.com/netscaler)
-- [GitHub Organization](https://github.com/citrix)
 - [Support](https://www.netscaler.com/resources/support)
-- [Status Page](https://status.cloud.com/)
-- [Sign Up](https://onboarding.cloud.com/)
-- [Login](https://citrix.cloud.com/)
-- [Privacy Policy](https://www.cloud.com/legal)
-- [Terms of Service](https://www.cloud.com/legal)
-- [X (Twitter)](https://x.com/NetScaler)
-- [LinkedIn](https://www.linkedin.com/company/netscaler)
-- [Release Notes](https://docs.netscaler.com/en-us/citrix-adc/current-release/citrix-adc-release-notes.html)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://www.citrix.com/partners/)
+- [Blog](https://www.netscaler.com/blog/)
+- [Terms of service](https://www.cloud.com/legal)
+- [Privacy policy](https://www.cloud.com/legal)
+- [GitHub](https://github.com/citrix)
+- [Status](https://status.cloud.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com/
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Citrix NetScaler: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/citrix-netscaler/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
